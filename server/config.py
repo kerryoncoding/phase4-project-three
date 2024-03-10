@@ -51,3 +51,19 @@ bcrypt = Bcrypt(app=app)
 api = Api(app=app)
 # Enables Cross-Origin Resource Sharing (CORS) for the Flask application.
 CORS(app)
+
+
+
+@app.route('/')
+def home():
+    return '<h1> This is home </h1>'
+
+class Squads():
+
+    def get(self):
+        squads = [squad.to_dict()
+                   for squad in Squad.query.all()]
+
+        return make_response(squads, 200)
+
+api.add_resource(Squads, "/squads")
