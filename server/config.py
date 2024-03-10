@@ -62,13 +62,14 @@ def home():
 
 @app.route('/squads', methods=['GET'])
 def squads():
-  if request.method == 'GET':
-    squads = Squad.query.all()
+    return '<h1> this is squads</h1>'
+#   if request.method == 'GET':
+#     squads = Squad.query.all()
 
-    response = make_response(
-        jsonify([squad.to_dict() for squad in squads]),
-        200,
-    )
+#     response = make_response(
+#         jsonify([squad.to_dict() for squad in squads]),
+#         200,
+#     )
 
-    return response
+#     return response
 
