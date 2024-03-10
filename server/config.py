@@ -58,12 +58,17 @@ CORS(app)
 def home():
     return '<h1> This is home </h1>'
 
-class Squads():
 
-    def get(self):
-        squads = [squad.to_dict()
-                   for squad in Squad.query.all()]
 
-        return make_response(squads, 200)
+@app.route('/squads', methods=['GET'])
+def squads():
+  if request.method == 'GET':
+    squads = Squad.query.all()
 
-api.add_resource(Squads, "/squads")
+    response = make_response(
+        jsonify([squad.to_dict() for squad in squads]),
+        200,
+    )
+
+    return response
+
