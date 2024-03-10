@@ -20,8 +20,6 @@ import os
 # Loads environment variables from a .env file into the application's environment.
 load_dotenv()
 
-
-
 # A dictionary that defines naming conventions for various database objects (e.g., indexes, unique constraints, foreign keys).
 naming_convention = {
     "ix": "ix_%(column_0_label)s",
@@ -52,24 +50,4 @@ api = Api(app=app)
 # Enables Cross-Origin Resource Sharing (CORS) for the Flask application.
 CORS(app)
 
-
-
-@app.route('/')
-def home():
-    return '<h1> This is home </h1>'
-
-
-
-@app.route('/squads', methods=['GET'])
-def squads():
-    return '<h1> this is squads</h1>'
-#   if request.method == 'GET':
-#     squads = Squad.query.all()
-
-#     response = make_response(
-#         jsonify([squad.to_dict() for squad in squads]),
-#         200,
-#     )
-
-#     return response
 

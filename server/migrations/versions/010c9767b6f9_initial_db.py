@@ -17,7 +17,13 @@ depends_on = None
 
 
 def upgrade():
-    pass
+    op.create_table('squads',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=25), nullable=False),
+    sa.Column('image', sa.String(), nullable=True),
+    sa.Column('description', sa.String(length=200), nullable=True),
+    sa.PrimaryKeyConstraint('id')
+   )
 
 
 def downgrade():

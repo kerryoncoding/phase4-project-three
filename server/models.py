@@ -1,25 +1,17 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy import MetaData
+from config import db
+
 
 metadata = MetaData()
 
 db = SQLAlchemy(metadata=metadata)
 
-# class User(db.Model, SerializerMixin):
-#    __tablename__ = 'users'
-#    id = db.Column(db.Integer, primary_key=True)
-#    username = db.Column(db.String(20))
-#    email = db.Column(db.String, unique=True)
-
-#    def __repr__(self):
-#       return f'User: {self.name}, email: {self.email}'
-
-
 class Squad(db.Model, SerializerMixin):
    __tablename__ = 'squads'
    id = db.Column(db.Integer, primary_key=True)
-   name = db.Column(db.String)
+   name = db.Column(db.String(25), nullable=False)
    image = db.Column(db.String)
    description = db.Column(db.String(200))
 
