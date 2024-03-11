@@ -7,6 +7,7 @@ function SquadForm({addSquad}){
    const [description, setDescription] = useState("")
    const [image, setImage] = useState("")
    
+   // THIS NEEDS TO BE TURNED INTO A POST TO THE BACKEND
    function handleForm(e){
       e.preventDefault()
       let newSquad = {
