@@ -17,3 +17,8 @@ Enoch for providing a started template for Phase 4 final project
 
 https://github.dev/briancodex/react-sidebar-router-v6.4
 for assiting with sidebar code
+
+My Phase 2 final project for Flatiron:
+https://github.com/kerryoncoding/engineering-portfolio
+which I used to leverage frontend react design and css styling
+
