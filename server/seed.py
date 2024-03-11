@@ -6,7 +6,7 @@ from models import Squad, db
 if __name__ == "__main__":
   with app.app_context():
 
-    # Squad.query.delete()
+    Squad.query.delete()
     
     squads = []
 
