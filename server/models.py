@@ -6,9 +6,9 @@ from config import db
 
 metadata = MetaData()
 
-db = SQLAlchemy(metadata=metadata)
+# db = SQLAlchemy(metadata=metadata)
 
-class Squad(db.Model, SerializerMixin):
+class Squad(db.Model):
    __tablename__ = 'squads'
    id = db.Column(db.Integer, primary_key=True)
    name = db.Column(db.String(25), nullable=False)

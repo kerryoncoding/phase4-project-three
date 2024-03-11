@@ -1,8 +1,6 @@
-from config import app, db
-from flask_migrate import Migrate
 
-
-migrate = Migrate(app, db)
+from config import app
+from models import Squad
 
 
 
