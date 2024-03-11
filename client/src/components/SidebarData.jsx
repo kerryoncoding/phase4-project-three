@@ -16,6 +16,12 @@ export const SidebarData = [
     path: "/squads",
     //  icon: <IoIcons.IoIosPaper />,
     cName: "nav-text",
-  },
+   },
+   {
+      title: "Create",
+      path: "/create",
+      //  icon: <FaIcons.FaCartPlus />,
+      cName: "nav-text",
+     },
 
 ];

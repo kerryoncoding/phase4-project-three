@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import Home from "./components/Home"
 import Squads from "./components/Squads"
+import Create from "./components/Create"
 import NavBar from "./components/NavBar"
 import "./App.css"
 
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "squads",
         element: <Squads />,
+      },
+      {
+        path: "create",
+        element: <Create />,
       },
     ],
   },
