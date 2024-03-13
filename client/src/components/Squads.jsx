@@ -1,12 +1,13 @@
 
 import React, { useState, useEffect } from "react"
 import Squadlist from "./Squadlist"
+import SquadItem from "./SquadItem"
 
 function Squads() {
    const [squadList, setSquadList] = useState([])
-   const URL = "http://localhost:5173/components/squadlist"
+   const URL = "/api/squads"
 
-   useEffect(()=>{
+   useEffect(() => {
       fetch(URL)
       .then(res => res.json())
       .then(data => setSquadList(data))
@@ -35,7 +36,7 @@ function Squads() {
       )
    })
 
-
+  
    return (
       <div className="about-container">
          <h2>LIST ALL SQADS</h2>

@@ -50,5 +50,34 @@ def squads():
     return response
 
 
+@app.route('/squads/<int:id>', methods=['PATCH', 'DELETE'])
+def squads_by_id(id):
+    squad = Squad.query.filter_by(id=id).first()
+
+    if request.method == 'PATCH':
+        data = request.get_json()
+        for attr in data:
+            setattr(squad, attr, data[attr])
+            
+        db.session.add(squad)
+        db.session.commit()
+
+        response = make_response(
+            jsonify(squad.to_dict()),
+            200,
+        )
+
+    elif request.method == 'DELETE':
+        db.session.delete(squad)
+        db.session.commit()
+
+        response = make_response(
+            jsonify({'deleted': True}),
+            200,
+        )
+
+    return response
+
+
 if __name__ == "__main__":
   app.run(port=5555, debug=True)

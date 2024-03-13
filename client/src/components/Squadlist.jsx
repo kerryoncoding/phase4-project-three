@@ -5,7 +5,7 @@ import SquadItem from "./SquadItem"
 
 function Squadlist({squadList, deleteItem}){
 
-   const [showForm, setShowForm] = useState(false)
+   // const [showForm, setShowForm] = useState(false)
 
    // const [buttonText, setButtonText] = useState("Show")
 

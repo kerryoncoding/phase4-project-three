@@ -1,9 +1,8 @@
 import React from "react"
 
 
-function SquadItem({item, deleteItem}){
-
-      function handleDeleteClick(){
+function SquadItem({ item, deleteItem }) {
+      function handleDeleteClick() {
          deleteItem(item.id)
       }
 
