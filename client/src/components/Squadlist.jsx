@@ -1,18 +1,22 @@
 import React, {useState} from "react"
-// import SquadForm from "./SquadForm"
+import SquadFeed from "./SquadFeed"
 import SquadItem from "./SquadItem"
 
 
 function Squadlist({squadList, deleteItem}){
 
-   // const [showForm, setShowForm] = useState(false)
+   const [showFeed, setShowFeed] = useState(false)
 
-   // const [buttonText, setButtonText] = useState("Show")
+   const [buttonText, setButtonText] = useState("Show")
 
-   // function toggleForm() {
-   //    setShowForm(!showForm)
-   //    {(showForm) ? setButtonText("Show") : setButtonText("Hide")}
-   // }
+   function toggleFeed() {
+      setShowFeed(!showFeed)
+      { (showFeed) ? setButtonText("Show") : setButtonText("Hide") }
+   }
+
+   function toggleSquads() {
+      pass
+   }
 
 
    const showSquads = squadList.map((item) => {
@@ -29,11 +33,12 @@ function Squadlist({squadList, deleteItem}){
    return (
       <div className="card-container">
          <h2>Active Squads channels:</h2>
-         {showSquads}
-         {/* <hr className="breakline" /> */}
-         {/* <button onClick={toggleForm} className="formToggleButton">{buttonText} Form</button>
-         {(showForm) ? <SquadForm addSquad={addSquad} /> : "" } */}
          <h3>Don't see what you are looking for?  Create your own!</h3>
+         {showSquads}
+         <hr className="breakline" />
+         <button onClick={toggleFeed} className="formToggleButton">{buttonText} Messages</button>
+         {(showFeed) ? <SquadFeed  /> : "" }
+         
       </div>
    )
 }
