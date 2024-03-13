@@ -38,8 +38,8 @@ function Squads() {
 
   
    return (
-      <div className="about-container">
-         <h2>LIST ALL SQADS</h2>
+      <div className="squad-container">
+         <br />
          <div className="card-container">
             <Squadlist squadList={squadList} deleteItem={deleteItem} />
          </div>
