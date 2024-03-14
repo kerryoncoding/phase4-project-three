@@ -6,14 +6,13 @@ import SquadItem from "./SquadItem"
 function Squadlist({ squadList, deleteItem, showFeedItem, showOneSquad, toggleFeed }) {
 
    const [showFeed, setShowFeed] = useState(false)
-   const [oneSquad, setOneSquad] = useState([])
+   // const [oneSquad, setOneSquad] = useState([])
 
    const [buttonText, setButtonText] = useState("Show")
 
-   function toggleFeed() {
+   function toggleFeed(item) {
       setShowFeed(!showFeed)
       { (showFeed) ? setButtonText("Show") : setButtonText("Hide") }
-      toggleSquads()
    }
   
    const allSquads = squadList.map((item) => {

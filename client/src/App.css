@@ -201,7 +201,7 @@ span {
   border-radius: 15px;
   padding: 10px;
   width: 200px;
-  height: 300px;
+  height: 350px;
   display: inline-grid;
   margin: 10px 10px; 
 }
@@ -232,24 +232,28 @@ span {
   max-width: 80%
 }
 
-/* SQUAD FORM SECTION */
-
-.formToggleButton {
-  padding: 10px 20px;
-  margin-top: 2%;
-  margin-bottom: 70px;
+.messageToggleButton {
+  padding: 8px 16px;
+  /* margin-top: 2%; */
+  margin-bottom: 5px;
   background-color: #E4F1FE;
-  font-size: 20px;
+  font-size: 16px;
   border: none;
   /* color: black; */
   border-radius: 10px;
   text-decoration: none;
 }
 
-.formToggleButton:hover {
+.messageToggleButton:hover {
   background-color:#153A4D;
   color: white;
 }
+
+
+
+/* SQUAD FORM SECTION */
+
+
 
 .formContainer {
   display: block;
