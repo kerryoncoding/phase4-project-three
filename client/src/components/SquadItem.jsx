@@ -1,13 +1,15 @@
 import React from "react"
 
 
-function SquadItem({ item, deleteItem }) {
+function SquadItem({ item, deleteItem, showFeedItem, showOneSquad, toggleFeed, buttonText }) {
 	function handleDeleteClick() {
 		deleteItem(item.id)
 	}
 
 	function handleEnterCardClick() {
-		alert(' I was clicked')
+		// alert(' I was clicked')
+		showFeedItem(item)
+		showOneSquad(item)
 	}
 
 	return (
@@ -16,7 +18,8 @@ function SquadItem({ item, deleteItem }) {
 			<h2>{item.name}</h2>
 			<img src={item.image} className="card-image" alt={item.name}></img>
 			<p>{item.description}</p>
-			<button classname = "cardEnterButton" onClick={handleEnterCardClick}>ENTER</button>
+			{/* <button className="cardEnterButton" onClick={handleEnterCardClick}>ENTER</button> */}
+			<button onClick={toggleFeed} className="formToggleButton">{buttonText} Messages</button>
 		</div>
 	)
 }

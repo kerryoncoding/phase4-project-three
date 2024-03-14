@@ -3,41 +3,46 @@ import SquadFeed from "./SquadFeed"
 import SquadItem from "./SquadItem"
 
 
-function Squadlist({squadList, deleteItem}){
+function Squadlist({ squadList, deleteItem, showFeedItem, showOneSquad, toggleFeed }) {
 
    const [showFeed, setShowFeed] = useState(false)
+   const [oneSquad, setOneSquad] = useState([])
 
    const [buttonText, setButtonText] = useState("Show")
 
    function toggleFeed() {
       setShowFeed(!showFeed)
       { (showFeed) ? setButtonText("Show") : setButtonText("Hide") }
+      toggleSquads()
    }
-
-   function toggleSquads() {
-      pass
-   }
-
-
-   const showSquads = squadList.map((item) => {
-
+  
+   const allSquads = squadList.map((item) => {
       return (
          <SquadItem 
-         item = {item}
-         key = {item.id}
-         deleteItem= {deleteItem} />
+            item={item}
+            key={item.id}
+            deleteItem={deleteItem}
+            showFeedItem={showFeedItem}
+            showOneSquad={showOneSquad}
+            toggleFeed={toggleFeed}
+            buttonText={buttonText}
+         />
       )
    })
 
+   function showOneSquad(item) {
+      // setOneSquad(item)
+   }
+      
 
    return (
       <div className="card-container">
-         <h2>Active Squads channels:</h2>
-         <h3>Don't see what you are looking for?  Create your own!</h3>
-         {showSquads}
+         
+         {(showFeed) ? "" : allSquads}
+         {/* {(!showFeed) ? "" : oneSquad } */}
          <hr className="breakline" />
-         <button onClick={toggleFeed} className="formToggleButton">{buttonText} Messages</button>
-         {(showFeed) ? <SquadFeed  /> : "" }
+         {/* <button onClick={toggleFeed} className="formToggleButton">{buttonText} Messages</button> */}
+         {(showFeed) ? <SquadFeed /> : "" }
          
       </div>
    )

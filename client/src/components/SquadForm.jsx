@@ -22,6 +22,9 @@ function SquadForm({addSquad}){
       })
          .then((r) => r.json())
          .then((newSquad) => addSquad(newSquad));
+         setName("")
+         setImage("")
+         setDescription("")
     }
 
 

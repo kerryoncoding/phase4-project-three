@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from "react"
 import Squadlist from "./Squadlist"
-import SquadItem from "./SquadItem"
 
 function Squads() {
    const [squadList, setSquadList] = useState([])
@@ -25,23 +24,17 @@ function Squads() {
       })
    }
 
-
-   const showSquads = squadList.map((item) => {
-
-      return (
-         <SquadItem 
-         item = {item}
-         key = {item.id}
-         deleteItem= {deleteItem} />
-      )
-   })
+   function showFeedItem(item) {
+      alert(item.name)
+   }
 
   
    return (
       <div className="squad-container">
+         <h2>Active Squads channels:</h2>
          <br />
          <div className="card-container">
-            <Squadlist squadList={squadList} deleteItem={deleteItem} />
+            <Squadlist squadList={squadList} deleteItem={deleteItem} showFeedItem={showFeedItem} />
          </div>
       </div>     
    )
