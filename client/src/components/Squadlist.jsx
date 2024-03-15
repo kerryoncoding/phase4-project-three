@@ -3,13 +3,13 @@ import SquadFeed from "./SquadFeed"
 import SquadItem from "./SquadItem"
 
 
-function Squadlist({ squadList, deleteItem, showFeedItem, toggleFeed, selectedSquad }) {
+function Squadlist({ squadList, deleteItem, showFeedItem, toggleFeed, selectedSquad, hideFeedItem }) {
 
    const [showFeed, setShowFeed] = useState(false)
    const [buttonText, setButtonText] = useState("Show")
 
    function toggleFeed(item) {
-      showFeedItem(item)
+      // showFeedItem(item)
       setShowFeed(!showFeed)
       { (showFeed) ? setButtonText("Show") : setButtonText("Hide") }
    }
@@ -34,7 +34,7 @@ function Squadlist({ squadList, deleteItem, showFeedItem, toggleFeed, selectedSq
          {/* {allSquads} */}
          {(showFeed) ? ""  : allSquads}
          {/* <button onClick={toggleFeed} className="formToggleButton">{buttonText} Messages</button> */}
-         {(showFeed) ? <SquadFeed selectedSquad={selectedSquad} /> : "" }
+         {(showFeed) ? <SquadFeed selectedSquad={selectedSquad} buttonText={buttonText} hideFeedItem={hideFeedItem} /> : "" }
          
       </div>
    )

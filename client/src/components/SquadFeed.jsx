@@ -3,7 +3,7 @@ import React from "react"
 import SquadFeedItem from "./SquadFeedItem"
 
 
-function SquadFeed({ selectedSquad, deleteItem }) {
+function SquadFeed({ selectedSquad, deleteItem, buttonText, toggleFeed, hideFeedItem}) {
    
    const mySquad = selectedSquad.map((item) => {
       
@@ -12,6 +12,9 @@ function SquadFeed({ selectedSquad, deleteItem }) {
             item={item}
             key={item.id}
             deleteItem={deleteItem}
+            buttonText={buttonText}
+            toggleFeed={toggleFeed}
+            hideFeedItem={hideFeedItem}
             />
       )
    })

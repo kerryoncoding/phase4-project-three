@@ -31,13 +31,19 @@ function Squads() {
          setSelectedSquad(squad)
    }
 
+   function hideFeedItem() {
+      alert('hide item ')
+      setSquadList(updatedList)
+   }
+
+
 
    return (
       <div className="squad-container">
          <h2>Active Squads channels:</h2>
          <br />
          <div className="card-container">
-            <Squadlist squadList={squadList} deleteItem={deleteItem} showFeedItem={showFeedItem} selectedSquad={selectedSquad} />
+            <Squadlist squadList={squadList} deleteItem={deleteItem} showFeedItem={showFeedItem} selectedSquad={selectedSquad} hideFeedItem={hideFeedItem} />
          </div>
       </div>     
    )

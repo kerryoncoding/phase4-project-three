@@ -7,7 +7,7 @@ function SquadItem({ item, deleteItem, showFeedItem, toggleFeed, buttonText }) {
 	}
 
 	function handleEnterCardClick() {
-		// showFeedItem(item)
+		showFeedItem(item)
 		toggleFeed(item)
 	}
 
