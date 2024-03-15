@@ -1,15 +1,16 @@
 import React from "react"
 
 
-function SquadItem({ item, deleteItem, showFeedItem, toggleFeed, buttonText }) {
+function SquadFeedItem({ item, deleteItem }) {
+
 	function handleDeleteClick() {
 		deleteItem(item.id)
 	}
 
-	function handleEnterCardClick() {
-		// showFeedItem(item)
-		toggleFeed(item)
-	}
+	// function handleCardClick() {
+	// 	// showFeedItem(item)
+	// 	toggleFeed(item)
+	// }
 
 	return (
 		<div className="card" >
@@ -17,9 +18,8 @@ function SquadItem({ item, deleteItem, showFeedItem, toggleFeed, buttonText }) {
 			<h3>{item.name}</h3>
 			<img src={item.image} className="card-image" alt={item.name}></img>
 			<p>{item.description}</p>
-			<button onClick={handleEnterCardClick} className="messageToggleButton">{buttonText} Messages</button>
 		</div>
 	)
 }
 
-export default SquadItem;
+export default SquadFeedItem;
