@@ -1,29 +1,54 @@
 import React, {useState} from 'react'
 // import ReactDOM from "react-dom";
 import { useFormik } from "formik";
+import * as yup from "yup"
 // import "./styles.css";
 
 function Login() {
 
    const [signUp, setSignUp] = useState(false)
+
+
+   const handleClick = () => setSignUp((signUp) => !signUp)
+   const formSchema = yup.object().shape({
+      username: yup.string().required("Please enter a username"),
+      email: yup.string().email()
+    })
    
    const formik = useFormik({
       initialValues: {
          username: "",
          email: ""
       },
+      validationSchema:formSchema,
       onSubmit: (values) => {
-         alert(JSON.stringify(values, null, 2));
+         fetch(signUp ? '/users' : '/login', {
+            method: "POST",
+            header: {
+               "Content-Type":"application/json"
+            },
+            body: JSON.stringify(values)
+         })
+         .then(res => res.json())
+            .then(user => {
+               updateUser(user)
+               history.pushState('/')
+         })
+         // change this  vvvvvv
+         // alert(JSON.stringify(values, null, 2));
       },
    });
    
    
    return (
       <div className="LoginFormContainer">
-         <h1>Please sign in to PodSquad</h1>
+         <h1>Please login or sign up!</h1>
+         <h2>{signUp ? 'Already a member?' : 'Not a member?'}</h2>
+         <button className="messageToggleButton" onClick={handleClick}>{signUp ? 'Log In!' : 'Register now!'}</button>
+         <br/>
          <form className="LoginForm" onSubmit={formik.handleSubmit}>
-           <label htmlFor="username">Username: </label>
-           <br/>
+           <label>Username: </label>
+            <br />
             <input
                id="username"
                name="username"
@@ -31,19 +56,23 @@ function Login() {
                onChange={formik.handleChange}
                value={formik.values.username}
             />
-           <br />
-           <br />
-           <label htmlFor="email">Email Address: </label>
-           <br/>
-             <input
-            id="email"
-            name="email"
-            type="email"
-            onChange={formik.handleChange}
-            value={formik.values.email}
-            />
+            <br />
+            <br />
+            {signUp && (
+               <>
+                  <label>Email Address: </label>
+                  <br/>
+                  <input
+                     id="email"
+                     name="email"
+                     type="text"
+                     onChange={formik.handleChange}
+                     value={formik.values.email}
+                  />
+               </>
+            )}
             <br/>
-            <button className="messageToggleButton" type="submit">Submit</button>
+            <input className="messageToggleButton" type='submit' value={signUp?'Sign Up!':'Log In!'} />
          </form>
       </div>
    );

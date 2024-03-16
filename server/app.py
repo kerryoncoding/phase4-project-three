@@ -1,6 +1,6 @@
 
 from config import app, db
-from flask import Flask, request, make_response, jsonify
+from flask import Flask, request, make_response, jsonify, session
 from flask_cors import CORS
 from flask_migrate import Migrate
 from models import Squad, User, Post
@@ -20,6 +20,9 @@ db.init_app(app)
 @app.route('/')
 def home():
     return '<h1> This is home </h1>'
+
+
+# SQUADS 
 
 @app.route('/squads', methods=['GET', 'POST'])
 def squads():
@@ -78,6 +81,27 @@ def squads_by_id(id):
 
     return response
 
+
+# USERS
+@app.route('/users', methods=['POST'])
+def squads():
+    if request.method == 'POST':
+        data = request.get_json()
+        new_user = User(
+            username=data['username'],
+            email=data['email'],
+        )
+
+        db.session.add(new_user)
+        db.session.commit()
+        session['user_id'] = new_user.id
+
+        response = make_response(
+            jsonify(new_user.to_dict()),
+            201,
+        )
+
+    return response
 
 if __name__ == "__main__":
   app.run(port=5555, debug=True)
