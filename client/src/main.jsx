@@ -9,19 +9,8 @@ import {
   Outlet,
 } from "react-router-dom";
 
-// import {
-//   createBrowserRouter,
-//   RouterProvider,
-//   Route,
-//   Link,
-//   Outlet,
-//   createRoutesFromElements,
-// } from "react-router-dom";
-import Home from "./components/Home"
-import Squads from "./components/Squads"
-import Create from "./components/Create"
-import Login from "./components/Login"
 import NavBar from "./components/NavBar"
+import App from "./App"
 import "./App.css"
 
 const AppLayout = () => (
@@ -31,45 +20,12 @@ const AppLayout = () => (
   </>
 );
 
-
 const Router = () => (
   <BrowserRouter>
     <AppLayout />
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="squads" element={<Squads />} />
-      <Route path="create" element={<Create />} />
-      <Route path="login" element={<Login />} />
-    </Routes>
+    <App />
   </BrowserRouter>
 );
 
 createRoot(document.getElementById("root")).render(<Router />);
 
-// const router = createBrowserRouter([
-//   {
-//     element: <AppLayout />,
-//     children: [
-//       {
-//         path: "/",
-//         element: <Home />,
-//       },
-//       {
-//         path: "squads",
-//         element: <Squads />,
-//       },
-//       {
-//         path: "create",
-//         element: <Create />,
-//       },
-//       {
-//         path: "login",
-//         element: <Login />,
-//       },
-//     ],
-//   },
-// ]);
-
-// createRoot(document.getElementById("root")).render(
-//   <RouterProvider router={router} />
-// );

@@ -4,7 +4,10 @@ import SquadForm from "./SquadForm"
 
 
 function addSquad(newSquad) {
-   fetch("http://localhost:5173/components/squadlist", {
+   const URL = "/api/squads"
+
+
+   fetch((URL), {
       method: "POST",
       headers: {
          "Content-Type":"application/json"
