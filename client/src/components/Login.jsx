@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {useHistory} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 // import ReactDOM from "react-dom";
 import { useFormik } from "formik";
 import * as yup from "yup"
@@ -8,7 +8,7 @@ import * as yup from "yup"
 function Login() {
 
    const [signUp, setSignUp] = useState(false)
-   const history = useHistory()
+   const history = useNavigate()
 
 
    const handleClick = () => setSignUp((signUp) => !signUp)

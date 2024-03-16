@@ -84,7 +84,7 @@ def squads_by_id(id):
 
 # USERS
 @app.route('/users', methods=['POST'])
-def squads():
+def users():
     if request.method == 'POST':
         data = request.get_json()
         new_user = User(
