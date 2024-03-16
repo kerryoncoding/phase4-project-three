@@ -22,6 +22,12 @@ export const SidebarData = [
       path: "/create",
       //  icon: <FaIcons.FaCartPlus />,
       cName: "nav-text",
-     },
+    },
+    {
+      title: "Login",
+      path: "/login",
+      //  icon: <FaIcons.FaCartPlus />,
+      cName: "nav-text",
+    },
 
 ];

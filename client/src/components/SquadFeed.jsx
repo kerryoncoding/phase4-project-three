@@ -24,8 +24,12 @@ function SquadFeed({ selectedSquad, deleteItem, buttonText, toggleFeed, hideFeed
    return (
       <div className="home-container">
          {mySquad}
+         <button>RETURN TO ALL SQUADS</button>
+         <button>DELETE SQUAD --- if owner</button>
          <hr className="breakline" />
          <h1>...squad FEED here...</h1>
+         {/* <AddMessage /> */}
+
       </div>
    )
 }
