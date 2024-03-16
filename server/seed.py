@@ -6,10 +6,10 @@ from models import Squad, User, Post, db
 def create_squads():
   squads = []
 
-  squads.append(Squad(name='Sunday Sitdown', image='https://m.media-amazon.com/images/I/51+HNJBn0LL._SL500_.jpg', description='Conversations with Willie Geist and speical guests'))    
-  squads.append(Squad(name='Armchair Expert', image='https://i.iheart.com/v3/url/aHR0cHM6Ly9tZWdhcGhvbmUuaW1naXgubmV0L3BvZGNhc3RzLzFmNmJmY2VjLTIyNzQtMTFlZS04ZWQxLTU3NTcxOTQ0ZDgyZi9pbWFnZS9Bcm1jaGFpcl9FeHBlcnRfLV9BX1Nwb3RpZnlfUG9kY2FzdC5qcGc_aXhsaWI9cmFpbHMtNC4zLjEmbWF4LXc9MzAwMCZtYXgtaD0zMDAwJmZpdD1jcm9wJmF1dG89Zm9ybWF0LGNvbXByZXNz?ops=fit(960%2C960)', description='Dax Shepard dishing adivce'))    
-  squads.append(Squad(name='Don\'t Ask Tig', image='https://img.apmcdn.org/62790abdbd1ccfe17022faf1b235df1100d97628/square/77795b-20200622-don-t-ask-tig-podcast-tile.jpg', description='The adivce you shouldn\'t have asked for'))
-  squads.append(Squad(name='We Can Do Hard Things', image='https://i.scdn.co/image/ab67656300005f1f31936fcc7887c8a10ba9af9d', description='Tune in for Inspiration when you need it'))
+  squads.append(Squad(name='Sunday Sitdown', image='https://m.media-amazon.com/images/I/51+HNJBn0LL._SL500_.jpg', description='Conversations with Willie Geist and speical guests', owner_user_id=2))    
+  squads.append(Squad(name='Armchair Expert', image='https://i.iheart.com/v3/url/aHR0cHM6Ly9tZWdhcGhvbmUuaW1naXgubmV0L3BvZGNhc3RzLzFmNmJmY2VjLTIyNzQtMTFlZS04ZWQxLTU3NTcxOTQ0ZDgyZi9pbWFnZS9Bcm1jaGFpcl9FeHBlcnRfLV9BX1Nwb3RpZnlfUG9kY2FzdC5qcGc_aXhsaWI9cmFpbHMtNC4zLjEmbWF4LXc9MzAwMCZtYXgtaD0zMDAwJmZpdD1jcm9wJmF1dG89Zm9ybWF0LGNvbXByZXNz?ops=fit(960%2C960)', description='Dax Shepard dishing adivce', owner_user_id=2))    
+  squads.append(Squad(name='Don\'t Ask Tig', image='https://img.apmcdn.org/62790abdbd1ccfe17022faf1b235df1100d97628/square/77795b-20200622-don-t-ask-tig-podcast-tile.jpg', description='The adivce you shouldn\'t have asked for', owner_user_id=1))
+  squads.append(Squad(name='We Can Do Hard Things', image='https://i.scdn.co/image/ab67656300005f1f31936fcc7887c8a10ba9af9d', description='Tune in for Inspiration when you need it', owner_user_id=1))
 
   return squads
 
@@ -27,18 +27,18 @@ def create_users():
 def create_posts():
   posts = []
 
-  posts.append(Post(body="This podcast makes my day", x='x')) 
-  posts.append(Post(body="Thank you for tackling hard things with us.", x='x')) 
-  posts.append(Post(body="Never disappoints!!", x='x')) 
-  posts.append(Post(body="Love it!", x='x')) 
-  posts.append(Post(body="Love this pod!", x='x')) 
-  posts.append(Post(body="always informative/ thought provoking.", x='x')) 
-  posts.append(Post(body="Love ❤️ the pod.", x='x')) 
-  posts.append(Post(body="You inspire me every time!!.", x='x')) 
-  posts.append(Post(body="love this", x='x')) 
-  posts.append(Post(body="Big love 🤙", x='x')) 
-  posts.append(Post(body="Love this pod!", x='x')) 
-  posts.append(Post(body="Keeping it real", x='x')) 
+  posts.append(Post(body="This podcast makes my day", squad_id=1, user_id=1)) 
+  posts.append(Post(body="Thank you for tackling hard things with us.", squad_id=1,user_id=2)) 
+  posts.append(Post(body="Never disappoints!!", squad_id=1, user_id=3)) 
+  posts.append(Post(body="Love it!", squad_id=2, user_id=1)) 
+  posts.append(Post(body="Love this pod!", squad_id=2, user_id=2)) 
+  posts.append(Post(body="always informative/ thought provoking.", squad_id=2, user_id=3)) 
+  posts.append(Post(body="Love ❤️ the pod.", squad_id=3, user_id=1)) 
+  posts.append(Post(body="You inspire me every time!!.", squad_id=2, user_id=2)) 
+  posts.append(Post(body="love this", squad_id=3, user_id=3)) 
+  posts.append(Post(body="Big love 🤙", squad_id=4, user_id=1)) 
+  posts.append(Post(body="Love this pod!", squad_id=4, user_id=2)) 
+  posts.append(Post(body="Keeping it real", squad_id=4, user_id=3)) 
   
   return posts
 
@@ -62,7 +62,7 @@ if __name__ == "__main__":
     db.session.commit()
 
     print("seeding posts...")
-    users = create_posts()
+    posts = create_posts()
     db.session.add_all(posts)
     db.session.commit()
 

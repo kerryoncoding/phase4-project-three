@@ -14,6 +14,7 @@ class Squad(db.Model, SerializerMixin):
    name = db.Column(db.String(25), nullable=False)
    image = db.Column(db.String)
    description = db.Column(db.String(200))
+   owner_user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
    def __repr__(self):
       return f'<Squad: {self.name}, imageURL: {self.image}, description: {self.description}>'
@@ -35,10 +36,11 @@ class Post(db.Model, SerializerMixin):
 
    id = db.Column(db.Integer, primary_key=True)
    body = db.Column(db.String)
-   username = db.Column(db.String)
-   created_at = db.Column(db.DateTime, server_default=db.func.now())
-   updated_at = db.Column(db.DateTime, onupdate=db.func.now())
+   squad_id = db.Column(db.Integer, db.ForeignKey("squads.id"))
+   user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+   # created_at = db.Column(db.DateTime, server_default=db.func.now())
+   # updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
    def __repr__(self):
-      return f'<Message by {self.username}: {self.body[:10]}...>'
+      return f'< Message: {self.body} >'
 
