@@ -3,7 +3,7 @@ import React from "react"
 import SquadForm from "./SquadForm"
 
 
-function addSquad(newSquad) {
+function addSquad({ newSquad }) {
    const URL = "/api/squads"
 
 

@@ -1,4 +1,5 @@
-import * as React from "react";
+// import * as React from "react";
+import React, { useState, useEffect } from "react"
 import { createRoot } from "react-dom/client";
 
 import {
@@ -18,13 +19,46 @@ import "./App.css"
 
 
 function App() {
+  // new
+  const [squadList, setSquadList] = useState([])
+   const [selectedSquad, setSelectedSquad] = useState([])
+   const URL = "/api/squads"
 
+   useEffect(() => {
+      fetch(URL)
+      .then(res => res.json())
+      .then(data => setSquadList(data))
+   },[])
+
+   
+   function deleteItem(item){
+      fetch(`${URL}/${item}`, {
+         method: "DELETE",
+      })
+      .then(res => res.json())
+      .then(data=> {
+         let updatedList = squadList.filter((data)=> data.id != item)
+         setSquadList(updatedList)
+      })
+   }
+
+   function showFeedItem(item) {
+      alert('item ' + item.name)
+      let squad = squadList.filter((data)=> data.id == item.id)
+         setSelectedSquad(squad)
+   }
+
+   function hideFeedItem() {
+      alert('hide item ')
+      setSquadList(updatedList)
+   }
+// new ^^
 
   return (
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="squads" element={<Squads />} />
+        <Route path="squads" element={<Squads squadList={squadList} deleteItem={deleteItem} showFeedItem={showFeedItem} selectedSquad={selectedSquad} hideFeedItem={hideFeedItem} />} />
         <Route path="create" element={<Create />} />
         <Route path="login" element={<Login />} />
       </Routes>
