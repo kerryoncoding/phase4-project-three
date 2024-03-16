@@ -251,6 +251,70 @@ span {
 
 
 
+/* LOGIN FORM */
+
+.LoginFormContainer {
+  display: block;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  max-width: 600px;
+  text-align: center;
+  /* padding: 25px; */
+  /* padding-left: 50px; */
+  border: rgb(60, 60, 60) solid 1px;
+  border-radius: 15px;
+}
+
+.LoginFormContainer h1 {
+  margin: 25px;
+}
+
+.LoginForm {
+  margin-top: 15px;
+  margin-bottom: 50px;
+}
+
+.LoginForm span{
+  padding: 20px;
+}
+
+.LoginForm input {
+  border-radius: 4px;
+  padding: 10px;
+  margin: 15px;
+  background-color:#E4F1FE ;
+}
+
+.LoginForm Button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #E4F1FE;
+  font-size: 20px;
+  border: none;
+  color: #153A4D;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.squadForm Button:hover {
+  background-color:#153A4D;
+  color: white;
+}
+
+
+/* .LoginFormContainer label {
+  margin-top: 25px;
+}
+
+.LoginFormContainer button {
+  margin-top: 25px;
+}
+
+.LoginFormContainer h2 {
+  margin-top: 35px;
+} */
+
 /* SQUAD FORM SECTION */
 
 
@@ -286,6 +350,7 @@ span {
 .squadForm input {
   border-radius: 4px;
   padding: 10px;
+  background-color:#E4F1FE ;
 }
 
 .squadForm Button {
