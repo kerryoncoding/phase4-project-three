@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
+import {useHistory} from 'react-router-dom'
 // import ReactDOM from "react-dom";
 import { useFormik } from "formik";
 import * as yup from "yup"
@@ -7,6 +8,7 @@ import * as yup from "yup"
 function Login() {
 
    const [signUp, setSignUp] = useState(false)
+   const history = useHistory()
 
 
    const handleClick = () => setSignUp((signUp) => !signUp)
@@ -22,7 +24,7 @@ function Login() {
       },
       validationSchema:formSchema,
       onSubmit: (values) => {
-         fetch(signUp ? '/users' : '/login', {
+         fetch(signUp ? 'api/users' : 'api/login', {
             method: "POST",
             header: {
                "Content-Type":"application/json"
@@ -32,7 +34,7 @@ function Login() {
          .then(res => res.json())
             .then(user => {
                updateUser(user)
-               history.pushState('/')
+               history.push('/')
          })
          // change this  vvvvvv
          // alert(JSON.stringify(values, null, 2));
