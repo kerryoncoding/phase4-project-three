@@ -21,7 +21,6 @@ function SquadForm({addSquad}){
    }
 
 
-
    return (
       <div className="formContainer">
          <h2>Add A New Squad</h2>

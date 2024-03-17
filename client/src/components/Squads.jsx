@@ -1,15 +1,23 @@
 
 import React, { useState, useEffect } from "react"
 import Squadlist from "./Squadlist"
+import SquadFeed from "./SquadFeed"
 
-function Squads({showAllSquads, squadList, deleteItem, showFeedItem, selectedSquad }) {
+function Squads({ squadList, deleteItem, showFeedItem, selectedSquad }) {
+   
+   const [showFeed, setShowFeed] = useState(false)
+
+   function toggleFeed() {
+      // showFeedItem(item)
+      setShowFeed(!showFeed)
+   }
  
    return (
       <div className="squad-container">
          <h2>Active Squads channels:</h2>
          <br />
          <div className="card-container">
-            <Squadlist showAllSquads={showAllSquads}  squadList={squadList} deleteItem={deleteItem} showFeedItem={showFeedItem} selectedSquad={selectedSquad} />
+            {(showFeed) ? <SquadFeed toggleFeed={toggleFeed} selectedSquad={selectedSquad} /> : <Squadlist toggleFeed={toggleFeed} deleteItem={deleteItem} showFeedItem={showFeedItem} squadList={squadList} />}
          </div>
       </div>     
    )

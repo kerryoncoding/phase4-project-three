@@ -1,6 +1,6 @@
 
 import React from "react"
-import SquadForm from "./SquadForm"
+import CreateForm from "./CreateForm"
 
 
 
@@ -13,7 +13,7 @@ function Create({addSquad}){
          <br />
          <div className="card-container">
             <h3>CREATE NEW POD</h3>
-            <SquadForm addSquad={addSquad} />
+            <CreateForm addSquad={addSquad} />
          </div>
       </div>
       

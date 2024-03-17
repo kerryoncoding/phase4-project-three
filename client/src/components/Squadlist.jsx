@@ -1,17 +1,9 @@
 import React, {useState} from "react"
-import SquadFeed from "./SquadFeed"
 import SquadItem from "./SquadItem"
 
 
-function Squadlist({ showAllSquads, squadList, deleteItem, showFeedItem, toggleFeed, selectedSquad }) {
+function Squadlist({ squadList, deleteItem, showFeedItem, toggleFeed,}) {
 
-   const [showFeed, setShowFeed] = useState(false)
-   // const [buttonText, setButtonText] = useState("Show")
-
-   function toggleFeed(item) {
-      // showFeedItem(item)
-      setShowFeed(!showFeed)
-   }
   
    const allSquads = squadList.map((item) => {
       
@@ -28,8 +20,7 @@ function Squadlist({ showAllSquads, squadList, deleteItem, showFeedItem, toggleF
 
    return (
       <div className="card-container">
-         
-         {(showFeed) ? <SquadFeed toggleFeed={toggleFeed}  showAllSquads={showAllSquads}  selectedSquad={selectedSquad} deleteItem={deleteItem} /> : allSquads}
+         {allSquads}
       </div>
    )
 }
