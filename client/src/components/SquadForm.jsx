@@ -9,23 +9,16 @@ function SquadForm({addSquad}){
    
    function handleSubmit(e) {
       e.preventDefault();
-      fetch("/api/squads", {
-         method: "POST",
-         headers: {
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify({
+      let newSquad={
             name: name,
             image: image,
             description: description,
-         }),
-      })
-         .then((r) => r.json())
-         .then((newSquad) => addSquad(newSquad));
+         }
+         addSquad(newSquad)
          setName("")
          setImage("")
          setDescription("")
-    }
+   }
 
 
 

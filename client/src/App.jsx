@@ -19,7 +19,6 @@ import "./App.css"
 
 
 function App() {
-  // new
    const [squadList, setSquadList] = useState([])
    const [selectedSquad, setSelectedSquad] = useState([])
    const URL = "/api/squads"
@@ -28,8 +27,23 @@ function App() {
       fetch(URL)
       .then(res => res.json())
       .then(data => setSquadList(data))
-   },[])
+   }, [])
+   
 
+// Add squad to squadlist
+   function addSquad(newSquad) {
+      fetch((URL), {
+         method: "POST",
+         headers: {
+            "Content-Type":"application/json"
+         },
+         body: JSON.stringify(newSquad)
+      })
+      .then(res => res.json())
+      .then(data => {
+         setSquadList([...squadList, data])
+      })
+   }
    
    function deleteItem(item){
       fetch(`${URL}/${item}`, {
@@ -59,7 +73,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="squads" element={<Squads squadList={squadList} deleteItem={deleteItem} showFeedItem={showFeedItem} selectedSquad={selectedSquad} hideFeedItem={hideFeedItem} />} />
-        <Route path="create" element={<Create />} />
+        <Route path="create" element={<Create addSquad={addSquad} />} />
         <Route path="login" element={<Login />} />
       </Routes>
     </>

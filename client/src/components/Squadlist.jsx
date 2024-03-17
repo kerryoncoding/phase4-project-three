@@ -31,7 +31,6 @@ function Squadlist({ squadList, deleteItem, showFeedItem, toggleFeed, selectedSq
    return (
       <div className="card-container">
          
-         {/* {allSquads} */}
          {(showFeed) ? ""  : allSquads}
          {/* <button onClick={toggleFeed} className="formToggleButton">{buttonText} Messages</button> */}
          {(showFeed) ? <SquadFeed selectedSquad={selectedSquad} buttonText={buttonText} hideFeedItem={hideFeedItem} /> : "" }
