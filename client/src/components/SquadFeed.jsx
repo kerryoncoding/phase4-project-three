@@ -17,6 +17,19 @@ function SquadFeed({ selectedSquad, toggleFeed}) {
    })
 
 
+   // const myPosts = selectedPost.map((item) => {
+      
+   //    return (
+   //       <SquadFeedPost
+   //          item={item}
+   //          key={item.id}
+   //          body={body}
+   //          user_id={user_id}
+   //          />
+   //    )
+   // })
+
+
      
    return (
       <div className="home-container">
@@ -25,7 +38,8 @@ function SquadFeed({ selectedSquad, toggleFeed}) {
          {/* <button>DELETE SQUAD --- if owner</button> */}
          <hr className="breakline" />
          <h1>...squad FEED here...</h1>
-         {/* <AddMessage /> */}
+         
+         {/* {SquadFeedPost} */}
 
       </div>
    )
