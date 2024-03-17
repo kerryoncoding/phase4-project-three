@@ -11,21 +11,22 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
-app.secret_key = b'\xf7\x93\xedur\x9d\xa0\r\x9c\x84M\x16\x1d\xb5)\xad'
+
+# What is this for?
+# app.secret_key = b'\xf7\x93\xedur\x9d\xa0\r\x9c\x84M\x16\x1d\xb5)\xad'
 
 CORS(app)
 migrate = Migrate(app, db)
 
 db.init_app(app)
 
-
+# Home
 @app.route('/')
 def home():
     return '<h1> This is home </h1>'
 
 
-# SQUADS 
-
+# SQUADS  ###################################################
 @app.route('/squads', methods=['GET', 'POST'])
 def squads():
     if request.method == 'GET':
@@ -83,9 +84,36 @@ def squads_by_id(id):
 
     return response
 
+# POSTS ############################################# 
+@app.route('/posts', methods=['GET', 'POST'])
+def posts():
+    if request.method == 'GET':
+        posts = Post.query.all()
 
+        response = make_response(
+            jsonify([post.to_dict() for post in posts]),
+            200,
+        )
+    
+    elif request.method == 'POST':
+        data = request.get_json()
+        post = Post(
+            body=data['body'],
+            squad_id=data['squad_id'],
+            user_id=data['user_id']
+        )
 
+        db.session.add(post)
+        db.session.commit()
 
+        response = make_response(
+            jsonify(post.to_dict()),
+            201,
+        )
+
+    return response
+
+# USERS #####################################
 @app.route('/users', methods=['POST'])
 def create_user():
     form_json = request.get_json()

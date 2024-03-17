@@ -7,10 +7,9 @@ function SquadFeedItem({ item, deleteItem, buttonText, toggleFeed, hideFeedItem 
 		deleteItem(item.id)
 	}
 
-	// function handleLeaveCardClick() {
-	// 	hideFeedItem(item)
-	// 	toggleFeed(item)
-	// }
+	function handleLeaveCardClick() {
+		toggleFeed(item)
+	}
 
 	return (
 		<div className="card" >
@@ -18,7 +17,7 @@ function SquadFeedItem({ item, deleteItem, buttonText, toggleFeed, hideFeedItem 
 			<h3>{item.name}</h3>
 			<img src={item.image} className="card-image" alt={item.name}></img>
          <p>{item.description}</p>
-         {/* <button onClick={handleLeaveCardClick} className="messageToggleButton">{buttonText} Messages</button> */}
+         <button onClick={handleLeaveCardClick} className="messageToggleButton">{buttonText} Messages</button>
 		</div>
 	)
 }
