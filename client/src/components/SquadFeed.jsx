@@ -3,7 +3,7 @@ import React from "react"
 import SquadFeedItem from "./SquadFeedItem"
 
 
-function SquadFeed({ selectedSquad, deleteItem, buttonText, toggleFeed, hideFeedItem}) {
+function SquadFeed({ selectedSquad, toggleFeed}) {
    
    const mySquad = selectedSquad.map((item) => {
       
@@ -11,26 +11,18 @@ function SquadFeed({ selectedSquad, deleteItem, buttonText, toggleFeed, hideFeed
          <SquadFeedItem 
             item={item}
             key={item.id}
-            deleteItem={deleteItem}
-            buttonText={buttonText}
             toggleFeed={toggleFeed}
-            hideFeedItem={hideFeedItem}
             />
       )
    })
 
-   function handleAllSquadClick() {
-      // toggleFeed()
-      alert('not this one')
-   }
 
-
-   
+     
    return (
       <div className="home-container">
          {mySquad}
-         <button onClick={handleAllSquadClick}>RETURN TO ALL SQUADS</button>
-         <button>DELETE SQUAD --- if owner</button>
+         <br />
+         {/* <button>DELETE SQUAD --- if owner</button> */}
          <hr className="breakline" />
          <h1>...squad FEED here...</h1>
          {/* <AddMessage /> */}

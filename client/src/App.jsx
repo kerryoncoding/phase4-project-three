@@ -78,17 +78,12 @@ function App() {
       setSelectedSquad(onesquad)
    }
 
-// Don't think this is doing anything right now....
-   function hideFeedItem() {
-      alert('hide item ')
-      setSquadList(updatedList)
-   }
 
   return (
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-           <Route path="squads" element={<Squads showAllSquads={showAllSquads}  squadList={squadList} deleteItem={deleteItem} showFeedItem={showFeedItem} selectedSquad={selectedSquad} hideFeedItem={hideFeedItem} />} />
+           <Route path="squads" element={<Squads showAllSquads={showAllSquads}  squadList={squadList} deleteItem={deleteItem} showFeedItem={showFeedItem} selectedSquad={selectedSquad} />} />
         <Route path="create" element={<Create addSquad={addSquad} />} />
         <Route path="login" element={<Login />} />
       </Routes>

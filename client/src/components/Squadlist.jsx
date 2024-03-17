@@ -3,15 +3,14 @@ import SquadFeed from "./SquadFeed"
 import SquadItem from "./SquadItem"
 
 
-function Squadlist({ showAllSquads, squadList, deleteItem, showFeedItem, toggleFeed, selectedSquad, hideFeedItem }) {
+function Squadlist({ showAllSquads, squadList, deleteItem, showFeedItem, toggleFeed, selectedSquad }) {
 
    const [showFeed, setShowFeed] = useState(false)
-   const [buttonText, setButtonText] = useState("Show")
+   // const [buttonText, setButtonText] = useState("Show")
 
    function toggleFeed(item) {
       // showFeedItem(item)
       setShowFeed(!showFeed)
-      { (showFeed) ? setButtonText("Show") : setButtonText("Hide") }
    }
   
    const allSquads = squadList.map((item) => {
@@ -23,7 +22,6 @@ function Squadlist({ showAllSquads, squadList, deleteItem, showFeedItem, toggleF
             deleteItem={deleteItem}
             showFeedItem={showFeedItem}
             toggleFeed={toggleFeed}
-            buttonText={buttonText}
          />
       )
    })
@@ -31,10 +29,7 @@ function Squadlist({ showAllSquads, squadList, deleteItem, showFeedItem, toggleF
    return (
       <div className="card-container">
          
-         {(showFeed) ? ""  : allSquads}
-         {/* <button onClick={toggleFeed} className="formToggleButton">{buttonText} Messages</button> */}
-         {(showFeed) ? <SquadFeed toggleFeed={toggleFeed}  showAllSquads={showAllSquads}  selectedSquad={selectedSquad} buttonText={buttonText} hideFeedItem={hideFeedItem} deleteItem={deleteItem} /> : "" }
-         
+         {(showFeed) ? <SquadFeed toggleFeed={toggleFeed}  showAllSquads={showAllSquads}  selectedSquad={selectedSquad} deleteItem={deleteItem} /> : allSquads}
       </div>
    )
 }
