@@ -23,7 +23,7 @@ function SquadForm({addSquad}){
 
    return (
       <div className="formContainer">
-         <h2>Add A New Squad</h2>
+         <h2>Create your own PodSquad</h2>
          <form className="squadForm" onSubmit={handleSubmit}>
             <div>
                <label>Name: </label>
