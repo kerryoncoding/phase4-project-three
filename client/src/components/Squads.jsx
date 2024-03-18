@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react"
+import React, { useState} from "react"
 import Squadlist from "./Squadlist"
 import SquadFeed from "./SquadFeed"
 
@@ -8,7 +8,6 @@ function Squads({ squadList, deleteItem, showFeedItem, selectedSquad }) {
    const [showFeed, setShowFeed] = useState(false)
 
    function toggleFeed() {
-      // showFeedItem(item)
       setShowFeed(!showFeed)
    }
  

@@ -14,20 +14,19 @@ export const SidebarData = [
    {
     title: "Squads",
     path: "/squads",
-    //  icon: <IoIcons.IoIosPaper />,
+    // icon: <IoIcons.IoIosPaper />,
     cName: "nav-text",
    },
    {
-      title: "New Squad",
-      path: "/create",
-      //  icon: <FaIcons.FaCartPlus />,
-      cName: "nav-text",
+    title: "New Squad",
+    path: "/create",
+    cName: "nav-text",
     },
     {
-      title: "Login",
-      path: "/login",
-      //  icon: <FaIcons.FaCartPlus />,
-      cName: "nav-text",
+    title: "Login",
+    path: "/login",
+    //  icon: <FaIcons.FaCartPlus />,
+    cName: "nav-text",
     },
 
 ];

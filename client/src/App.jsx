@@ -60,12 +60,7 @@ function App() {
       })
    }
 
-   
-   function showAllSquads() {
-      alert('should show all squads')
-      setSquadList(squadList)
-   }
-
+ 
 
    // GET feed info for 1 squad...
    
@@ -83,7 +78,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-           <Route path="squads" element={<Squads showAllSquads={showAllSquads}  squadList={squadList} deleteItem={deleteItem} showFeedItem={showFeedItem} selectedSquad={selectedSquad} />} />
+           <Route path="squads" element={<Squads squadList={squadList} deleteItem={deleteItem} showFeedItem={showFeedItem} selectedSquad={selectedSquad} />} />
         <Route path="create" element={<Create addSquad={addSquad} />} />
         <Route path="login" element={<Login />} />
       </Routes>

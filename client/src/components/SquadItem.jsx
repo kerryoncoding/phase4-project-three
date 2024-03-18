@@ -1,6 +1,5 @@
 import React from "react"
 
-
 function SquadItem({ item, deleteItem, showFeedItem, toggleFeed }) {
 	function handleDeleteClick() {
 		deleteItem(item.id)
