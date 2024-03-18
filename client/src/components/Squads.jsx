@@ -13,9 +13,10 @@ function Squads({ squadList, deleteItem, showFeedItem, selectedSquad, selectedPo
  
    return (
       <div className="squad-container">
-         <h2>Active Squads channels:</h2>
          <br />
          <div className="card-container">
+            <h2>PodSquads:</h2>
+            <br />
             {(showFeed) ? <SquadFeed toggleFeed={toggleFeed} selectedSquad={selectedSquad} selectedPost={selectedPost}/> : <Squadlist toggleFeed={toggleFeed} deleteItem={deleteItem} showFeedItem={showFeedItem} squadList={squadList} />}
          </div>
       </div>     

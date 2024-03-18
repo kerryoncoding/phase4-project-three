@@ -12,7 +12,7 @@ export const SidebarData = [
     cName: "nav-text",
    },
    {
-    title: "Squads",
+    title: "PodSquads",
     path: "/squads",
     // icon: <IoIcons.IoIosPaper />,
     cName: "nav-text",

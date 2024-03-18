@@ -71,7 +71,6 @@ function App() {
    // GET feed info for 1 squad...
    // This gets called when I click card message
    function showFeedItem(item) {
-      alert('should show one squads')
       // alert('item ' + item.name)
       let tempsquad = [...squadList]
       let onesquad = tempsquad.filter((data) => data.id == item.id)
