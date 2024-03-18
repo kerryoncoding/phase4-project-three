@@ -1,9 +1,10 @@
 
 import React from "react"
 import SquadFeedItem from "./SquadFeedItem"
+import PostFeedItem from "./PostFeedItem"
 
 
-function SquadFeed({ selectedSquad, toggleFeed}) {
+function SquadFeed({ selectedSquad, selectedPost, toggleFeed}) {
    
    const mySquad = selectedSquad.map((item) => {
       
@@ -16,6 +17,17 @@ function SquadFeed({ selectedSquad, toggleFeed}) {
       )
    })
 
+
+   const myPost = selectedPost.map((item) => {
+
+      return (
+         <PostFeedItem
+            item = { item }
+            key = { item.id }
+            body={item.body}
+         />
+      )
+   })
 
    // const myPosts = selectedPost.map((item) => {
       
@@ -32,15 +44,15 @@ function SquadFeed({ selectedSquad, toggleFeed}) {
 
      
    return (
-      <div className="home-container">
+      <div className="card-container">
          {mySquad}
          <br />
          {/* <button>DELETE SQUAD --- if owner</button> */}
+         <h1>Posts:</h1>
          <hr className="breakline" />
-         <h1>...squad FEED here...</h1>
          
+         {myPost}
          {/* {SquadFeedPost} */}
-
       </div>
    )
 }

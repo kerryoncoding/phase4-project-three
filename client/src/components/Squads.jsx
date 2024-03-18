@@ -3,7 +3,7 @@ import React, { useState} from "react"
 import Squadlist from "./Squadlist"
 import SquadFeed from "./SquadFeed"
 
-function Squads({ squadList, deleteItem, showFeedItem, selectedSquad }) {
+function Squads({ squadList, deleteItem, showFeedItem, selectedSquad, selectedPost }) {
    
    const [showFeed, setShowFeed] = useState(false)
 
@@ -16,7 +16,7 @@ function Squads({ squadList, deleteItem, showFeedItem, selectedSquad }) {
          <h2>Active Squads channels:</h2>
          <br />
          <div className="card-container">
-            {(showFeed) ? <SquadFeed toggleFeed={toggleFeed} selectedSquad={selectedSquad} /> : <Squadlist toggleFeed={toggleFeed} deleteItem={deleteItem} showFeedItem={showFeedItem} squadList={squadList} />}
+            {(showFeed) ? <SquadFeed toggleFeed={toggleFeed} selectedSquad={selectedSquad} selectedPost={selectedPost}/> : <Squadlist toggleFeed={toggleFeed} deleteItem={deleteItem} showFeedItem={showFeedItem} squadList={squadList} />}
          </div>
       </div>     
    )
