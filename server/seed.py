@@ -27,7 +27,7 @@ def create_users():
 def create_posts():
   posts = []
 
-  posts.append(Post(body="This podcast makes my day", squad_id=1, user_name=1)) 
+  posts.append(Post(body="This podcast makes my day", squad_id=1, user_id=1)) 
   posts.append(Post(body="Thank you for tackling hard things with us.", squad_id=1,user_id=2)) 
   posts.append(Post(body="Never disappoints!!", squad_id=1, user_id=3)) 
   posts.append(Post(body="Love it!", squad_id=2, user_id=1)) 
