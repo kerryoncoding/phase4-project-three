@@ -1,7 +1,10 @@
-from sqlalchemy import ForeignKey
-from sqlalchemy.orm import relationship
 
+# Why is ForeignKey and SQLAlchemy not recognized ?????
+
+from sqlalchemy import ForeignKey
 from flask_sqlalchemy import SQLAlchemy
+
+from sqlalchemy.orm import relationship
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy import MetaData
 from config import db
@@ -27,8 +30,8 @@ class User(db.Model, SerializerMixin):
    __tablename__ = 'users'
    id = db.Column(db.Integer, primary_key=True)
    username = db.Column(db.String(25), nullable=False)
-   email = db.Column(db.String, nullable=False)
-   # posts = db.relationship("Post", back_populates="users")
+   email = db.Column(db.String(255), nullable=False)
+   posts = db.relationship("Post", back_populates="user")
 
 
    def __repr__(self):
@@ -42,11 +45,12 @@ class Post(db.Model, SerializerMixin):
    body = db.Column(db.String)
    squad_id = db.Column(db.Integer, db.ForeignKey("squads.id"))
    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-   # users = db.relationship("User", back_populates="posts")
+   user = relationship("User", back_populates="posts")
+   
    
    # created_at = db.Column(db.DateTime, server_default=db.func.now())
    # updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
    def __repr__(self):
-      return f'< Message: {self.body} >'
+      return f'< Message: {self.body}, {self.id} >'
 
