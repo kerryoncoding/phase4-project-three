@@ -206,19 +206,6 @@ span {
   margin: 10px 10px; 
 }
 
-.cardDeleteButton {
-  max-width: 30px;
-  padding: 5px;
-  border-radius: 50%;
-  background-color: #E4F1FE;
-  border: none;
-}
-
-.cardDeleteButton:hover {
-  background-color:#153A4D;
-  color: white;
-}
-
 
 .card-image {
   justify-self: center;
@@ -234,44 +221,8 @@ span {
   max-width: 600px;
 }
 
-.messageToggleButton {
-  padding: 8px 16px;
-  /* margin-top: 2%; */
-  margin-bottom: 5px;
-  background-color: #E4F1FE;
-  font-size: 16px;
-  border: none;
-  /* color: black; */
-  border-radius: 10px;
-  text-decoration: none;
-}
-
-.messageToggleButton:hover {
-  background-color:#153A4D;
-  color: white;
-}
-
-
 
 /* LOGIN FORM */
-
-.LoginFormContainer {
-  display: block;
-  margin: 0 auto;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  max-width: 600px;
-  text-align: center;
-  /* padding: 25px; */
-  /* padding-left: 50px; */
-  border: rgb(60, 60, 60) solid 1px;
-  border-radius: 15px;
-}
-
-.LoginFormContainer h1 {
-  margin: 25px;
-}
-
 .LoginForm {
   margin-top: 15px;
   margin-bottom: 50px;
@@ -288,37 +239,8 @@ span {
   background-color:#E4F1FE ;
 }
 
-.LoginForm Button {
-  padding: 10px 20px;
-  margin-top: 10px;
-  background-color: #E4F1FE;
-  font-size: 20px;
-  border: none;
-  color: #153A4D;
-  border-radius: 10px;
-  text-decoration: none;
-}
-
-.squadForm Button:hover {
-  background-color:#153A4D;
-  color: white;
-}
-
-
-/* .LoginFormContainer label {
-  margin-top: 25px;
-}
-
-.LoginFormContainer button {
-  margin-top: 25px;
-}
-
-.LoginFormContainer h2 {
-  margin-top: 35px;
-} */
 
 /* SQUAD FORM SECTION */
-
 
 
 .formContainer {
@@ -326,7 +248,6 @@ span {
   margin: 0 auto;
   margin-bottom: 50px;
   max-width: 400px;
-  /* padding-left: 50px; */
   border: rgb(60, 60, 60) solid 1px;
   border-radius: 15px;
 }
@@ -355,18 +276,59 @@ span {
   background-color:#E4F1FE ;
 }
 
-.squadForm Button {
-  padding: 10px 20px;
-  margin-top: 10px;
+
+/* ALL BUTTONS */
+
+.cardDeleteButton {
+  max-width: 30px;
+  padding: 5px;
+  border-radius: 50%;
   background-color: #E4F1FE;
-  font-size: 20px;
   border: none;
-  color: #153A4D;
+}
+
+.messageToggleButton {
+  padding: 8px 16px;
+  margin-bottom: 5px;
+  background-color: #E4F1FE;
+  font-size: 16px;
+  border: none;
   border-radius: 10px;
   text-decoration: none;
 }
 
-.squadForm Button:hover {
+.cardDeleteButton:hover,
+.messageToggleButton:hover{
   background-color:#153A4D;
   color: white;
 }
+
+
+
+/* *******************from chatterbox css************** */
+
+/* new message */
+form.new-message {
+  display: flex;
+  margin: 20px;
+}
+
+form.new-message input[type="text"] {
+  flex: 1 1 auto;
+}
+
+/* form.new-message input[type="text"]:focus {
+  padding: 1rem;
+}
+
+form.new-message input[type="submit"] {
+  opacity: 0.8;
+}
+
+form.new-message input[type="submit"]:focus {
+  outline: none;
+  opacity: 1;
+} */
+
+
+

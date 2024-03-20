@@ -62,7 +62,7 @@ function App() {
          method: "DELETE",
       })
       .then(res => res.json())
-      .then(data=> {
+      .then(data => {
          let updatedList = squadList.filter((data)=> data.id != item)
          setSquadList(updatedList)
       })

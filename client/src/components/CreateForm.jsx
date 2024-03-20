@@ -41,7 +41,7 @@ function SquadForm({addSquad}){
                <input type="text" id="description" value={description} onChange={(e)=>setDescription(e.target.value)} />
             </div>
             <div>
-               <button type="submit">Submit</button>
+               <button className="messageToggleButton" type="submit">Submit</button>
             </div>
          </form>
       </div>

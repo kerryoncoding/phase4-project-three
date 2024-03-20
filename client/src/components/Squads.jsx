@@ -1,7 +1,7 @@
 
 import React, { useState} from "react"
 import Squadlist from "./Squadlist"
-import SquadFeed from "./SquadFeed"
+import FeedView from "./FeedView"
 
 function Squads({ squadList, deleteItem, showFeedItem, selectedSquad, selectedPost }) {
    
@@ -17,7 +17,7 @@ function Squads({ squadList, deleteItem, showFeedItem, selectedSquad, selectedPo
          <div className="card-container">
             <h2>PodSquads:</h2>
             <br />
-            {(showFeed) ? <SquadFeed toggleFeed={toggleFeed} selectedSquad={selectedSquad} selectedPost={selectedPost}/> : <Squadlist toggleFeed={toggleFeed} deleteItem={deleteItem} showFeedItem={showFeedItem} squadList={squadList} />}
+            {(showFeed) ? <FeedView toggleFeed={toggleFeed} selectedSquad={selectedSquad} selectedPost={selectedPost}/> : <Squadlist toggleFeed={toggleFeed} deleteItem={deleteItem} showFeedItem={showFeedItem} squadList={squadList} />}
          </div>
       </div>     
    )

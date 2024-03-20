@@ -1,13 +1,13 @@
 
 import React from "react"
 import SquadFeedItem from "./SquadFeedItem"
+import FeedNewMessage from "./FeedNewMessage"
 import PostFeedItem from "./PostFeedItem"
 
 
-function SquadFeed({ selectedSquad, selectedPost, toggleFeed}) {
+function FeedView({ selectedSquad, selectedPost, toggleFeed}) {
    
    const mySquad = selectedSquad.map((item) => {
-      
       return (
          <SquadFeedItem 
             item={item}
@@ -17,15 +17,14 @@ function SquadFeed({ selectedSquad, selectedPost, toggleFeed}) {
       )
    })
 
-
    const myPost = selectedPost.map((item) => {
-
       return (
          <PostFeedItem
-            item = { item }
-            key = { item.id }
-            body={item.body}
+         item = { item }
+         key = { item.id }
+         body={item.body}
          />
+         
       )
    })
 
@@ -48,14 +47,16 @@ function SquadFeed({ selectedSquad, selectedPost, toggleFeed}) {
          {mySquad}
          <br />
          {/* <button>DELETE SQUAD --- if owner</button> */}
+         <br/>
          <h1>Posts:</h1>
          <hr className="breakline" />
-         
          {myPost}
          {/* {SquadFeedPost} */}
+         <hr className="breakline" />
+         <FeedNewMessage  />
       </div>
    )
 }
 
-export default SquadFeed
+export default FeedView
       
