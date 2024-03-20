@@ -1,7 +1,6 @@
 
 # Why is ForeignKey not recognized ?????
 
-from sqlalchemy import ForeignKey
 from flask_sqlalchemy import SQLAlchemy
 
 from sqlalchemy.orm import relationship
@@ -12,8 +11,8 @@ from config import db
 
 metadata = MetaData()
 
-# is this okay?
-db = SQLAlchemy(metadata=metadata)
+# is this okay? --NO
+# db = SQLAlchemy(metadata=metadata)
 
 class Squad(db.Model, SerializerMixin):
    __tablename__ = 'squads'
@@ -33,7 +32,7 @@ class User(db.Model, SerializerMixin):
    id = db.Column(db.Integer, primary_key=True)
    username = db.Column(db.String(25), nullable=False)
    email = db.Column(db.String(255), nullable=False)
-   # posts = db.relationship("Post", back_populates="user")
+   posts = db.relationship("Post", back_populates="user")
 
 
    def __repr__(self):
@@ -47,7 +46,7 @@ class Post(db.Model, SerializerMixin):
    body = db.Column(db.String)
    squad_id = db.Column(db.Integer, db.ForeignKey("squads.id"))
    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-   # user = relationship("User", back_populates="posts")
+   user = relationship("User", back_populates="posts")
    
    
    # created_at = db.Column(db.DateTime, server_default=db.func.now())
