@@ -53,6 +53,7 @@ function FeedView({ selectedSquad, selectedPost, toggleFeed}) {
          {myPost}
          {/* {SquadFeedPost} */}
          <hr className="breakline" />
+         <h2>Join the conversation...</h2>
          <FeedNewMessage  />
       </div>
    )

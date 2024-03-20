@@ -32,8 +32,10 @@ function Login({ updateUser }) {
          })
             .then(res => res.json())
             .then(user => {
-               updateUser(user)
+               // update user function needs to be made
+               // updateUser(user)
                history.push('/')
+               // need to clear form after
             })
       },
    });

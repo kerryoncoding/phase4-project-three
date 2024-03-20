@@ -32,7 +32,7 @@ class User(db.Model, SerializerMixin):
    id = db.Column(db.Integer, primary_key=True)
    username = db.Column(db.String(25), nullable=False)
    email = db.Column(db.String(255), nullable=False)
-   posts = db.relationship("Post", back_populates="user")
+   # post = db.relationship("Post", back_populates="user")
 
 
    def __repr__(self):
@@ -46,12 +46,12 @@ class Post(db.Model, SerializerMixin):
    body = db.Column(db.String)
    squad_id = db.Column(db.Integer, db.ForeignKey("squads.id"))
    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-   user = relationship("User", back_populates="posts")
+   # user = relationship("User", back_populates="post")
    
    
    # created_at = db.Column(db.DateTime, server_default=db.func.now())
    # updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
    def __repr__(self):
-      return f'< Message: {self.body}, {self.id} >'
+      return f'< Message: {self.body} >'
 
