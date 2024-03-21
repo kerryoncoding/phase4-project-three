@@ -144,8 +144,24 @@ def create_user():
     return response
 
 
+
+# LOGIN ###########################
+@app.route('/login')
+def post(self):
+    user=User.query.filter_by(user=request.get_json()['username']).first()
+    session['user_id'] = user.id
+    response = make_response(
+        user.to_dict(),
+        200
+    )
+    return response
+
+
+
 if __name__ == "__main__":
   app.run(port=5555, debug=True)
+
+
 
 
 

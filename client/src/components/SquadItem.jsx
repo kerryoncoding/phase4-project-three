@@ -12,7 +12,7 @@ function SquadItem({ item, deleteItem, showFeedItem, toggleFeed }) {
 
 	return (
 		<div className="card" >
-			<button className="cardDeleteButton" onClick={handleDeleteClick}>❌</button>
+			<button className="cardDeleteButton" onClick={handleDeleteClick}>✖ ✅</button>
 			<h3>{item.name}</h3>
 			<img src={item.image} className="card-image" alt={item.name}></img>
 			<p>{item.description}</p>

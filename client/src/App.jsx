@@ -23,12 +23,16 @@ function App() {
    const [selectedSquad, setSelectedSquad] = useState([])
    const [postList, setPostList] = useState([])
    const [selectedPost, setSelectedPost] = useState([])
-   const URL = "/api/squads"
+// NEW FOR USER...LOGIN  *******************LOGIN
+   // const [user, setUser] = useState(null)
+   // const [productions, setProductions] = useState([])
+   // const history = useHistory()
+   // const URL = "/api/squads"
 
 
 // Gets all of the squads info -> squadList
    useEffect(() => {
-      fetch(URL)
+      fetch("/api/squads")
       .then(res => res.json())
       .then(data => setSquadList(data))
    }, [])
@@ -40,6 +44,25 @@ function App() {
       .then(data => setPostList(data))
    }, [])
 
+
+   // // FOR LOGIN ****************************LOGIN
+   // useEffect(() => {
+   //    fetchUser()
+   //    fetchProductions()
+   // }, [])
+   
+   // const fetchProductions = () => (
+   //    fetch('/api/squads')
+   //    .then(res => res.json())
+   //    .then(setProductions)
+   //  )
+  
+
+   
+   
+    
+   
+   
 
 // Add a squad to squadlist
    function addSquad(newSquad) {
@@ -82,16 +105,49 @@ function App() {
    }
 
 
-  return (
-    <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-           <Route path="squads" element={<Squads squadList={squadList} deleteItem={deleteItem} showFeedItem={showFeedItem} selectedSquad={selectedSquad} selectedPost={selectedPost} />} />
-        <Route path="create" element={<Create addSquad={addSquad} />} />
-        <Route path="login" element={<Login />} />
-      </Routes>
-    </>
-  )
+   // Login - user in state?
+   // const fetchUser = () => {
+   //    fetch('/api/authorized')
+   //    .then(res => {
+   //    if(res.ok){
+   //      res.json().then(user => setUser(user))
+   //    }else {
+   //      setUser(null)
+   //    }
+   //  })
+   // }
+
+   // const updateUser = (user) => setUser(user)
+   // if(!user)return(
+   //    <>
+   //    <Routes>
+   //      <Route path="login" element={<Login updateUser={updateUser} />} />
+   //    </Routes>
+   //    </>
+   // )
+   // return (
+   //    <>
+   //       <Routes>
+   //       <Route path="/" element={<Home />} />
+   //          <Route path="squads" element={<Squads squadList={squadList} deleteItem={deleteItem} showFeedItem={showFeedItem} selectedSquad={selectedSquad} selectedPost={selectedPost} />} />
+   //       <Route path="create" element={<Create addSquad={addSquad} />} />
+   //       <Route path="login" element={<Login updateUser={updateUser} />} />
+   //       </Routes>
+   //    </>
+   // )
+
+
+   return (
+      <>
+         <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="squads" element={<Squads squadList={squadList} deleteItem={deleteItem} showFeedItem={showFeedItem} selectedSquad={selectedSquad} selectedPost={selectedPost} />} />
+            <Route path="create" element={<Create addSquad={addSquad} />} />
+            <Route path="login" element={<Login  />} />
+         </Routes>
+      </>
+   )
+
 }
 
 export default App

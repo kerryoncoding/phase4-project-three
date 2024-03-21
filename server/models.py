@@ -51,10 +51,12 @@ class Post(db.Model, SerializerMixin):
    serialize_rules = (
       "-user.posts",
    )
-   
-   
+
+   # If later I want to time-stamp posts:
    # created_at = db.Column(db.DateTime, server_default=db.func.now())
    # updated_at = db.Column(db.DateTime, onupdate=db.func.now())
+
+
 
    def __repr__(self):
       return f'< Message: {self.body} >'
