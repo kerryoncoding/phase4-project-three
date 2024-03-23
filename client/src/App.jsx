@@ -63,25 +63,8 @@ function App() {
 
 
 
-   // // FOR LOGIN ****************************LOGIN
 
-   // useEffect(() => {
-   //    fetchUser()
-   //    fetchProductions()
-   // }, [])
-   
-   // const fetchProductions = () => (
-   //    fetch('/api/squads')
-   //    .then(res => res.json())
-   //    .then(setProductions)
-   //  )
-  
-
-   
-   
-    
-   
-   
+     
 
 // Add a squad to squadlist
    function addSquad(newSquad) {
@@ -124,37 +107,29 @@ function App() {
    }
 
 
-   // Login - user in state?
-   // const fetchUser = () => {
-   //    fetch('/api/authorized')
-   //    .then(res => {
-   //    if(res.ok){
-   //      res.json().then(user => setUser(user))
-   //    }else {
-   //      setUser(null)
-   //    }
-   //  })
-   // }
-
    // ### using login
    const updateUser = (user) => setUser(user)
    
+
+   // ########## FOR LOGOUT
+   function logOut(){
+         updateUser(null)
+   }
+
    
    
-   // if (!user) return (
-   //    <>
-   //    <Routes>
-   //      <Route path="/login" element={<Login updateUser={updateUser} />} />
-   //    </Routes>
-   //    </>
-   // )
+   if (!user) return (
+      <>
+         <Login updateUser={updateUser} />
+      </>
+   )
    return (
       <>
          <Routes>
-            <Route path="/" element={<Home user={user} updateUser={updateUser} />} />
+            <Route path="/" element={<Home user={user} logOut={logOut} updateUser={updateUser} />} />
             <Route path="squads" element={<Squads user={user} updateUser={updateUser} squadList={squadList} deleteItem={deleteItem} showFeedItem={showFeedItem} selectedSquad={selectedSquad} selectedPost={selectedPost} />} />
             <Route path="create" element={<Create addSquad={addSquad} />} />
-            {/* <Route path="login" element={<Login updateUser={updateUser} />} /> */}
+            {/* <Route path="logout" element={<Logout logOut={logOut} />} /> */}
          </Routes>
       </>
    )

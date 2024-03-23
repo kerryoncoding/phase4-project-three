@@ -13,11 +13,11 @@ function Squads({ user, updateUser, squadList, deleteItem, showFeedItem, selecte
    }
  
 
-   if (!user) return (
-      <>
-         <Login updateUser={updateUser} />
-      </>
-   )
+   // if (!user) return (
+   //    <>
+   //       <Login updateUser={updateUser} />
+   //    </>
+   // )
    return (
       <div className="squad-container">
          <br />

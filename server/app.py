@@ -146,16 +146,16 @@ def create_user():
 
 
 # LOGIN ###########################
-@app.route('/login')
-def post():
-    user=User.query.filter_by(user=request.get_json()['username']).first()
-    session['user_id'] = user.id
-    # import ipdb; ipdb.set_trace()
-    response = make_response(
-        user.to_dict(),
-        200
-    )
-    return response
+# @app.route('/login')
+# def post():
+#     user=User.query.filter_by(user=request.get_json()['username']).first()
+#     session['user_id'] = user.id
+#     # import ipdb; ipdb.set_trace()
+#     response = make_response(
+#         user.to_dict(),
+#         200
+#     )
+#     return response
 
 
 
@@ -173,6 +173,13 @@ def get():
     else:
         abort(401, "Unauthorized")
 
+# ############# Logout ##################
+
+@app.route('/logout')
+def delete(self):
+    session['user_id'] = None
+    response = make_response("", 204)
+    return response
 
 
 
@@ -184,24 +191,3 @@ if __name__ == "__main__":
 
 
 
-
-# USERS
-# @app.route('/users', methods=['POST'])
-# def squads():
-#     if request.method == 'POST':
-#         data = request.get_json()
-#         new_user = User(
-#             username=data['username'],
-#             email=data['email'],
-#         )
-
-#         db.session.add(new_user)
-#         db.session.commit()
-#         session['user_id'] = new_user.id
-
-#         response = make_response(
-#             jsonify(new_user.to_dict()),
-#             201,
-#         )
-
-#     return response
