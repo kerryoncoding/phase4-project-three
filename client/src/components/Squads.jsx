@@ -4,7 +4,7 @@ import Squadlist from "./Squadlist"
 import Login from "./Login"
 import FeedView from "./FeedView"
 
-function Squads({ LogOut, user, squadList, deleteItem, showFeedItem, selectedSquad, selectedPost }) {
+function Squads({ logOut, user, squadList, deleteItem, showFeedItem, selectedSquad, selectedPost }) {
    
    const [showFeed, setShowFeed] = useState(false)
 

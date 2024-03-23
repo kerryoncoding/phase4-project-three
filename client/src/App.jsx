@@ -127,7 +127,7 @@ function App() {
       <>
          <Routes>
             <Route path="/" element={<Home user={user} logOut={logOut} updateUser={updateUser} />} />
-            <Route path="squads" element={<Squads logOut={logOut}  user={user} updateUser={updateUser} squadList={squadList} deleteItem={deleteItem} showFeedItem={showFeedItem} selectedSquad={selectedSquad} selectedPost={selectedPost} />} />
+            <Route path="squads" element={<Squads logOut={logOut} user={user} updateUser={updateUser} squadList={squadList} deleteItem={deleteItem} showFeedItem={showFeedItem} selectedSquad={selectedSquad} selectedPost={selectedPost} />} />
             <Route path="create" element={<Create addSquad={addSquad} />} />
             {/* <Route path="logout" element={<Logout logOut={logOut} />} /> */}
          </Routes>
