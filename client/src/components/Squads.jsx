@@ -1,9 +1,10 @@
 
 import React, { useState} from "react"
 import Squadlist from "./Squadlist"
+import Login from "./Login"
 import FeedView from "./FeedView"
 
-function Squads({ squadList, deleteItem, showFeedItem, selectedSquad, selectedPost }) {
+function Squads({ user, updateUser, squadList, deleteItem, showFeedItem, selectedSquad, selectedPost }) {
    
    const [showFeed, setShowFeed] = useState(false)
 
@@ -11,6 +12,12 @@ function Squads({ squadList, deleteItem, showFeedItem, selectedSquad, selectedPo
       setShowFeed(!showFeed)
    }
  
+
+   if (!user) return (
+      <>
+         <Login updateUser={updateUser} />
+      </>
+   )
    return (
       <div className="squad-container">
          <br />

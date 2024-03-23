@@ -44,7 +44,7 @@ function Login({ updateUser }) {
    return (
       <div className="about-container">
          <div className="card-container">
-            <h1>Please login or sign up!</h1>
+            <h1>Please login or sign up to enter PodSquad</h1>
             <br />
             <div className="formContainer"> 
                <h2>{signUp ? 'Already a member?' : 'Not a member?'}</h2>

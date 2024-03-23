@@ -138,20 +138,23 @@ function App() {
 
    // ### using login
    const updateUser = (user) => setUser(user)
-   if(!user) return(
-      <>
-      <Routes>
-        <Route path="/login" element={<Login updateUser={updateUser} />} />
-      </Routes>
-      </>
-   )
+   
+   
+   
+   // if (!user) return (
+   //    <>
+   //    <Routes>
+   //      <Route path="/login" element={<Login updateUser={updateUser} />} />
+   //    </Routes>
+   //    </>
+   // )
    return (
       <>
          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="squads" element={<Squads squadList={squadList} deleteItem={deleteItem} showFeedItem={showFeedItem} selectedSquad={selectedSquad} selectedPost={selectedPost} />} />
+            <Route path="/" element={<Home user={user} updateUser={updateUser} />} />
+            <Route path="squads" element={<Squads user={user} updateUser={updateUser} squadList={squadList} deleteItem={deleteItem} showFeedItem={showFeedItem} selectedSquad={selectedSquad} selectedPost={selectedPost} />} />
             <Route path="create" element={<Create addSquad={addSquad} />} />
-            <Route path="login" element={<Login updateUser={updateUser} />} />
+            {/* <Route path="login" element={<Login updateUser={updateUser} />} /> */}
          </Routes>
       </>
    )
