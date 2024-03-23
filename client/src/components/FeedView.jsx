@@ -28,19 +28,6 @@ function FeedView({ makePosting, user, selectedSquad, selectedPost, toggleFeed})
       )
    })
 
-   // const myPosts = selectedPost.map((item) => {
-      
-   //    return (
-   //       <SquadFeedPost
-   //          item={item}
-   //          key={item.id}
-   //          body={body}
-   //          user_id={user_id}
-   //          />
-   //    )
-   // })
-
-
      
    return (
       <div className="card-container">

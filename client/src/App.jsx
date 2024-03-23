@@ -25,10 +25,7 @@ function App() {
    const [selectedPost, setSelectedPost] = useState([])
    // NEW FOR USER...LOGIN  *******************LOGIN
    const [user, setUser] = useState(null)
-   // const [productions, setProductions] = useState([])
-   // const history = useHistory()
-   // const URL = "/api/squads"
-
+   
 
    useEffect(() => {
       fetchSquads()
@@ -68,7 +65,7 @@ function App() {
       let newPost = {
          body: body,
          user_id: user.id,
-         squad_id: squadList[0].id,
+         squad_id: selectedSquad[0].id,
       }
       fetch("/api/posts", {
       method: "POST",
@@ -78,10 +75,10 @@ function App() {
       body: JSON.stringify(newPost),
     })
       .then((r) => r.json())
-      .then((newMessage) => {
-      //   onAddMessage(newMessage);
+         .then((data) => {
+            fetchPosts()
+         // * * * * * * * * * * * * * * * * * * * * * 
       });
-
    }
 
 // Add a squad to squadlist
@@ -108,6 +105,7 @@ function App() {
       .then(data => {
          let updatedList = squadList.filter((data)=> data.id != item)
          setSquadList(updatedList)
+         
       })
    }
 
@@ -121,8 +119,14 @@ function App() {
       setSelectedSquad(onesquad)
       let temppost = [...postList]
       let onepost = temppost.filter((data) => data.squad_id == item.id)
-      setSelectedPost(onepost)
+      setCurrentPosts(onepost)
    }
+
+   // function setCurrentPosts(data) {
+   //    let temppost = [...postList]
+   //    let onepost = temppost.filter((data) => data.squad_id == item.id)
+   //    setSelectedPost(onepost)
+   // }
 
 
    // ### using login

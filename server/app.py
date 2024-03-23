@@ -101,7 +101,6 @@ def posts():
             squad_id=data['squad_id'],
             user_id=data['user_id']
         )
-
         db.session.add(post)
         db.session.commit()
 
@@ -169,8 +168,6 @@ def delete(self):
     session['user_id'] = None
     response = make_response("", 204)
     return response
-
-
 
 
 
