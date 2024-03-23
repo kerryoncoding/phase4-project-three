@@ -93,18 +93,7 @@ def posts():
         response = make_response(
             jsonify([post.to_dict() for post in posts]),
            200,
-        )
-
-        # username = post.user.username
-        # body = post.body
-
-        # response = make_response(
-        #     jsonify({'username': username, 'body': body}),
-        #     200
-        # )
-
-
-    
+        )    
     elif request.method == 'POST':
         data = request.get_json()
         post = Post(

@@ -36,8 +36,6 @@ function App() {
       fetchUser()
     },[])
 
-
-
    // Gets all of the squads info -> squadList
    const fetchSquads = () =>(
       fetch("/api/squads")
@@ -65,6 +63,26 @@ function App() {
          })
    )
 
+   // Add a post to posts
+   function makePosting(body) {
+      let newPost = {
+         body: body,
+         user_id: user.id,
+         squad_id: squadList[0].id,
+      }
+      fetch("/api/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newPost),
+    })
+      .then((r) => r.json())
+      .then((newMessage) => {
+      //   onAddMessage(newMessage);
+      });
+
+   }
 
 // Add a squad to squadlist
    function addSquad(newSquad) {
@@ -127,7 +145,7 @@ function App() {
       <>
          <Routes>
             <Route path="/" element={<Home user={user} logOut={logOut} updateUser={updateUser} />} />
-            <Route path="squads" element={<Squads logOut={logOut} user={user} updateUser={updateUser} squadList={squadList} deleteItem={deleteItem} showFeedItem={showFeedItem} selectedSquad={selectedSquad} selectedPost={selectedPost} />} />
+            <Route path="squads" element={<Squads makePosting={makePosting}  logOut={logOut} user={user} updateUser={updateUser} squadList={squadList} deleteItem={deleteItem} showFeedItem={showFeedItem} selectedSquad={selectedSquad} selectedPost={selectedPost} />} />
             <Route path="create" element={<Create addSquad={addSquad} />} />
             {/* <Route path="logout" element={<Logout logOut={logOut} />} /> */}
          </Routes>

@@ -5,7 +5,7 @@ import FeedNewMessage from "./FeedNewMessage"
 import PostFeedItem from "./PostFeedItem"
 
 
-function FeedView({ user, selectedSquad, selectedPost, toggleFeed}) {
+function FeedView({ makePosting, user, selectedSquad, selectedPost, toggleFeed}) {
    
    const mySquad = selectedSquad.map((item) => {
       return (
@@ -53,8 +53,8 @@ function FeedView({ user, selectedSquad, selectedPost, toggleFeed}) {
          {myPost}
          {/* {SquadFeedPost} */}
          <hr className="breakline" />
-         <h2>{user.username}, join in on the conversation...</h2>
-         <FeedNewMessage  />
+         <h2>{user.username}, join the conversation...</h2>
+         <FeedNewMessage makePosting = {makePosting} />
       </div>
    )
 }
