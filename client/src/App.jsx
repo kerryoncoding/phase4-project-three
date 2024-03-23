@@ -66,7 +66,6 @@ function App() {
    )
 
 
-
 // Add a squad to squadlist
    function addSquad(newSquad) {
       fetch(("/api/squads"), {
@@ -95,7 +94,7 @@ function App() {
    }
 
    // GET feed info for 1 squad...
-   // This gets called when I click card message
+   // This gets called when I click show/hide posts on card
    function showFeedItem(item) {
       // alert('item ' + item.name)
       let tempsquad = [...squadList]
