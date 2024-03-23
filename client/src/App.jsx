@@ -23,29 +23,48 @@ function App() {
    const [selectedSquad, setSelectedSquad] = useState([])
    const [postList, setPostList] = useState([])
    const [selectedPost, setSelectedPost] = useState([])
-// NEW FOR USER...LOGIN  *******************LOGIN
-   // const [user, setUser] = useState(null)
+   // NEW FOR USER...LOGIN  *******************LOGIN
+   const [user, setUser] = useState(null)
    // const [productions, setProductions] = useState([])
    // const history = useHistory()
    // const URL = "/api/squads"
 
 
-// Gets all of the squads info -> squadList
+
+
+  
+
+   // Gets all of the squads info -> squadList
    useEffect(() => {
       fetch("/api/squads")
-      .then(res => res.json())
-      .then(data => setSquadList(data))
+         .then(res => res.json())
+         .then(data => setSquadList(data))
    }, [])
 
-// Gets all of the posts info -> PostList
+   // Gets all of the posts info -> PostList
    useEffect(() => {
       fetch("/api/posts")
-      .then(res => res.json())
-      .then(data => setPostList(data))
+         .then(res => res.json())
+         .then(data => setPostList(data))
    }, [])
+
+
+   // ###login - checks authorized user info -> user
+   useEffect(() => {
+      fetch("/api/authorized")
+         .then(res => {
+            if (res.ok) {
+               res.json().then(user => setUser(user))
+            } else {
+               setUser(null)
+            }
+         })
+   }, [])
+
 
 
    // // FOR LOGIN ****************************LOGIN
+
    // useEffect(() => {
    //    fetchUser()
    //    fetchProductions()
@@ -66,7 +85,7 @@ function App() {
 
 // Add a squad to squadlist
    function addSquad(newSquad) {
-      fetch((URL), {
+      fetch(("/api/squads"), {
          method: "POST",
          headers: {
             "Content-Type":"application/json"
@@ -81,7 +100,7 @@ function App() {
 
 // Remove a Squad from the list 
    function deleteItem(item){
-      fetch(`${URL}/${item}`, {
+      fetch(`/api/squads/${item}`, {
          method: "DELETE",
       })
       .then(res => res.json())
@@ -117,36 +136,37 @@ function App() {
    //  })
    // }
 
-   // const updateUser = (user) => setUser(user)
-   // if(!user)return(
-   //    <>
-   //    <Routes>
-   //      <Route path="login" element={<Login updateUser={updateUser} />} />
-   //    </Routes>
-   //    </>
-   // )
-   // return (
-   //    <>
-   //       <Routes>
-   //       <Route path="/" element={<Home />} />
-   //          <Route path="squads" element={<Squads squadList={squadList} deleteItem={deleteItem} showFeedItem={showFeedItem} selectedSquad={selectedSquad} selectedPost={selectedPost} />} />
-   //       <Route path="create" element={<Create addSquad={addSquad} />} />
-   //       <Route path="login" element={<Login updateUser={updateUser} />} />
-   //       </Routes>
-   //    </>
-   // )
-
-
+   // ### using login
+   const updateUser = (user) => setUser(user)
+   if(!user) return(
+      <>
+      <Routes>
+        <Route path="/login" element={<Login updateUser={updateUser} />} />
+      </Routes>
+      </>
+   )
    return (
       <>
          <Routes>
             <Route path="/" element={<Home />} />
             <Route path="squads" element={<Squads squadList={squadList} deleteItem={deleteItem} showFeedItem={showFeedItem} selectedSquad={selectedSquad} selectedPost={selectedPost} />} />
             <Route path="create" element={<Create addSquad={addSquad} />} />
-            <Route path="login" element={<Login  />} />
+            <Route path="login" element={<Login updateUser={updateUser} />} />
          </Routes>
       </>
    )
+
+
+   // return (
+   //    <>
+   //       <Routes>
+   //          <Route path="/" element={<Home />} />
+   //          <Route path="squads" element={<Squads squadList={squadList} deleteItem={deleteItem} showFeedItem={showFeedItem} selectedSquad={selectedSquad} selectedPost={selectedPost} />} />
+   //          <Route path="create" element={<Create addSquad={addSquad} />} />
+   //          <Route path="login" element={<Login updateUser={updateUser}  />} />
+   //       </Routes>
+   //    </>
+   // )
 
 }
 

@@ -1,9 +1,9 @@
 
 from config import app
 
-from flask import Flask, request, make_response, jsonify, session
-from flask_cors import CORS
-from flask_migrate import Migrate
+from flask import Flask, request, make_response, jsonify, session, abort
+# from flask_cors import CORS
+# from flask_migrate import Migrate
 from models import Squad, User, Post, db
 
 
@@ -147,14 +147,34 @@ def create_user():
 
 # LOGIN ###########################
 @app.route('/login')
-def post(self):
+def post():
     user=User.query.filter_by(user=request.get_json()['username']).first()
     session['user_id'] = user.id
+    # import ipdb; ipdb.set_trace()
     response = make_response(
         user.to_dict(),
         200
     )
     return response
+
+
+
+
+# ############# Authorized?  ##################
+@app.route('/authorized')
+def get():
+    user = User.query.filter_by(id=session.get('user_id')).first()
+    if user:
+        response = make_response(
+            user.to_dict(),
+            200
+        )
+        return response
+    else:
+        abort(401, "Unauthorized")
+
+
+
 
 
 
