@@ -303,6 +303,14 @@ span {
   color: white;
 }
 
+.logout{
+  padding-top: 25px;
+  padding-right: 50px;
+  display: flex;
+  justify-content: right;
+  /* align-items: right; */
+}
+
 
 
 /* *******************from chatterbox css************** */

@@ -4,7 +4,7 @@ import Squadlist from "./Squadlist"
 import Login from "./Login"
 import FeedView from "./FeedView"
 
-function Squads({ user, updateUser, squadList, deleteItem, showFeedItem, selectedSquad, selectedPost }) {
+function Squads({ LogOut, user, updateUser, squadList, deleteItem, showFeedItem, selectedSquad, selectedPost }) {
    
    const [showFeed, setShowFeed] = useState(false)
 
@@ -12,6 +12,11 @@ function Squads({ user, updateUser, squadList, deleteItem, showFeedItem, selecte
       setShowFeed(!showFeed)
    }
  
+   
+   function handleLogout() {
+      logOut()
+   }
+
 
    // if (!user) return (
    //    <>
@@ -19,14 +24,19 @@ function Squads({ user, updateUser, squadList, deleteItem, showFeedItem, selecte
    //    </>
    // )
    return (
-      <div className="squad-container">
-         <br />
-         <div className="card-container">
+      <>
+         <div className="logout">
+            <button className="messageToggleButton" onClick={handleLogout}>Logout</button>
+         </div>
+         <div className="squad-container">
+            <br />
+            <div className="card-container">
             <h2>PodSquads:</h2>
             <br />
             {(showFeed) ? <FeedView toggleFeed={toggleFeed} selectedSquad={selectedSquad} selectedPost={selectedPost}/> : <Squadlist toggleFeed={toggleFeed} deleteItem={deleteItem} showFeedItem={showFeedItem} squadList={squadList} />}
-         </div>
-      </div>     
+            </div>
+         </div>  
+      </>   
    )
 }
 
