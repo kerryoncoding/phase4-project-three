@@ -30,27 +30,31 @@ function App() {
    // const URL = "/api/squads"
 
 
+   useEffect(() => {
+      fetchSquads()
+      fetchPosts()
+      fetchUser()
+    },[])
 
 
-  
 
    // Gets all of the squads info -> squadList
-   useEffect(() => {
+   const fetchSquads = () =>(
       fetch("/api/squads")
          .then(res => res.json())
          .then(data => setSquadList(data))
-   }, [])
+   )
 
    // Gets all of the posts info -> PostList
-   useEffect(() => {
+   const fetchPosts =() => (
       fetch("/api/posts")
          .then(res => res.json())
          .then(data => setPostList(data))
-   }, [])
+   )
 
 
    // ###login - checks authorized user info -> user
-   useEffect(() => {
+   const fetchUser = () => (
       fetch("/api/authorized")
          .then(res => {
             if (res.ok) {
@@ -59,12 +63,9 @@ function App() {
                setUser(null)
             }
          })
-   }, [])
+   )
 
 
-
-
-     
 
 // Add a squad to squadlist
    function addSquad(newSquad) {

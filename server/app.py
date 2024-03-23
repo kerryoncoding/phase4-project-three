@@ -146,16 +146,16 @@ def create_user():
 
 
 # LOGIN ###########################
-# @app.route('/login')
-# def post():
-#     user=User.query.filter_by(user=request.get_json()['username']).first()
-#     session['user_id'] = user.id
-#     # import ipdb; ipdb.set_trace()
-#     response = make_response(
-#         user.to_dict(),
-#         200
-#     )
-#     return response
+@app.route('/login', methods=['POST'])
+def post():
+    user=User.query.filter_by(username=request.get_json()['name']).first()
+    session['user_id'] = user.id
+    # import ipdb; ipdb.set_trace()
+    response = make_response(
+        user.to_dict(),
+        200
+    )
+    return response
 
 
 
