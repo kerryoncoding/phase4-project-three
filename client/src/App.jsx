@@ -84,10 +84,6 @@ function App() {
 
 
 
-
-
-
-
    // ###login - checks authorized user info -> user
    const fetchUser = () => (
       fetch("/api/authorized")
@@ -130,21 +126,10 @@ function App() {
          .then((r) => r.json())
          .then((data) => {
             fetchPosts()
-            // * * * * * * * * * * * * * * * * * * * * *
-            // setPostList(...postList, data)
-            // setSelectedPost(...selectedPost, data)
             setDisplayedPosts([...displayedPosts, data])
          });
-      showPostFeed(selectedSquad[0].id)
    }
 
-   // Item will be the squad ID
-   // function showPostFeed(item) {
-   //    alert(item)
-   //    let temppost = [...postList]
-   //    let onepost = temppost.filter((data) => data.squad_id == item)
-   //    setSelectedPost(onepost)
-   // }
 
    // Add a squad to squadlist
    function addSquad(newSquad) {

@@ -32,7 +32,8 @@ function Squads({ user, makePosting, active, logOut, displayedSquads, toggleView
          <PostFeedItem
             item = { item }
             key = { item.id }
-            body={item.body}
+            body = {item.body}
+            user = {user}
          />
       )
    })
