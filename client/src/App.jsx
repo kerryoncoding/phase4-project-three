@@ -23,6 +23,10 @@ function App() {
    const [selectedSquad, setSelectedSquad] = useState([])
    const [postList, setPostList] = useState([])
    const [selectedPost, setSelectedPost] = useState([])
+   const [displayedSquads, setDisplayedSquads] = useState([])
+   const [displayedPosts, setDisplayedPosts] = useState([])
+   const [active, setActive] = useState(true)
+
    
    // NEW FOR USER...LOGIN  *******************LOGIN
    const [user, setUser] = useState(null)
@@ -38,26 +42,49 @@ function App() {
    const fetchSquads = () =>(
       fetch("/api/squads")
          .then(res => res.json())
-         .then(data => setSquadList(data))
+         .then(data => {
+            setSquadList(data)
+            let tempSquads = [...squadList] 
+            setDisplayedSquads(tempSquads)
+         })
    )
 
    // Gets all of the posts info -> PostList
    const fetchPosts =() => (
       fetch("/api/posts")
          .then(res => res.json())
-         .then(data => setPostList(data))
+         .then(data => {
+            setPostList(data)
+            let tempPosts = [...postList] 
+            setDisplayedPosts(tempPosts)
+         })
    )
-
 
 
    // #### THESE ARE DISPLAYED CARD
    // BY DEFAULT ALL CARDS ARE SHOWN
    // CLICKING A CARD CHANGES ALL CARDS BUT THAT ONE FROM SHOWN/HIDDEN
-   const displayedCards = squadList.filter((item)=> ) 
+   // let tempSquads = [...squadList]
+   // setDisplayedSquads(tempSquads)
+   function toggleView(item) {
+      alert(item.id)
+      if (active) {
+         const oneSquad = displayedSquads.filter((data) => data.id == item.id)
+         setDisplayedSquads(oneSquad)
+      } else {
+         let tempSquads = [...squadList] 
+         setDisplayedSquads(tempSquads) 
+      }        
+      setActive(!active)
+   }
+
    
    // #### THESE ARE DISPLAYED POSTS
    // BY DEFAULT ALL POSTS ARE HIDDEN
    // CLICKING A CARD CHANGES ALL POSTS WITH SAME SQUAD_ID FROM SHOW/HIDDEN
+   // let tempPosts = [...postList] 
+   // setDisplayedPosts(tempPosts)
+
 
 
 
@@ -194,7 +221,10 @@ function App() {
       <>
          <Routes>
             <Route path="/" element={<Home user={user} logOut={logOut} updateUser={updateUser} />} />
-            <Route path="squads" element={<Squads makePosting={makePosting} logOut={logOut} user={user} updateUser={updateUser} squadList={squadList} deleteItem={deleteItem} showFeedCard={showFeedCard} showPostFeed={showPostFeed} selectedSquad={selectedSquad} selectedPost={selectedPost} />} />
+            {/* <Route path="squads" element={<Squads displayedSquads={displayedSquads} displayedPosts={displayedPosts} makePosting={makePosting} logOut={logOut} user={user} updateUser={updateUser} squadList={squadList} deleteItem={deleteItem} showFeedCard={showFeedCard} showPostFeed={showPostFeed} selectedSquad={selectedSquad} selectedPost={selectedPost} />} /> */}
+
+            <Route path="squads" element={<Squads toggleView={toggleView} displayedSquads={displayedSquads} displayedPosts={displayedPosts} postList={postList} />} />
+            
             <Route path="create" element={<Create addSquad={addSquad} />} />
             {/* <Route path="logout" element={<Logout logOut={logOut} />} /> */}
          </Routes>

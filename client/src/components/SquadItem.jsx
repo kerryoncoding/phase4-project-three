@@ -1,15 +1,16 @@
 import React from "react"
 
-function SquadItem({ item, deleteItem, showFeedCard, showPostFeed, toggleFeed }) {
+function SquadItem({ item, deleteItem, toggleView, showFeedCard, showPostFeed, toggleFeed }) {
 
 	function handleDeleteClick() {
 		deleteItem(item.id)
 	}
 
 	function handleShowPostsClick() {
-		showFeedCard(item)
-		showPostFeed(item.id)
-		toggleFeed(item)
+		// showFeedCard(item)
+		// showPostFeed(item.id)
+		// toggleFeed(item)
+		toggleView(item)
 	}
 
 	return (

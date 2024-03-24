@@ -27,4 +27,4 @@ function Squadlist({ squadList, deleteItem, showFeedCard, showPostFeed, toggleFe
 }
 
 
-export default Squadlist;
+// export default Squadlist;

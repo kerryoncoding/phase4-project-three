@@ -22,4 +22,4 @@ function SquadItem({ item, deleteItem, showFeedCard, showPostFeed, toggleFeed })
 	)
 }
 
-export default SquadItem;
+// export default SquadItem;

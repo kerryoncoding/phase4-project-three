@@ -34,4 +34,4 @@ function Squads({ toggleFeed, makePosting, logOut, user, squadList, deleteItem, 
 }
 
 
-export default Squads;
+// export default Squads;
