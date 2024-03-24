@@ -26,6 +26,7 @@ function App() {
    const [displayedSquads, setDisplayedSquads] = useState([])
    const [displayedPosts, setDisplayedPosts] = useState([])
    const [active, setActive] = useState(true)
+   const [squadNumber, setSquadNumber] = useState(0)
 
 
    // NEW FOR USER...LOGIN  *******************LOGIN
@@ -65,6 +66,7 @@ function App() {
    // CLICKING A CARD CHANGES ALL POSTS WITH SAME SQUAD_ID FROM SHOW/HIDDEN
    function toggleView(item) {
       if (active) {
+         setSquadNumber(item.id)
          const oneSquad = displayedSquads.filter((data) => data.id == item.id)
          setDisplayedSquads(oneSquad)
          let tempPosts = [...postList]
@@ -74,6 +76,7 @@ function App() {
          let tempSquads = [...squadList]
          setDisplayedSquads(tempSquads)
          setDisplayedPosts([])
+         setSquadNumber(0)
       }
       setActive(!active)
    }
@@ -111,37 +114,37 @@ function App() {
 
 
    function makePosting(body) {
-      alert(id)
+      alert(squadNumber)
       let newPost = {
          body: body,
          user_id: user.id,
-         squad_id: selectedSquad[0].id,
+         squad_id: squadNumber,
       }
-      // fetch("/api/posts", {
-      //    method: "POST",
-      //    headers: {
-      //       "Content-Type": "application/json",
-      //    },
-      //    body: JSON.stringify(newPost),
-      // })
-      //    .then((r) => r.json())
-      //    .then((data) => {
-            // fetchPosts()
+      fetch("/api/posts", {
+         method: "POST",
+         headers: {
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify(newPost),
+      })
+         .then((r) => r.json())
+         .then((data) => {
+            fetchPosts()
             // * * * * * * * * * * * * * * * * * * * * *
             // setPostList(...postList, data)
             // setSelectedPost(...selectedPost, data)
-            // setDisplayedPosts(...displayedPosts, data)
-         // });
-      // showPostFeed(selectedSquad[0].id)
+            setDisplayedPosts([...displayedPosts, data])
+         });
+      showPostFeed(selectedSquad[0].id)
    }
 
    // Item will be the squad ID
-   function showPostFeed(item) {
-      alert(item)
-      let temppost = [...postList]
-      let onepost = temppost.filter((data) => data.squad_id == item)
-      setSelectedPost(onepost)
-   }
+   // function showPostFeed(item) {
+   //    alert(item)
+   //    let temppost = [...postList]
+   //    let onepost = temppost.filter((data) => data.squad_id == item)
+   //    setSelectedPost(onepost)
+   // }
 
    // Add a squad to squadlist
    function addSquad(newSquad) {
@@ -173,12 +176,12 @@ function App() {
 
    // GET feed info for 1 squad...
    // This gets called when I click show/hide posts on card (Item is full squad Item)
-   function showFeedCard(item) {
-      // alert('item ' + item.name)
-      let tempsquad = [...squadList]
-      let onesquad = tempsquad.filter((data) => data.id == item.id)
-      setSelectedSquad(onesquad)
-   }
+   // function showFeedCard(item) {
+   //    // alert('item ' + item.name)
+   //    let tempsquad = [...squadList]
+   //    let onesquad = tempsquad.filter((data) => data.id == item.id)
+   //    setSelectedSquad(onesquad)
+   // }
 
 
    //   function toggleFeed() {

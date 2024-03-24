@@ -7,12 +7,7 @@ import FeedNewMessage from "./FeedNewMessage"
 
 function Squads({ user, makePosting, active, logOut, displayedSquads, toggleView, displayedPosts, toggleFeed, deleteItem }) {
    
-   // const [showFeed, setShowFeed] = useState(false)
 
-   // function toggleFeed() {
-   //    setShowFeed(!showFeed)
-   // }
- 
    
    function handleLogout() {
       logOut()
@@ -24,8 +19,8 @@ function Squads({ user, makePosting, active, logOut, displayedSquads, toggleView
          <SquadItem 
             item={item}
             key={item.id}
-            deleteItem={deleteItem}
-            toggleFeed={toggleFeed}
+            // deleteItem={deleteItem}
+            // toggleFeed={toggleFeed}
             toggleView={toggleView}
             active={active}
          />
@@ -54,8 +49,8 @@ function Squads({ user, makePosting, active, logOut, displayedSquads, toggleView
                <h2>PodSquads:</h2>
                <br />
                {squads}
-               {myPost}
                <hr className="breakline" />
+               {myPost}
                {(active) ? "" : <hr className="breakline" /> }
                {(active) ? "" : <h2>{user.username}, join the conversation...</h2>}
                {(active) ? "" : <FeedNewMessage makePosting = {makePosting} />}
