@@ -1,23 +1,22 @@
 import React from "react"
 
 
-function PostFeedItem({ item, user  }) {
+function PostFeedItem({ item, user, deletePost, editPost  }) {
 
-	// function handleDeleteClick() {
-	// 	deleteItem(item.id)
-	// }
-
-	// function handleHidePostsClick(item) {
-	// 	toggleFeed(item)
-   // }
+	function handleDeletePost() {
+      deletePost(item.id)
+   }
    
+   function handleEditPost() {
+      editPost(item.id)
+	}
+
+
    
    if (item.user.username == user.username) {
       return (
          <div>
-            {/* <button className="cardDeleteButton" onClick={handleDeleteClick}>X</button> */}
-            {/* <h4>{item.user_id}: </h4> */}
-            <p><strong>{item.user.username}: </strong>{item.body} <button className="messageToggleButton">✏️</button> <button className="messageToggleButton">❌</button></p>
+            <p><strong>{item.user.username}: </strong>{item.body} <button className="messageToggleButton" onClick={handleEditPost}>✏️</button> <button className="messageToggleButton" onClick={handleDeletePost}>❌</button></p>
             <hr className="breakline" />
          </div>
       )

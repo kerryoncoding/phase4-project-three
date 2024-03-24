@@ -20,9 +20,7 @@ import "./App.css"
 
 function App() {
    const [squadList, setSquadList] = useState([])
-   const [selectedSquad, setSelectedSquad] = useState([])
    const [postList, setPostList] = useState([])
-   // const [selectedPost, setSelectedPost] = useState([])
    const [displayedSquads, setDisplayedSquads] = useState([])
    const [displayedPosts, setDisplayedPosts] = useState([])
    const [active, setActive] = useState(true)
@@ -110,7 +108,7 @@ function App() {
 
 
    function makePosting(body) {
-      alert(squadNumber)
+      alert(body)
       let newPost = {
          body: body,
          user_id: user.id,
@@ -147,7 +145,7 @@ function App() {
    }
 
    // Remove a Squad from the list 
-   function deleteItem(item) {
+   function deleteCard(item) {
       fetch(`/api/squads/${item}`, {
          method: "DELETE",
       })
@@ -156,6 +154,24 @@ function App() {
             let updatedList = squadList.filter((data) => data.id != item)
             setDisplayedSquads(updatedList)
 
+         })
+   }
+
+   function editPost(item) {
+      alert(item)
+   }
+
+
+   // Doesn't actively update
+   function deletePost(item) {
+     alert(item)
+      fetch('/api/post/${item}', {
+         methon: "DELETE",
+      })
+         .then(res => res.json())
+         .then(data => {
+            let updatedList = displayedPosts.filter((date) => data.id != item)
+            setDisplayedPosts(updatedList)
          })
    }
 
@@ -208,7 +224,7 @@ function App() {
             <Route path="/" element={<Home user={user} logOut={logOut} updateUser={updateUser} />} />
 
 
-            <Route path="squads" element={<Squads user={user} makePosting={makePosting} logOut={logOut} toggleView={toggleView} displayedSquads={displayedSquads} displayedPosts={displayedPosts} deleteItem={deleteItem} active={active} />} />
+            <Route path="squads" element={<Squads user={user} makePosting={makePosting} logOut={logOut} toggleView={toggleView} displayedSquads={displayedSquads} displayedPosts={displayedPosts} deleteCard={deleteCard} active={active} deletePost={deletePost} editPost={editPost} />} />
 
             <Route path="create" element={<Create addSquad={addSquad} />} />
             {/* <Route path="logout" element={<Logout logOut={logOut} />} /> */}

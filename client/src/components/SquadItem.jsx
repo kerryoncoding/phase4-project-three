@@ -1,9 +1,9 @@
 import React from "react"
 
-function SquadItem({ active, item, deleteItem, toggleView }) {
+function SquadItem({ active, item, deleteCard, toggleView }) {
 
 	function handleDeleteClick() {
-		deleteItem(item.id)
+		deleteCard(item.id)
 	}
 
 	function handleShowPostsClick() {

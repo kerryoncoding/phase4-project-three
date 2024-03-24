@@ -5,24 +5,20 @@ import PostFeedItem from "./PostFeedItem"
 import FeedNewMessage from "./FeedNewMessage"
 
 
-function Squads({ user, makePosting, active, logOut, displayedSquads, toggleView, displayedPosts, toggleFeed, deleteItem }) {
-   
-
-   
+function Squads({ user, makePosting, active, logOut, displayedSquads, toggleView, displayedPosts, deleteCard, deletePost, editPost }) {
+     
    function handleLogout() {
       logOut()
    }
-
 
    const squads = displayedSquads.map((item) => {
       return (
          <SquadItem 
             item={item}
             key={item.id}
-            // deleteItem={deleteItem}
-            // toggleFeed={toggleFeed}
             toggleView={toggleView}
             active={active}
+            deleteCard={deleteCard}
          />
       )
    })
@@ -33,7 +29,9 @@ function Squads({ user, makePosting, active, logOut, displayedSquads, toggleView
             item = { item }
             key = { item.id }
             body = {item.body}
-            user = {user}
+            user={user}
+            deletePost={deletePost}
+            editPost={editPost}
          />
       )
    })

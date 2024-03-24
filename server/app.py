@@ -108,8 +108,22 @@ def posts():
             jsonify(post.to_dict()),
             201,
         )
+    return response
+
+
+@app.route('/posts/<int:id>', methods=['DELETE'])
+def deletepost():
+    if request.method == 'DELETE':
+        db.session.delete(post)
+        db.session.commit()
+
+        response = make_response(
+            jsonify({'deleted': True}),
+            200,
+        )
 
     return response
+
 
 # USERS #####################################
 @app.route('/users', methods=['POST'])
