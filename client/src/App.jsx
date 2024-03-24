@@ -70,7 +70,8 @@ function App() {
          const oneSquad = displayedSquads.filter((data) => data.id == item.id)
          setDisplayedSquads(oneSquad)
          let tempPosts = [...postList]
-         setDisplayedPosts(tempPosts)
+         let onePost = tempPosts.filter((data) => data.squad_id == item.id)
+         setDisplayedPosts(onePost)
       } else {
          let tempSquads = [...squadList]
          setDisplayedSquads(tempSquads)
