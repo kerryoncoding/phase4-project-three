@@ -2,9 +2,10 @@
 import React, { useState} from "react"
 import SquadItem from "./SquadItem"
 import PostFeedItem from "./PostFeedItem"
+import FeedNewMessage from "./FeedNewMessage"
 
 
-function Squads({ displayedSquads, item, toggleView, displayedPosts, toggleFeed, deleteItem }) {
+function Squads({ user, makePosting, active, logOut, displayedSquads, toggleView, displayedPosts, toggleFeed, deleteItem }) {
    
    // const [showFeed, setShowFeed] = useState(false)
 
@@ -13,9 +14,9 @@ function Squads({ displayedSquads, item, toggleView, displayedPosts, toggleFeed,
    // }
  
    
-   // function handleLogout() {
-   //    logOut()
-   // }
+   function handleLogout() {
+      logOut()
+   }
 
 
    const squads = displayedSquads.map((item) => {
@@ -24,10 +25,9 @@ function Squads({ displayedSquads, item, toggleView, displayedPosts, toggleFeed,
             item={item}
             key={item.id}
             deleteItem={deleteItem}
-            // showFeedCard={showFeedCard}
-            // showPostFeed={showPostFeed}
             toggleFeed={toggleFeed}
             toggleView={toggleView}
+            active={active}
          />
       )
    })
@@ -45,18 +45,20 @@ function Squads({ displayedSquads, item, toggleView, displayedPosts, toggleFeed,
 
    return (
       <>
-         {/* <div className="logout">
+         <div className="logout">
             <button className="messageToggleButton" onClick={handleLogout}>Logout</button>
-         </div> */}
+         </div>
          <div className="squad-container">
             <br />
             <div className="card-container">
                <h2>PodSquads:</h2>
                <br />
                {squads}
-               <hr className="breakline" />
                {myPost}
-               {/* {(showFeed) ? <FeedView makePosting={makePosting} user={user} toggleFeed={toggleFeed} selectedSquad={selectedSquad} selectedPost={selectedPost} /> : <Squadlist toggleFeed={toggleFeed} deleteItem={deleteItem} showFeedCard={showFeedCard} showPostFeed={showPostFeed} squadList={squadList} />} */}
+               <hr className="breakline" />
+               {(active) ? "" : <hr className="breakline" /> }
+               {(active) ? "" : <h2>{user.username}, join the conversation...</h2>}
+               {(active) ? "" : <FeedNewMessage makePosting = {makePosting} />}
             </div>
          </div>  
       </>   

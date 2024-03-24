@@ -22,7 +22,7 @@ function App() {
    const [squadList, setSquadList] = useState([])
    const [selectedSquad, setSelectedSquad] = useState([])
    const [postList, setPostList] = useState([])
-   const [selectedPost, setSelectedPost] = useState([])
+   // const [selectedPost, setSelectedPost] = useState([])
    const [displayedSquads, setDisplayedSquads] = useState([])
    const [displayedPosts, setDisplayedPosts] = useState([])
    const [active, setActive] = useState(true)
@@ -59,13 +59,11 @@ function App() {
    )
 
 
-   // #### THESE ARE DISPLAYED CARD
-   // BY DEFAULT ALL CARDS ARE SHOWN
+   // #### THESE ARE DISPLAYED CARDS/POSTS
+   // BY DEFAULT ALL CARDS ARE SHOWN, ALL POSTS ARE HIDDEN
    // CLICKING A CARD CHANGES ALL CARDS BUT THAT ONE FROM SHOWN/HIDDEN
-   // let tempSquads = [...squadList]
-   // setDisplayedSquads(tempSquads)
+   // CLICKING A CARD CHANGES ALL POSTS WITH SAME SQUAD_ID FROM SHOW/HIDDEN
    function toggleView(item) {
-      alert(item.id)
       if (active) {
          const oneSquad = displayedSquads.filter((data) => data.id == item.id)
          setDisplayedSquads(oneSquad)
@@ -79,13 +77,6 @@ function App() {
       }
       setActive(!active)
    }
-
-
-   // #### THESE ARE DISPLAYED POSTS
-   // BY DEFAULT ALL POSTS ARE HIDDEN
-   // CLICKING A CARD CHANGES ALL POSTS WITH SAME SQUAD_ID FROM SHOW/HIDDEN
-   // let tempPosts = [...postList] 
-   // setDisplayedPosts(tempPosts)
 
 
 
@@ -117,27 +108,31 @@ function App() {
    // }
 
    // Add a post to posts
+
+
    function makePosting(body) {
+      alert(id)
       let newPost = {
          body: body,
          user_id: user.id,
          squad_id: selectedSquad[0].id,
       }
-      fetch("/api/posts", {
-         method: "POST",
-         headers: {
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(newPost),
-      })
-         .then((r) => r.json())
-         .then((data) => {
+      // fetch("/api/posts", {
+      //    method: "POST",
+      //    headers: {
+      //       "Content-Type": "application/json",
+      //    },
+      //    body: JSON.stringify(newPost),
+      // })
+      //    .then((r) => r.json())
+      //    .then((data) => {
             // fetchPosts()
             // * * * * * * * * * * * * * * * * * * * * *
             // setPostList(...postList, data)
             // setSelectedPost(...selectedPost, data)
-         });
-      showPostFeed(selectedSquad[0].id)
+            // setDisplayedPosts(...displayedPosts, data)
+         // });
+      // showPostFeed(selectedSquad[0].id)
    }
 
    // Item will be the squad ID
@@ -159,7 +154,7 @@ function App() {
       })
          .then(res => res.json())
          .then(data => {
-            setSquadList([...squadList, data])
+            setDisplayedSquads([...squadList, data])
          })
    }
 
@@ -171,7 +166,7 @@ function App() {
          .then(res => res.json())
          .then(data => {
             let updatedList = squadList.filter((data) => data.id != item)
-            setSquadList(updatedList)
+            setDisplayedSquads(updatedList)
 
          })
    }
@@ -223,9 +218,9 @@ function App() {
       <>
          <Routes>
             <Route path="/" element={<Home user={user} logOut={logOut} updateUser={updateUser} />} />
-            {/* <Route path="squads" element={<Squads displayedSquads={displayedSquads} displayedPosts={displayedPosts} makePosting={makePosting} logOut={logOut} user={user} updateUser={updateUser} squadList={squadList} deleteItem={deleteItem} showFeedCard={showFeedCard} showPostFeed={showPostFeed} selectedSquad={selectedSquad} selectedPost={selectedPost} />} /> */}
 
-            <Route path="squads" element={<Squads toggleView={toggleView} displayedSquads={displayedSquads} displayedPosts={displayedPosts} postList={postList} deleteItem={deleteItem} />} />
+
+            <Route path="squads" element={<Squads user={user} makePosting={makePosting} logOut={logOut} toggleView={toggleView} displayedSquads={displayedSquads} displayedPosts={displayedPosts} deleteItem={deleteItem} active={active} />} />
 
             <Route path="create" element={<Create addSquad={addSquad} />} />
             {/* <Route path="logout" element={<Logout logOut={logOut} />} /> */}
@@ -233,17 +228,6 @@ function App() {
       </>
    )
 
-
-   // return (
-   //    <>
-   //       <Routes>
-   //          <Route path="/" element={<Home />} />
-   //          <Route path="squads" element={<Squads squadList={squadList} deleteItem={deleteItem} showFeedItem={showFeedItem} selectedSquad={selectedSquad} selectedPost={selectedPost} />} />
-   //          <Route path="create" element={<Create addSquad={addSquad} />} />
-   //          <Route path="login" element={<Login updateUser={updateUser}  />} />
-   //       </Routes>
-   //    </>
-   // )
 
 }
 
