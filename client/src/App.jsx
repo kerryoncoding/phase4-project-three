@@ -27,36 +27,34 @@ function App() {
    const [displayedPosts, setDisplayedPosts] = useState([])
    const [active, setActive] = useState(true)
 
-   
+
    // NEW FOR USER...LOGIN  *******************LOGIN
    const [user, setUser] = useState(null)
-   
+
 
    useEffect(() => {
       fetchSquads()
       fetchPosts()
       fetchUser()
-    },[])
+   }, [])
 
    // Gets all of the squads info -> squadList
-   const fetchSquads = () =>(
+   const fetchSquads = () => (
       fetch("/api/squads")
          .then(res => res.json())
          .then(data => {
             setSquadList(data)
-            let tempSquads = [...squadList] 
+            let tempSquads = [...squadList]
             setDisplayedSquads(tempSquads)
          })
    )
 
    // Gets all of the posts info -> PostList
-   const fetchPosts =() => (
+   const fetchPosts = () => (
       fetch("/api/posts")
          .then(res => res.json())
          .then(data => {
             setPostList(data)
-            let tempPosts = [...postList] 
-            setDisplayedPosts(tempPosts)
          })
    )
 
@@ -71,14 +69,17 @@ function App() {
       if (active) {
          const oneSquad = displayedSquads.filter((data) => data.id == item.id)
          setDisplayedSquads(oneSquad)
+         let tempPosts = [...postList]
+         setDisplayedPosts(tempPosts)
       } else {
-         let tempSquads = [...squadList] 
-         setDisplayedSquads(tempSquads) 
-      }        
+         let tempSquads = [...squadList]
+         setDisplayedSquads(tempSquads)
+         setDisplayedPosts([])
+      }
       setActive(!active)
    }
 
-   
+
    // #### THESE ARE DISPLAYED POSTS
    // BY DEFAULT ALL POSTS ARE HIDDEN
    // CLICKING A CARD CHANGES ALL POSTS WITH SAME SQUAD_ID FROM SHOW/HIDDEN
@@ -122,13 +123,13 @@ function App() {
          squad_id: selectedSquad[0].id,
       }
       fetch("/api/posts", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newPost),
-    })
-      .then((r) => r.json())
+         method: "POST",
+         headers: {
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify(newPost),
+      })
+         .then((r) => r.json())
          .then((data) => {
             // fetchPosts()
             // * * * * * * * * * * * * * * * * * * * * *
@@ -146,32 +147,32 @@ function App() {
       setSelectedPost(onepost)
    }
 
-// Add a squad to squadlist
+   // Add a squad to squadlist
    function addSquad(newSquad) {
       fetch(("/api/squads"), {
          method: "POST",
          headers: {
-            "Content-Type":"application/json"
+            "Content-Type": "application/json"
          },
          body: JSON.stringify(newSquad)
       })
-      .then(res => res.json())
-      .then(data => {
-         setSquadList([...squadList, data])
-      })
+         .then(res => res.json())
+         .then(data => {
+            setSquadList([...squadList, data])
+         })
    }
 
-// Remove a Squad from the list 
-   function deleteItem(item){
+   // Remove a Squad from the list 
+   function deleteItem(item) {
       fetch(`/api/squads/${item}`, {
          method: "DELETE",
       })
-      .then(res => res.json())
-      .then(data => {
-         let updatedList = squadList.filter((data)=> data.id != item)
-         setSquadList(updatedList)
-         
-      })
+         .then(res => res.json())
+         .then(data => {
+            let updatedList = squadList.filter((data) => data.id != item)
+            setSquadList(updatedList)
+
+         })
    }
 
    // GET feed info for 1 squad...
@@ -187,7 +188,7 @@ function App() {
    //   function toggleFeed() {
    //    setShowFeed(!showFeed)
    // }
- 
+
 
    // function setCurrentPosts(data) {
    //    let temppost = [...postList]
@@ -198,20 +199,20 @@ function App() {
 
    // ### using login
    const updateUser = (user) => setUser(user)
-   
+
 
    // ########## FOR LOGOUT
    function logOut() {
       // const clearUser = () => (
       //    fetch('/api/authorized, {method: "DELETE"}')
-         
+
       // )
       setUser(null)
       updateUser(null)
    }
 
-   
-   
+
+
    if (!user) return (
       <>
          <Login updateUser={updateUser} />
@@ -223,8 +224,8 @@ function App() {
             <Route path="/" element={<Home user={user} logOut={logOut} updateUser={updateUser} />} />
             {/* <Route path="squads" element={<Squads displayedSquads={displayedSquads} displayedPosts={displayedPosts} makePosting={makePosting} logOut={logOut} user={user} updateUser={updateUser} squadList={squadList} deleteItem={deleteItem} showFeedCard={showFeedCard} showPostFeed={showPostFeed} selectedSquad={selectedSquad} selectedPost={selectedPost} />} /> */}
 
-            <Route path="squads" element={<Squads toggleView={toggleView} displayedSquads={displayedSquads} displayedPosts={displayedPosts} postList={postList} />} />
-            
+            <Route path="squads" element={<Squads toggleView={toggleView} displayedSquads={displayedSquads} displayedPosts={displayedPosts} postList={postList} deleteItem={deleteItem} />} />
+
             <Route path="create" element={<Create addSquad={addSquad} />} />
             {/* <Route path="logout" element={<Logout logOut={logOut} />} /> */}
          </Routes>

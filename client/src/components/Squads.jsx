@@ -1,9 +1,10 @@
 
 import React, { useState} from "react"
 import SquadItem from "./SquadItem"
-import FeedView from "./FeedView"
+import PostFeedItem from "./PostFeedItem"
 
-function Squads({ displayedSquads, toggleView, displayedPosts, item, toggleFeed, deleteItem }) {
+
+function Squads({ displayedSquads, item, toggleView, displayedPosts, toggleFeed, deleteItem }) {
    
    // const [showFeed, setShowFeed] = useState(false)
 
@@ -31,6 +32,17 @@ function Squads({ displayedSquads, toggleView, displayedPosts, item, toggleFeed,
       )
    })
 
+   const myPost = displayedPosts.map((item) => {
+      return (
+         <PostFeedItem
+            item = { item }
+            key = { item.id }
+            body={item.body}
+         />
+      )
+   })
+
+
    return (
       <>
          {/* <div className="logout">
@@ -42,6 +54,8 @@ function Squads({ displayedSquads, toggleView, displayedPosts, item, toggleFeed,
                <h2>PodSquads:</h2>
                <br />
                {squads}
+               <hr className="breakline" />
+               {myPost}
                {/* {(showFeed) ? <FeedView makePosting={makePosting} user={user} toggleFeed={toggleFeed} selectedSquad={selectedSquad} selectedPost={selectedPost} /> : <Squadlist toggleFeed={toggleFeed} deleteItem={deleteItem} showFeedCard={showFeedCard} showPostFeed={showPostFeed} squadList={squadList} />} */}
             </div>
          </div>  
