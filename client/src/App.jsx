@@ -33,8 +33,8 @@ function App() {
 
    useEffect(() => {
       fetchSquads()
-      fetchPosts()
-      fetchUser()
+      // fetchPosts()
+      // fetchUser()
    }, [])
 
    // Gets all of the squads info -> squadList
@@ -49,13 +49,13 @@ function App() {
    )
 
    // Gets all of the posts info -> PostList
-   const fetchPosts = () => (
-      fetch("/api/posts")
-         .then(res => res.json())
-         .then(data => {
-            setPostList(data)
-         })
-   )
+   // const fetchPosts = () => (
+   //    fetch("/api/posts")
+   //       .then(res => res.json())
+   //       .then(data => {
+   //          setPostList(data)
+   //       })
+   // )
 
 
    // #### THESE ARE DISPLAYED CARDS/POSTS
@@ -83,16 +83,17 @@ function App() {
 
 
    // ###login - checks authorized user info -> user
-   const fetchUser = () => (
-      fetch("/api/authorized")
-         .then(res => {
-            if (res.ok) {
-               res.json().then(user => setUser(user))
-            } else {
-               setUser(null)
-            }
-         })
-   )
+   // const fetchUser = () => (
+   //    fetch("/api/authorized")
+   //       .then(res => {
+   //          if (res.ok) {
+   //             res.json().then(user => setUser(user))
+   //          } else {
+   //             setUser(null)
+   //          }
+   //       })
+      
+   // )
 
    // ####logout --- would this prevent refresh loging back in?
    // const clearUser = () => {
@@ -210,6 +211,9 @@ function App() {
       setUser(null)
       updateUser(null)
    }
+
+
+
 
 
 

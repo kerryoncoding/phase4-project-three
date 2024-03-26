@@ -5,7 +5,7 @@ from flask import Flask, request, make_response, jsonify, session, abort
 # from flask_cors import CORS
 # from flask_migrate import Migrate
 from models import Squad, User, Post, db
-
+from flask_restful import Resource
 
 # app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
@@ -125,7 +125,7 @@ def deletepost():
     return response
 
 
-# USERS #####################################
+# USERS - post new user and put user into session ###################
 @app.route('/users', methods=['POST'])
 def create_user():
     form_json = request.get_json()
@@ -160,11 +160,9 @@ def post():
     return response
 
 
-
-
 # ############# Authorized?  ##################
-@app.route('/authorized')
-def get():
+@app.route('/authorized', methods=['GET'])
+def get(self):
     user = User.query.filter_by(id=session.get('user_id')).first()
     if user:
         response = make_response(
@@ -177,7 +175,7 @@ def get():
 
 # ############# Logout ##################
 
-@app.route('/logout')
+@app.route('/logout', methods=['DELETE'])
 def delete(self):
     session['user_id'] = None
     response = make_response("", 204)

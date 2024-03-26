@@ -20,6 +20,7 @@ class Squad(db.Model, SerializerMixin):
    name = db.Column(db.String(25), nullable=False)
    image = db.Column(db.String)
    description = db.Column(db.String(200))
+   posts = db.relationship("Post", back_populates="squad")
    owner_user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
    def __repr__(self):
@@ -46,10 +47,11 @@ class Post(db.Model, SerializerMixin):
    squad_id = db.Column(db.Integer, db.ForeignKey("squads.id"))
    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
    user = db.relationship("User", back_populates="posts")
+   squad = db.relationship("Squad", back_populates="posts")
 
    # add ser
    serialize_rules = (
-      "-user.posts",
+      "-user.posts", "-squad.posts",
    )
 
    # If later I want to time-stamp posts:
