@@ -112,7 +112,8 @@ def posts():
 
 
 @app.route('/posts/<int:id>', methods=['DELETE'])
-def deletepost():
+def deletepost(id):
+    post = Post.query.filter_by(id=id).first()
     if request.method == 'DELETE':
         db.session.delete(post)
         db.session.commit()
@@ -162,7 +163,7 @@ def post():
 
 # ############# Authorized?  ##################
 @app.route('/authorized', methods=['GET'])
-def get(self):
+def get():
     user = User.query.filter_by(id=session.get('user_id')).first()
     if user:
         response = make_response(
@@ -176,7 +177,7 @@ def get(self):
 # ############# Logout ##################
 
 @app.route('/logout', methods=['DELETE'])
-def delete(self):
+def delete():
     session['user_id'] = None
     response = make_response("", 204)
     return response

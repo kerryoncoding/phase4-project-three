@@ -5,7 +5,7 @@ import PostFeedItem from "./PostFeedItem"
 import FeedNewMessage from "./FeedNewMessage"
 
 
-function Squads({ user, makePosting, active, logOut, displayedSquads, toggleView, displayedPosts, deleteCard, deletePost, editPost }) {
+function Squads({ user, makePosting, active, logOut, squadList, displayedSquads, toggleView, displayedPosts, deleteCard, deletePost, editPost }) {
      
    function handleLogout() {
       logOut()

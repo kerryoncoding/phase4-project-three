@@ -33,8 +33,8 @@ function App() {
 
    useEffect(() => {
       fetchSquads()
-      // fetchPosts()
-      // fetchUser()
+      fetchPosts()
+      fetchUser()
    }, [])
 
    // Gets all of the squads info -> squadList
@@ -49,13 +49,13 @@ function App() {
    )
 
    // Gets all of the posts info -> PostList
-   // const fetchPosts = () => (
-   //    fetch("/api/posts")
-   //       .then(res => res.json())
-   //       .then(data => {
-   //          setPostList(data)
-   //       })
-   // )
+   const fetchPosts = () => (
+      fetch("/api/posts")
+         .then(res => res.json())
+         .then(data => {
+            setPostList(data)
+         })
+   )
 
 
    // #### THESE ARE DISPLAYED CARDS/POSTS
@@ -83,17 +83,17 @@ function App() {
 
 
    // ###login - checks authorized user info -> user
-   // const fetchUser = () => (
-   //    fetch("/api/authorized")
-   //       .then(res => {
-   //          if (res.ok) {
-   //             res.json().then(user => setUser(user))
-   //          } else {
-   //             setUser(null)
-   //          }
-   //       })
+   const fetchUser = () => {
+      fetch("/api/authorized")
+         .then(res => {
+            if (res.ok) {
+               res.json().then(user => setUser(user))
+            } else {
+               setUser(null)
+            }
+         })
       
-   // )
+   }
 
    // ####logout --- would this prevent refresh loging back in?
    // const clearUser = () => {
@@ -108,10 +108,9 @@ function App() {
    // Add a post to posts
 
 
-   function makePosting(body) {
-      alert(body)
+   function makePosting(item) {
       let newPost = {
-         body: body,
+         body: item,
          user_id: user.id,
          squad_id: squadNumber,
       }
@@ -166,12 +165,12 @@ function App() {
    // Doesn't actively update
    function deletePost(item) {
      alert(item)
-      fetch('/api/post/${item}', {
-         methon: "DELETE",
-      })
+     fetch(`/api/posts/${item}`, {
+      method: "DELETE",
+   })
          .then(res => res.json())
          .then(data => {
-            let updatedList = displayedPosts.filter((date) => data.id != item)
+            let updatedList = displayedPosts.filter((data) => data.id != item)
             setDisplayedPosts(updatedList)
          })
    }
@@ -204,18 +203,14 @@ function App() {
 
    // ########## FOR LOGOUT
    function logOut() {
-      // const clearUser = () => (
-      //    fetch('/api/authorized, {method: "DELETE"}')
-
-      // )
-      setUser(null)
-      updateUser(null)
+      fetch('/api/logout', { method: "DELETE" })
+         .then(res => {
+            if (res.ok) {
+               updateUser(null)
+            }
+         })
    }
-
-
-
-
-
+   
 
    if (!user) return (
       <>
@@ -228,7 +223,7 @@ function App() {
             <Route path="/" element={<Home user={user} logOut={logOut} updateUser={updateUser} />} />
 
 
-            <Route path="squads" element={<Squads user={user} makePosting={makePosting} logOut={logOut} toggleView={toggleView} displayedSquads={displayedSquads} displayedPosts={displayedPosts} deleteCard={deleteCard} active={active} deletePost={deletePost} editPost={editPost} />} />
+            <Route path="squads" element={<Squads user={user} makePosting={makePosting} logOut={logOut} toggleView={toggleView} squadList={squadList} displayedSquads={displayedSquads} displayedPosts={displayedPosts} deleteCard={deleteCard} active={active} deletePost={deletePost} editPost={editPost} />} />
 
             <Route path="create" element={<Create addSquad={addSquad} />} />
             {/* <Route path="logout" element={<Logout logOut={logOut} />} /> */}
