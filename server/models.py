@@ -17,13 +17,22 @@ metadata = MetaData()
 
 
 # Join Table - many to many
-user_squads = db.Table(
-   'user_squads',
-   metadata,
-   db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
-   db.Column('squad_id', db.Integer, db.ForeignKey('squads.id'), primary_key=True)
-)
+# user_squads = db.Table(
+#    'user_squads',
+#    metadata,
+#    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+#    db.Column('squad_id', db.Integer, db.ForeignKey('squads.id'), primary_key=True)
+# )
+class SquadUsers(db.Model, SerializerMixin):
+   __tablename__='squadusers'
+   id=db.Column(db.Integer, primary_key=True)
+   squad_id = db.Column(db.Integer, db.ForeignKey('squads.id'))
+   user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
+   squad = db.relationship('Squad', back_populates='squadusers')
+   user= db.relationship('User', back_populates='squadusers')
+
+   serialize_rules=('-squad.squadusers', '-user.squadusers',)
 
 
 # user can have many posts (one to many)
@@ -34,7 +43,10 @@ class User(db.Model, SerializerMixin):
    email = db.Column(db.String(255), nullable=False)
    # Relationships:
    posts = db.relationship('Post', back_populates='user')
-   squads = db.relationship('Squad', secondary=user_squads, back_populates='users')
+   # squads = db.relationship('Squad', secondary=user_squads, back_populates='users')
+   squadusers = db.relationship('SquadUsers', back_populates='user', cascade='all, delete-orphan' )
+
+   serialize_rules=('-squadusers.user',)
 
    def __repr__(self):
       return f'<User: {self.username}, email: {self.email} >'
@@ -50,7 +62,12 @@ class Squad(db.Model, SerializerMixin):
    # relationships:
    posts = db.relationship('Post', back_populates='squad')
    owner_user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-   users=db.relationship('User', secondary=user_squads, back_populates='squads')
+   # users=db.relationship('User', secondary=user_squads, back_populates='squads')
+   squadusers = db.relationship('SquadUsers', back_populates='squad', cascade='all, delete-orphan' )
+
+   serialize_rules=('-squdusers.user', '-squadusers.squad',)
+
+
 
    def __repr__(self):
       return f'<Squad: {self.name}, imageURL: {self.image}, description: {self.description}>'
@@ -74,7 +91,6 @@ class Post(db.Model, SerializerMixin):
    serialize_rules = (
       '-user.posts', '-squad.posts',
    )
-
 
 
    def __repr__(self):
