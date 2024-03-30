@@ -12,18 +12,17 @@ metadata = MetaData()
 
 
 # Join Table - many to many (users to squads)
+
 class SquadUsers(db.Model, SerializerMixin):
    __tablename__='squadusers'
    id=db.Column(db.Integer, primary_key=True)
-   liked=db.Column(db.Boolean)
    squad_id = db.Column(db.Integer, db.ForeignKey('squads.id'))
    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
    squad = db.relationship('Squad', back_populates='squadusers')
    user= db.relationship('User', back_populates='squadusers')
 
-   # serialize_rules=('-squad.squadusers', '-user.squadusers', '-squd.squad_id', '-user.user_id')
-   serialize_rules=('-squad', '-user', )
+   serialize_rules=('-squad.squadusers', '-user.squadusers',)
 
 
 # user can have many posts (one to many)
@@ -34,15 +33,14 @@ class User(db.Model, SerializerMixin):
    email = db.Column(db.String(255), nullable=False)
    # Relationships:
    posts = db.relationship('Post', back_populates='user')
-
+   
    squadusers = db.relationship('SquadUsers', back_populates='user', cascade='all, delete-orphan' )
 
-   serialize_rules=('-squadusers.user','-squadusers.squad',)
-
+   serialize_rules=('-squadusers.user',)
+   
 
    def __repr__(self):
       return f'<User: {self.username}, email: {self.email} >'
-
 
 
 class Squad(db.Model, SerializerMixin):
@@ -83,3 +81,7 @@ class Post(db.Model, SerializerMixin):
 
    def __repr__(self):
       return f'< Message: {self.body} >'
+
+
+🤍💙❤💚
+✅⬜

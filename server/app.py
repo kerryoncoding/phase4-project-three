@@ -149,20 +149,28 @@ def create_user():
 
 
 # SQUADUSERS - who is a member of a squad?
-@app.route('/squadusers', methods=['POST'])
+@app.route('/squadusers', methods=['POST', 'GET'])
 def join_squad():
-    data = request.get_json()
-    new_member=SquadUsers(
-        squad_id=data('squad_id'),
-        user_id=data('user_id'),
-    )
-    db.session.add(new_member)
-    db.session.commit()
+    if request.method == 'GET':
+        squadusers = SquadUsers.query.all()
 
-    response = make_response(
-        jsonify(new_member.to_dict()),
-        201,
-    )
+        response = make_response(
+            jsonify([squaduser.to_dict() for squaduser in squadusers]),
+           200,
+        )   
+    elif request.method == 'POST':
+        data = request.get_json()
+        new_member=SquadUsers(
+            squad_id=data('squad_id'),
+            user_id=data('user_id'),
+        )
+        db.session.add(new_member)
+        db.session.commit()
+
+        response = make_response(
+            jsonify(new_member.to_dict()),
+            201,
+        )
 
     return response
     
