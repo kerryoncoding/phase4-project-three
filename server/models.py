@@ -5,14 +5,13 @@ from flask_sqlalchemy import SQLAlchemy
 
 from sqlalchemy.orm import relationship
 from sqlalchemy_serializer import SerializerMixin
+from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy import MetaData
 from config import db
 
 
 metadata = MetaData()
 
-# is this okay? --NO
-# db = SQLAlchemy(metadata=metadata)
 
 
 
@@ -23,16 +22,16 @@ metadata = MetaData()
 #    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
 #    db.Column('squad_id', db.Integer, db.ForeignKey('squads.id'), primary_key=True)
 # )
-class SquadUsers(db.Model, SerializerMixin):
-   __tablename__='squadusers'
-   id=db.Column(db.Integer, primary_key=True)
-   squad_id = db.Column(db.Integer, db.ForeignKey('squads.id'))
-   user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+# class SquadUsers(db.Model, SerializerMixin):
+#    __tablename__='squadusers'
+#    id=db.Column(db.Integer, primary_key=True)
+#    squad_id = db.Column(db.Integer, db.ForeignKey('squads.id'))
+#    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-   squad = db.relationship('Squad', back_populates='squadusers')
-   user= db.relationship('User', back_populates='squadusers')
+#    squad = db.relationship('Squad', back_populates='squadusers')
+#    user= db.relationship('User', back_populates='squadusers')
 
-   serialize_rules=('-squad.squadusers', '-user.squadusers',)
+#    serialize_rules=('-squad.squadusers', '-user.squadusers',)
 
 
 # user can have many posts (one to many)
@@ -44,9 +43,13 @@ class User(db.Model, SerializerMixin):
    # Relationships:
    posts = db.relationship('Post', back_populates='user')
    # squads = db.relationship('Squad', secondary=user_squads, back_populates='users')
-   squadusers = db.relationship('SquadUsers', back_populates='user', cascade='all, delete-orphan' )
+   # ..squadusers = db.relationship('SquadUsers', back_populates='user', cascade='all, delete-orphan' )
 
-   serialize_rules=('-squadusers.user',)
+   squads = association_proxy(
+      "posts", "squad", creator=lambda squad_obj: Post(squad=squad_obj)
+    )
+   # ..serialize_rules=('-squadusers.user',)
+   serialize_rules=('-posts.user',)
 
    def __repr__(self):
       return f'<User: {self.username}, email: {self.email} >'
@@ -61,11 +64,14 @@ class Squad(db.Model, SerializerMixin):
    description = db.Column(db.String(200))
    # relationships:
    posts = db.relationship('Post', back_populates='squad')
-   owner_user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+   
+   # owner_user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
    # users=db.relationship('User', secondary=user_squads, back_populates='squads')
-   squadusers = db.relationship('SquadUsers', back_populates='squad', cascade='all, delete-orphan' )
+   # ..squadusers = db.relationship('SquadUsers', back_populates='squad', cascade='all, delete-orphan' )
 
-   serialize_rules=('-squdusers.user', '-squadusers.squad',)
+   # ..serialize_rules=('-squdusers.user', '-squadusers.squad',)
+
+   serialize_rules=('-posts.squad', )
 
 
 
