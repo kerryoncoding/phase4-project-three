@@ -4,7 +4,7 @@ from config import app
 from flask import Flask, request, make_response, jsonify, session, abort
 # from flask_cors import CORS
 # from flask_migrate import Migrate
-from models import Squad, User, Post, db
+from models import Squad, User, Post, SquadUsers, db
 from flask_restful import Resource
 
 # app = Flask(__name__)
@@ -145,6 +145,28 @@ def create_user():
     )
 
     return response
+
+
+
+# SQUADUSERS - who is a member of a squad?
+@app.route('/squadusers', methods=['POST'])
+def join_squad():
+    data = request.get_json()
+    new_member=SquadUsers(
+        squad_id=data('squad_id'),
+        user_id=data('user_id'),
+    )
+    db.session.add(new_member)
+    db.session.commit()
+
+    response = make_response(
+        jsonify(new_member.to_dict()),
+        201,
+    )
+
+    return response
+    
+
 
 
 
