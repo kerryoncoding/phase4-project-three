@@ -15,7 +15,7 @@ metadata = MetaData()
 class SquadUsers(db.Model, SerializerMixin):
    __tablename__='squadusers'
    id=db.Column(db.Integer, primary_key=True)
-   liked=db.Column(db.Boolean)
+   membership=db.Column(db.Boolean)
    squad_id = db.Column(db.Integer, db.ForeignKey('squads.id'))
    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
@@ -77,8 +77,7 @@ class Post(db.Model, SerializerMixin):
 
    # add ser
    serialize_rules = (
-      '-user.posts', '-squad.posts',
-   )
+      '-user.email','-user.posts', '-squad', '-squadusers',)
 
 
    def __repr__(self):
