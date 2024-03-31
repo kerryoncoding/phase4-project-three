@@ -45,18 +45,14 @@ def create_posts():
 
 def create_squad_users():
     squadusers=[]
-    squadusers.append(SquadUsers(squad_id=1, user_id=1, liked=False))
-    squadusers.append(SquadUsers(squad_id=2, user_id=1, liked=False))
-    squadusers.append(SquadUsers(squad_id=3, user_id=1, liked=False))
-    squadusers.append(SquadUsers(squad_id=4, user_id=1, liked=False))
-    squadusers.append(SquadUsers(squad_id=1, user_id=2, liked=False))
-    squadusers.append(SquadUsers(squad_id=2, user_id=2, liked=False))
-    squadusers.append(SquadUsers(squad_id=3, user_id=2, liked=False))
-    squadusers.append(SquadUsers(squad_id=4, user_id=2, liked=False))
-    squadusers.append(SquadUsers(squad_id=1, user_id=3, liked=False))
-    squadusers.append(SquadUsers(squad_id=2, user_id=3, liked=False))
-    squadusers.append(SquadUsers(squad_id=3, user_id=3, liked=False))
-    squadusers.append(SquadUsers(squad_id=4, user_id=3, liked=False))
+    squadusers.append(SquadUsers(squad_id=1, user_id=1, liked=True))
+    squadusers.append(SquadUsers(squad_id=2, user_id=1, liked=True))
+    squadusers.append(SquadUsers(squad_id=3, user_id=1, liked=True))
+    squadusers.append(SquadUsers(squad_id=4, user_id=1, liked=True))
+    squadusers.append(SquadUsers(squad_id=1, user_id=2, liked=True))
+    squadusers.append(SquadUsers(squad_id=2, user_id=2, liked=True))
+    squadusers.append(SquadUsers(squad_id=3, user_id=2, liked=True))
+    squadusers.append(SquadUsers(squad_id=4, user_id=2, liked=True))
     
 
     return squadusers
