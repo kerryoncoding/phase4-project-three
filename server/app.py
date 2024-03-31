@@ -111,17 +111,34 @@ def posts():
     return response
 
 
-@app.route('/posts/<int:id>', methods=['DELETE'])
+@app.route('/posts/<int:id>', methods=['DELETE', 'PATCH'])
 def deletepost(id):
-    post = Post.query.filter_by(id=id).first()
     if request.method == 'DELETE':
-        db.session.delete(post)
-        db.session.commit()
+        post = Post.query.filter_by(id=id).first()
+        if request.method == 'DELETE':
+            db.session.delete(post)
+            db.session.commit()
 
-        response = make_response(
-            jsonify({'deleted': True}),
-            200,
+            response = make_response(
+                jsonify({'deleted': True}),
+                200,
         )
+    elif request.method == 'PATCH':
+        post = Post.query.filter_by(id=id).first()
+
+        # if request.method == 'PATCH':
+        #     data = request.get_json()
+        #     for attr in data:
+        #         setattr(post, attr, data[attr])
+                
+        #     db.session.add(post)
+        #     db.session.commit()
+
+        #     response = make_response(
+        #         jsonify(post.to_dict()),
+        #         200,
+        #     )
+
 
     return response
 
