@@ -160,15 +160,16 @@ def join_squad():
         )   
     elif request.method == 'POST':
         data = request.get_json()
-        new_member=SquadUsers(
-            squad_id=data('squad_id'),
-            user_id=data('user_id'),
+        squaduser=SquadUsers(
+            squad_id=data['squad_id'],
+            user_id=data['user_id'],
+            membership=data['membership']
         )
-        db.session.add(new_member)
+        db.session.add(squaduser)
         db.session.commit()
 
         response = make_response(
-            jsonify(new_member.to_dict()),
+            jsonify(squaduser.to_dict()),
             201,
         )
 
