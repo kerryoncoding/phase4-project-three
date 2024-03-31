@@ -175,6 +175,20 @@ def join_squad():
 
     return response
     
+# SQUADUSERS --- DELETE
+@app.route('/squadusers/<int:id>', methods=['DELETE'])
+def deletemembership(id):
+    membership = SquadUsers.query.filter_by(id=id).first()
+    if request.method == 'DELETE':
+        db.session.delete(membership)
+        db.session.commit()
+
+        response = make_response(
+            jsonify({'deleted': True}),
+            200,
+        )
+
+    return response
 
 
 
