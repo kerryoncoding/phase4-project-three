@@ -126,18 +126,18 @@ def deletepost(id):
     elif request.method == 'PATCH':
         post = Post.query.filter_by(id=id).first()
 
-        # if request.method == 'PATCH':
-        #     data = request.get_json()
-        #     for attr in data:
-        #         setattr(post, attr, data[attr])
+        if request.method == 'PATCH':
+            data = request.get_json()
+            for attr in data:
+                setattr(post, attr, data[attr])
                 
-        #     db.session.add(post)
-        #     db.session.commit()
+            db.session.add(post)
+            db.session.commit()
 
-        #     response = make_response(
-        #         jsonify(post.to_dict()),
-        #         200,
-        #     )
+            response = make_response(
+                jsonify(post.to_dict()),
+                200,
+            )
 
 
     return response

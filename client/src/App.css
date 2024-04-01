@@ -318,11 +318,13 @@ span {
 /* new message */
 form.new-message {
   display: flex;
-  margin: 20px;
+  /* margin: 20px 50px; */
 }
 
 form.new-message input[type="text"] {
   flex: 1 1 auto;
+  margin-left: 100px;
+  margin-right: 50px;
 }
 
 /* form.new-message input[type="text"]:focus {

@@ -3,13 +3,15 @@ import React, { useState} from "react"
 import SquadItem from "./SquadItem"
 import PostFeedItem from "./PostFeedItem"
 import FeedNewMessage from "./FeedNewMessage"
+// import JoinSquad from "./JoinSquad"
 
 
-function Squads({ user, makePosting, active, logOut, squadList, displayedSquads, toggleView, displayedPosts, deleteCard, deletePost, editPost }) {
+function Squads({ user, makePosting, active, logOut, displayedSquads, toggleView, member, displayedPosts, deleteCard, deletePost, editPost, joinSquad, leaveSquad }) {
      
    function handleLogout() {
       logOut()
    }
+
 
    const squads = displayedSquads.map((item) => {
       return (
@@ -52,7 +54,7 @@ function Squads({ user, makePosting, active, logOut, squadList, displayedSquads,
                {myPost}
                {(active) ? "" : <hr className="breakline" /> }
                {(active) ? "" : <h2>{user.username}, join the conversation...</h2>}
-               {(active) ? "" : <FeedNewMessage makePosting = {makePosting} />}
+               {(active) ? "" : <FeedNewMessage makePosting={makePosting} member={member} joinSquad={joinSquad} leaveSquad={leaveSquad} />}
             </div>
          </div>  
       </>   

@@ -1,4 +1,58 @@
 
+
+
+
+
+
+
+
+# PostFeedItem
+
+
+import React, { useState } from "react"
+
+
+function PostFeedItem({ item, user, deletePost, editPost }) {
+   
+   const [isEditing, setIsEditing] = useState(false);
+
+   function handleDeletePost() {
+      deletePost(item.id)
+   }
+   
+   function handleEditPost() {
+      setIsEditing(!isEditing)
+      editPost(item.id)
+	}
+
+
+   
+   if (item.user.username == user.username) {
+      return (
+         <div>
+            <p><strong>{item.user.username}: </strong>{item.body} <button className="messageToggleButton" onClick={handleEditPost}>✏️</button> <button className="messageToggleButton" onClick={handleDeletePost}>❌</button></p>
+            <hr className="breakline" />
+         </div>
+      )
+   } else {
+      return (
+         <div>
+            <p><strong>{item.user.username}: </strong>{item.body} </p>
+         <hr className="breakline" />
+      </div>
+      )
+   }
+}
+
+export default PostFeedItem;
+
+
+
+
+# ##########################################################################
+# ##########################################################################
+
+
 from flask_sqlalchemy import SQLAlchemy
 
 from sqlalchemy.orm import relationship
@@ -85,3 +139,6 @@ class Post(db.Model, SerializerMixin):
 
 🤍💙❤💚
 ✅⬜
+
+
+

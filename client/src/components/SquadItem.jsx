@@ -14,6 +14,7 @@ function SquadItem({ active, item, deleteCard, toggleView }) {
 		<div className="card" >
 			<button className="cardDeleteButton" onClick={handleDeleteClick}>✖ ✅</button>
 			<h3>{item.name}</h3>
+			{/* <h3>{item.user.squadusers.liked}</h3> */}
 			<img src={item.image} className="card-image" alt={item.name}></img>
 			<p>{item.description}</p>
 			{(active) ? <button onClick={handleShowPostsClick} className="messageToggleButton">Show Posts</button> : <button onClick={handleShowPostsClick} className="messageToggleButton">Hide Posts</button> }
