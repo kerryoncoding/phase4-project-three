@@ -66,10 +66,11 @@ function App() {
    )
 
 
-   // #### THESE ARE DISPLAYED CARDS/POSTS
-   // BY DEFAULT ALL CARDS ARE SHOWN, ALL POSTS ARE HIDDEN
+   // EVERYTHING HERE:
+   // SQUADS / POSTS
+   // BY DEFAULT ALL SQUAD CARDS ARE SHOWN, ALL POSTS ARE HIDDEN
    // CLICKING A CARD CHANGES ALL CARDS BUT THAT ONE FROM SHOWN/HIDDEN
-   // CLICKING A CARD CHANGES ALL POSTS WITH SAME SQUAD_ID FROM SHOW/HIDDEN
+   // CLICKING A CARD CHANGES ALL POSTS WITH SAME SQUAD_ID FROM SHOWN/HIDDEN
    function toggleView(item) {
       if (active) {
          setSquadNumber(item.id)
@@ -78,7 +79,6 @@ function App() {
          let tempPosts = [...postList]
          let onePost = tempPosts.filter((data) => data.squad_id == item.id)
          setDisplayedPosts(onePost)
-         // display based on membership status???
          checkMemberStatus(item)
       } else {
          let tempSquads = [...squadList]
@@ -173,10 +173,6 @@ function App() {
 
 
    function editPost(item, messageBody ) {
-      // item is the body
-      // i also need id of post
-      // alert(item)
-      // alert(messageBody)
       let updatedPost = {
          body: messageBody,
          user_id: user.id,
@@ -193,20 +189,14 @@ function App() {
          .then((r) => r.json())
          .then((data) => {
             fetchPosts()
-            setDisplayedPosts([...displayedPosts, data])
+            let updatedPosts = displayedPosts.map((post) => (item == post.id) ? data : post)
+            setDisplayedPosts(updatedPosts)
+            // setDisplayedPosts([...displayedPosts, data])
       });
    }
 
 
-   // function handleUpdateMessage(updatedMessage) {
-   //    alert("here")
-   //    // setIsEditing(false);
-   //    onUpdateMessage(updatedMessage);
-   // }
-
-
-
-
+ 
    // POSTS - Removes selected post Item from "posts" table
    function deletePost(item) {
    //   alert(item)
