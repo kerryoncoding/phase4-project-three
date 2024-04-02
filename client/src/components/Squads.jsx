@@ -34,6 +34,7 @@ function Squads({ user, makePosting, active, logOut, displayedSquads, toggleView
             user={user}
             deletePost={deletePost}
             editPost={editPost}
+            member={member}
          />
       )
    })

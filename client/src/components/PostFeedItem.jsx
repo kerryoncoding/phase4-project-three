@@ -4,7 +4,7 @@ import React, { useState } from "react"
 import EditFeedItem from "./EditFeedItem";
 
 
-function PostFeedItem({ item, user, deletePost, editPost }) {
+function PostFeedItem({ item, user, deletePost, editPost, member }) {
    
    const [isEditing, setIsEditing] = useState(false);
 
@@ -18,7 +18,7 @@ function PostFeedItem({ item, user, deletePost, editPost }) {
 	}
 
    
-   if (item.user.username == user.username) {
+   if ((item.user.username == user.username) && member) {
       return (
          < div >
             {isEditing ? (
