@@ -28,6 +28,7 @@ function App() {
    const [member, setMember] = useState([])
    const [squadNumber, setSquadNumber] = useState(0)
    const [user, setUser] = useState(null)
+ 
 
 
    useEffect(() => {
@@ -141,21 +142,30 @@ function App() {
 
 
    // SQUADS: Add a new squad to "squads" table
-   function addSquad(newSquad) {
-      fetch(("/api/squads"), {
-         method: "POST",
-         headers: {
-            "Content-Type": "application/json"
-         },
-         body: JSON.stringify(newSquad)
-      })
-         .then(res => res.json())
-         .then(data => {
-            let updatedList = ([...squadList, data])
+   function addSquad(res) {
+      alert("here")
+      alert(res)
+      let updatedList = ([...squadList, res])
+      setDisplayedSquads(updatedList)
+      setSquadList(updatedList)
+   
+
+   //    fetch(("/api/squads"), {
+   //       method: "POST",
+   //       headers: {
+   //          "Content-Type": "application/json"
+   //       },
+   //       body: JSON.stringify(newSquad)
+   //    })
+   //       .then(res => res.json())
+   //       .then(data => {
+   //          let updatedList = ([...squadList, data])
             
-            setDisplayedSquads(updatedList)
-            setSquadList(updatedList)
-         })
+   //          setDisplayedSquads(updatedList)
+   //          setSquadList(updatedList)
+   //       })
+
+
    }
 
    // SQUADS: Remove clicked Squad from "squads" table
@@ -276,6 +286,7 @@ function App() {
          .then(res => {
             if (res.ok) {
                updateUser(null)
+               
             }
          })
    }

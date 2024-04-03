@@ -7,7 +7,7 @@ import * as yup from "yup"
 function Login({ updateUser }) {
 
    const [signUp, setSignUp] = useState(false)
-   const history = useNavigate()
+   // const history = useNavigate()
 
 
    const handleClick = () => setSignUp((signUp) => !signUp)
@@ -22,7 +22,7 @@ function Login({ updateUser }) {
          email: ""
       },
       validationSchema: formSchema,
-      onSubmit: (values) => {
+      onSubmit: (values, {resetForm}) => {
          fetch(signUp ? '/api/users' : '/api/login', {
             method: "POST",
             headers: {
@@ -34,6 +34,7 @@ function Login({ updateUser }) {
             .then(user => {
                // update user function needs to be made
                updateUser(user)
+               resetForm()
                // history.push('/')
                // need to clear form after
             })
@@ -52,7 +53,6 @@ function Login({ updateUser }) {
                <button className="messageToggleButton" onClick={handleClick}>{signUp ? 'Log In!' : 'Register now!'}</button>
                <br />
                <form className="squadForm" onSubmit={formik.handleSubmit}>
-                  {/* <form className="LoginForm" onSubmit={formik.handleSubmit}> */}
                   <label>Username: </label>
                   <br />
                   <input
@@ -62,6 +62,7 @@ function Login({ updateUser }) {
                      onChange={formik.handleChange}
                      value={formik.values.name}
                   />
+                  <p style={{ color: "red" }}> {formik.errors.name}</p>
                   <br />
                   <br />
                   {signUp && (
@@ -75,6 +76,7 @@ function Login({ updateUser }) {
                            onChange={formik.handleChange}
                            value={formik.values.email}
                         />
+                        <p style={{ color: "red" }}> {formik.errors.email}</p>
                         <br />
                      </>
                   )}

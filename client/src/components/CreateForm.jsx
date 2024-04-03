@@ -1,44 +1,105 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
+import { useFormik } from "formik";
+import * as yup from "yup"
 
 
-function SquadForm({addSquad}){
+function SquadForm({ addSquad }) {
 
    const [name, setName] = useState("")
    const [description, setDescription] = useState("")
    const [image, setImage] = useState("")
    
-   function handleSubmit(e) {
-      e.preventDefault();
-      let newSquad={
-            name: name,
-            image: image,
-            description: description,
-         }
-         addSquad(newSquad)
-         setName("")
-         setImage("")
-         setDescription("")
-   }
+   // function handleSubmit(e) {
+   //    e.preventDefault();
+   //    let newSquad={
+   //          name: name,
+   //          image: image,
+   //          description: description,
+   //       }
+   //       addSquad(newSquad)
+   //       setName("")
+   //       setImage("")
+   //       setDescription("")
+   // }
+
+   // SQUADS: Add a new squad to "squads" table
+   // function addSquad(newSquad) {
+   //    fetch(("/api/squads"), {
+   //       method: "POST",
+   //       headers: {
+   //          "Content-Type": "application/json"
+   //       },
+   //       body: JSON.stringify(newSquad)
+   //    })
+   //       .then(res => res.json())
+   //       .then(data => {
+   //          let updatedList = ([...squadList, data])
+            
+   //          setDisplayedSquads(updatedList)
+   //          setSquadList(updatedList)
+   //       })
+   // }
+
+
+
+
+
+// FORMIK 
+   const formSchema = yup.object().shape({
+      name: yup.string().required("Must enter a name").max(30),
+      image: yup.string().required("Must invlude an image URL").min(9),
+      description: yup.string().required("Description must be at least 15 characters").min(15),
+   });
+
+   const formik = useFormik({
+      initialValues: {
+        name: "",
+        image: "",
+        description: "",
+      },
+      validationSchema: formSchema,
+      onSubmit: (values, {resetForm}) => {
+         fetch(("/api/squads"), {
+            method: "POST",
+            headers: {
+               "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify(values, null, 2),
+         })
+            .then(res => res.json())
+            .then(data => {
+               addSquad(data)
+               resetForm()
+            })
+      },
+   });
+   
+
 
 
    return (
       <div className="formContainer">
          <h2>Create your own PodSquad</h2>
-         <form className="squadForm" onSubmit={handleSubmit}>
+         <form className="squadForm" onSubmit={formik.handleSubmit}>
             <div>
                <label>Name: </label>
                <br />
-               <input type="text" id="name" value={name} onChange={(e)=>setName(e.target.value)}/>
+               <input type="text" id="name" onChange={formik.handleChange} value={formik.values.name}
+               />
+               <p style={{ color: "red" }}> {formik.errors.name}</p>
             </div>
             <div>
                <label>Image URL: </label>
             <br />
-               <input type="text" id="image" value={image}  onChange={(e)=>setImage(e.target.value)} />
+               <input type="text" id="image" onChange={formik.handleChange} value={formik.values.image} />
+               <p style={{ color: "red" }}> {formik.errors.image}</p>
             </div>
             <div>
                <label>Description: </label>
             <br />
-               <input type="text" id="description" value={description} onChange={(e)=>setDescription(e.target.value)} />
+               <input type="text" id="description" onChange={formik.handleChange} value={formik.values.description} />
+               <p style={{ color: "red" }}> {formik.errors.description}</p>
             </div>
             <div>
                <button className="messageToggleButton" type="submit">Submit</button>
@@ -50,3 +111,81 @@ function SquadForm({addSquad}){
 
 
 export default SquadForm;
+
+
+
+
+// BACKUP
+
+// function SquadForm({ addSquad }) {
+
+//    const [name, setName] = useState("")
+//    const [description, setDescription] = useState("")
+//    const [image, setImage] = useState("")
+   
+   // function handleSubmit(e) {
+   //    e.preventDefault();
+   //    let newSquad={
+   //          name: name,
+   //          image: image,
+   //          description: description,
+   //       }
+   //       addSquad(newSquad)
+   //       setName("")
+   //       setImage("")
+   //       setDescription("")
+   // }
+
+   // SQUADS: Add a new squad to "squads" table
+   // function addSquad(newSquad) {
+   //    fetch(("/api/squads"), {
+   //       method: "POST",
+   //       headers: {
+   //          "Content-Type": "application/json"
+   //       },
+   //       body: JSON.stringify(newSquad)
+   //    })
+   //       .then(res => res.json())
+   //       .then(data => {
+   //          let updatedList = ([...squadList, data])
+            
+   //          setDisplayedSquads(updatedList)
+   //          setSquadList(updatedList)
+   //       })
+   // }
+
+
+
+
+//    return (
+//       <div className="formContainer">
+//          <h2>Create your own PodSquad</h2>
+//          <form className="squadForm" onSubmit={handleSubmit}>
+//             <div>
+//                <label>Name: </label>
+//                <br />
+//                <input type="text" id="name" value={name} onChange={(e)=>setName(e.target.value)}/>
+//             </div>
+//             <div>
+//                <label>Image URL: </label>
+//             <br />
+//                <input type="text" id="image" value={image}  onChange={(e)=>setImage(e.target.value)} />
+//             </div>
+//             <div>
+//                <label>Description: </label>
+//             <br />
+//                <input type="text" id="description" value={description} onChange={(e)=>setDescription(e.target.value)} />
+//             </div>
+//             <div>
+//                <button className="messageToggleButton" type="submit">Submit</button>
+//             </div>
+//          </form>
+//       </div>
+//    )  
+// }
+
+
+// export default SquadForm;
+
+
+
