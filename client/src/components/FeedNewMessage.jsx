@@ -47,7 +47,7 @@ function FeedNewMessage({ makePosting, member, leaveSquad, joinSquad }) {
             <button className="messageToggleButton" type="submit">Send</button>
          </form>
          <button onClick={handleLeaveClick} className="messageToggleButton" type="submit">Leave this Squad</button>
-         </>
+      </>
       );
    } else {
       return (
