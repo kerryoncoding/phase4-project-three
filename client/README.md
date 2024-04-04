@@ -22,3 +22,11 @@ My Phase 2 final project for Flatiron:
 https://github.com/kerryoncoding/engineering-portfolio
 which I used to leverage frontend react design and css styling
 
+Flatiron Chatterbox Lab:
+https://github.dev/learn-co-curriculum/python-p4-adding-react-to-flask/tree/solution
+which I used to support my messaging feed
+
+Flatiron Video on Authentication:
+https://base.flatironschool.com/resource-library/auth-part-1-fd86ead34f
+Which I used to support Login/Logout
+
