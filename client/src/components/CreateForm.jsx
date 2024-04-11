@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { useFormik } from "formik";
 import * as yup from "yup"
 
@@ -72,81 +72,3 @@ function SquadForm({ addSquad }) {
 
 
 export default SquadForm;
-
-
-
-
-// BACKUP
-
-// function SquadForm({ addSquad }) {
-
-//    const [name, setName] = useState("")
-//    const [description, setDescription] = useState("")
-//    const [image, setImage] = useState("")
-   
-   // function handleSubmit(e) {
-   //    e.preventDefault();
-   //    let newSquad={
-   //          name: name,
-   //          image: image,
-   //          description: description,
-   //       }
-   //       addSquad(newSquad)
-   //       setName("")
-   //       setImage("")
-   //       setDescription("")
-   // }
-
-   // SQUADS: Add a new squad to "squads" table
-   // function addSquad(newSquad) {
-   //    fetch(("/api/squads"), {
-   //       method: "POST",
-   //       headers: {
-   //          "Content-Type": "application/json"
-   //       },
-   //       body: JSON.stringify(newSquad)
-   //    })
-   //       .then(res => res.json())
-   //       .then(data => {
-   //          let updatedList = ([...squadList, data])
-            
-   //          setDisplayedSquads(updatedList)
-   //          setSquadList(updatedList)
-   //       })
-   // }
-
-
-
-
-//    return (
-//       <div className="formContainer">
-//          <h2>Create your own PodSquad</h2>
-//          <form className="squadForm" onSubmit={handleSubmit}>
-//             <div>
-//                <label>Name: </label>
-//                <br />
-//                <input type="text" id="name" value={name} onChange={(e)=>setName(e.target.value)}/>
-//             </div>
-//             <div>
-//                <label>Image URL: </label>
-//             <br />
-//                <input type="text" id="image" value={image}  onChange={(e)=>setImage(e.target.value)} />
-//             </div>
-//             <div>
-//                <label>Description: </label>
-//             <br />
-//                <input type="text" id="description" value={description} onChange={(e)=>setDescription(e.target.value)} />
-//             </div>
-//             <div>
-//                <button className="messageToggleButton" type="submit">Submit</button>
-//             </div>
-//          </form>
-//       </div>
-//    )  
-// }
-
-
-// export default SquadForm;
-
-
-
