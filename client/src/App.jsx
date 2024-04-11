@@ -1,14 +1,6 @@
-// import * as React from "react";
-import React, { useState, useEffect } from "react"
-import { createRoot } from "react-dom/client";
 
-import {
-   BrowserRouter,
-   Routes,
-   Route,
-   Link,
-   Outlet,
-} from "react-router-dom";
+import React, { useState, useEffect } from "react"
+import {Routes, Route} from "react-router-dom";
 
 import Home from "./components/Home"
 import Squads from "./components/Squads"
@@ -66,12 +58,43 @@ function App() {
          })
    )
 
+   
+  // LOGIN - checks authorized user info -> user
+  const fetchUser = () => {
+   fetch("/api/authorized")
+      .then(res => {
+         if (res.ok) {
+            res.json().then(user => setUser(user))
+            setActive(true)
+         } else {
+            setUser(null)
+            setActive(true)
+         }
+      })
+}
 
-   // EVERYTHING HERE:
-   // SQUADS / POSTS
-   // BY DEFAULT ALL SQUAD CARDS ARE SHOWN, ALL POSTS ARE HIDDEN
-   // CLICKING A CARD CHANGES ALL CARDS BUT THAT ONE FROM SHOWN/HIDDEN
-   // CLICKING A CARD CHANGES ALL POSTS WITH SAME SQUAD_ID FROM SHOWN/HIDDEN
+// LOGOUT user
+   function logOut() {
+      fetch('/api/logout', { method: "DELETE" })
+         .then(res => {
+            if (res.ok) {
+               updateUser(null)
+            }
+         })
+   }
+
+// ### using login
+   const updateUser = (user) => {
+      setUser(user)
+      let tempSquads = [...squadList]
+         setDisplayedSquads(tempSquads)
+   }
+
+
+// GATHER EVERYTHING (SQUADS/POSTS) HERE:
+// BY DEFAULT ALL SQUAD CARDS ARE SHOWN, ALL POSTS ARE HIDDEN
+// CLICKING A CARD CHANGES ALL CARDS BUT THAT ONE FROM SHOWN/HIDDEN
+// CLICKING A CARD CHANGES ALL POSTS WITH SAME SQUAD_ID FROM SHOWN/HIDDEN
    function toggleView(item) {
       if (active) {
          setSquadNumber(item.id)
@@ -86,40 +109,65 @@ function App() {
          setDisplayedSquads(tempSquads)
          setDisplayedPosts([])
          setSquadNumber(0)
-         // let tempsquaduser = [...squadUserList]
       }
       setActive(!active)
    }
 
+
+// CHECK IF MEMBER OF THAT SQUAD (squaduser)
    function checkMemberStatus(item) {
-      // alert(item.id)
-      // alert(user.id)
       let tempStatus = squadUserList.filter((data) => ((data.squad_id == item.id) && (data.user_id == user.id)))
       if (tempStatus.length == 0) {
-         // alert("none")
          setMember(false)
       } else {
-         // alert(tempStatus[0].membership)
          setMember(tempStatus[0].membership)
       }
    }
 
-
-
-   // ###login - checks authorized user info -> user
-   const fetchUser = () => {
-      fetch("/api/authorized")
-         .then(res => {
-            if (res.ok) {
-               res.json().then(user => setUser(user))
-               setActive(true)
-            } else {
-               setUser(null)
-               setActive(true)
-            }
-         })
+// SQUADUSER: add to squadUser
+   function joinSquad() {
+      let new_member = {
+         squad_id:squadNumber,
+         user_id: user.id,
+         membership: true
+      }
+      updateSquadUser(new_member)
    }
 
+   function updateSquadUser(new_member) {
+      fetch(('/api/squadusers'), {
+         method: "POST",
+         headers: {
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify(new_member)
+      })
+         .then(res => res.json())
+         .then(data => 
+            setSquadUserList([...squadUserList, data]),
+            setMember(true))
+   }
+
+
+// SQUADUSER: remove from squaduser
+   function leaveSquad() {
+      let temp_id_list = squadUserList.filter((data) => ((data.squad_id == squadNumber) && (data.user_id == user.id)))
+      let item = temp_id_list[0].id
+
+      fetch(`/api/squadusers/${item}`, {
+         method: "DELETE",
+      })
+         .then(res => res.json())
+         .then(data => {
+            let updatedList = squadUserList.filter((data) => data.id != item)
+            setSquadUserList(updatedList)
+            setMember(false)
+         })
+   }
+   
+
+   
+// CREATE NEW POST
    function makePosting(item) {
       let newPost = {
          body: item,
@@ -141,34 +189,52 @@ function App() {
    }
 
 
-   // SQUADS: Add a new squad to "squads" table
+// EDIT EXISTING POST
+   function editPost(item, messageBody ) {
+      let updatedPost = {
+         body: messageBody,
+         user_id: user.id,
+         squad_id: squadNumber,
+      }
+         
+      fetch(`/api/posts/${item}`, {
+            method: "PATCH",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatedPost),
+         })
+         .then((r) => r.json())
+         .then((data) => {
+            fetchPosts()
+            let updatedPosts = displayedPosts.map((post) => (item == post.id) ? data : post)
+            setDisplayedPosts(updatedPosts)
+      });
+   }
+
+
+// DELETE EXISTING POST - Removes selected post Item from "posts" table
+   function deletePost(item) {
+   fetch(`/api/posts/${item}`, {
+      method: "DELETE",
+   })
+         .then(res => res.json())
+         .then(data => {
+            let updatedList = displayedPosts.filter((data) => data.id != item)
+            setDisplayedPosts(updatedList)
+         })
+   }
+
+
+// SQUADS: Add a new squad to "squads" table
    function addSquad(res) {
-      alert("here")
-      alert(res)
       let updatedList = ([...squadList, res])
       setDisplayedSquads(updatedList)
       setSquadList(updatedList)
-   
-
-   //    fetch(("/api/squads"), {
-   //       method: "POST",
-   //       headers: {
-   //          "Content-Type": "application/json"
-   //       },
-   //       body: JSON.stringify(newSquad)
-   //    })
-   //       .then(res => res.json())
-   //       .then(data => {
-   //          let updatedList = ([...squadList, data])
-            
-   //          setDisplayedSquads(updatedList)
-   //          setSquadList(updatedList)
-   //       })
-
-
    }
 
-   // SQUADS: Remove clicked Squad from "squads" table
+
+// SQUADS CARD: Remove clicked Squad from "squads" table
    function deleteCard(item) {
       fetch(`/api/squads/${item}`, {
          method: "DELETE",
@@ -182,115 +248,9 @@ function App() {
    }
 
 
-   function editPost(item, messageBody ) {
-      let updatedPost = {
-         body: messageBody,
-         user_id: user.id,
-         squad_id: squadNumber,
-      }
-         
-      fetch(`/api/posts/${item}`, {
-            method: "PATCH",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(updatedPost),
-          })
-         .then((r) => r.json())
-         .then((data) => {
-            fetchPosts()
-            let updatedPosts = displayedPosts.map((post) => (item == post.id) ? data : post)
-            setDisplayedPosts(updatedPosts)
-            // setDisplayedPosts([...displayedPosts, data])
-      });
-   }
-
-
- 
-   // POSTS - Removes selected post Item from "posts" table
-   function deletePost(item) {
-   //   alert(item)
-     fetch(`/api/posts/${item}`, {
-      method: "DELETE",
-   })
-         .then(res => res.json())
-         .then(data => {
-            let updatedList = displayedPosts.filter((data) => data.id != item)
-            setDisplayedPosts(updatedList)
-         })
-   }
-
-   // SQUADUSER: add squad to squadUser
-   function joinSquad() {
-      // alert(squadNumber)
-      // alert(user.id)
-      let new_member = {
-         squad_id:squadNumber,
-         user_id: user.id,
-         membership: true
-      }
-      updateSquadUser(new_member)
-      // setMember(true)
-   }
-
-   function updateSquadUser(new_member) {
-      fetch(('/api/squadusers'), {
-         method: "POST",
-         headers: {
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(new_member)
-      })
-         .then(res => res.json())
-         .then(data => 
-            setSquadUserList([...squadUserList, data]),
-            setMember(true))
-   }
 
 
 
-   // SQUADUSER: remove from "squaduser" table
-   function leaveSquad() {
-      alert(squadNumber)
-      alert(user.id)
-      let temp_id_list = squadUserList.filter((data) => ((data.squad_id == squadNumber) && (data.user_id == user.id)))
-      let item = temp_id_list[0].id
-      // DELETE on squaduser.... to set membership to false
-      // setMember(false)
-
-      fetch(`/api/squadusers/${item}`, {
-         method: "DELETE",
-      })
-         .then(res => res.json())
-         .then(data => {
-            let updatedList = squadUserList.filter((data) => data.id != item)
-            setSquadUserList(updatedList)
-            setMember(false)
-         })
-   }
-
-
- 
-   // ### using login
-   const updateUser = (user) => {
-      setUser(user)
-      let tempSquads = [...squadList]
-         setDisplayedSquads(tempSquads)
-    
-   }
-
-
-   // ########## FOR LOGOUT
-   function logOut() {
-      fetch('/api/logout', { method: "DELETE" })
-         .then(res => {
-            if (res.ok) {
-               updateUser(null)
-               
-            }
-         })
-   }
-   
 
    if (!user) return (
       <>
