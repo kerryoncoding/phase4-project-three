@@ -5,45 +5,6 @@ import * as yup from "yup"
 
 function SquadForm({ addSquad }) {
 
-   const [name, setName] = useState("")
-   const [description, setDescription] = useState("")
-   const [image, setImage] = useState("")
-   
-   // function handleSubmit(e) {
-   //    e.preventDefault();
-   //    let newSquad={
-   //          name: name,
-   //          image: image,
-   //          description: description,
-   //       }
-   //       addSquad(newSquad)
-   //       setName("")
-   //       setImage("")
-   //       setDescription("")
-   // }
-
-   // SQUADS: Add a new squad to "squads" table
-   // function addSquad(newSquad) {
-   //    fetch(("/api/squads"), {
-   //       method: "POST",
-   //       headers: {
-   //          "Content-Type": "application/json"
-   //       },
-   //       body: JSON.stringify(newSquad)
-   //    })
-   //       .then(res => res.json())
-   //       .then(data => {
-   //          let updatedList = ([...squadList, data])
-            
-   //          setDisplayedSquads(updatedList)
-   //          setSquadList(updatedList)
-   //       })
-   // }
-
-
-
-
-
 // FORMIK 
    const formSchema = yup.object().shape({
       name: yup.string().required("Must enter a name").max(30),

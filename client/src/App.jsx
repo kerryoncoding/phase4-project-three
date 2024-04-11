@@ -32,7 +32,7 @@ function App() {
 
    // SQUADS: Gets all of the squads info -> squadList
    const fetchSquads = () => (
-      fetch("/api/squads")
+      fetch('/api/squads')
          .then(res => res.json())
          .then(data => {
             setSquadList(data)
@@ -41,7 +41,7 @@ function App() {
 
    // POSTS: Gets all of the posts info -> PostList
    const fetchPosts = () => (
-      fetch("/api/posts")
+      fetch('/api/posts')
          .then(res => res.json())
          .then(data => {
             setPostList(data)
@@ -51,7 +51,7 @@ function App() {
 
    // SQUADUSERS: Gets all squadusers -> squadUserList
    const fetchSquadUsers = () => (
-      fetch("/api/squadusers")
+      fetch('/api/squadusers')
          .then(res => res.json())
          .then(data => {
             setSquadUserList(data)
@@ -61,7 +61,7 @@ function App() {
    
   // LOGIN - checks authorized user info -> user
   const fetchUser = () => {
-   fetch("/api/authorized")
+   fetch('/api/authorized')
       .then(res => {
          if (res.ok) {
             res.json().then(user => setUser(user))
@@ -75,7 +75,7 @@ function App() {
 
 // LOGOUT user
    function logOut() {
-      fetch('/api/logout', { method: "DELETE" })
+      fetch('/api/logout', { method: 'DELETE' })
          .then(res => {
             if (res.ok) {
                updateUser(null)
@@ -138,7 +138,7 @@ function App() {
       fetch(('/api/squadusers'), {
          method: "POST",
          headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
          },
          body: JSON.stringify(new_member)
       })
@@ -155,7 +155,7 @@ function App() {
       let item = temp_id_list[0].id
 
       fetch(`/api/squadusers/${item}`, {
-         method: "DELETE",
+         method: 'DELETE',
       })
          .then(res => res.json())
          .then(data => {
@@ -174,10 +174,10 @@ function App() {
          user_id: user.id,
          squad_id: squadNumber,
       }
-      fetch("/api/posts", {
-         method: "POST",
+      fetch('/api/posts', {
+         method: 'POST',
          headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
          },
          body: JSON.stringify(newPost),
       })
@@ -198,9 +198,9 @@ function App() {
       }
          
       fetch(`/api/posts/${item}`, {
-            method: "PATCH",
+            method: 'PATCH',
             headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             },
             body: JSON.stringify(updatedPost),
          })
@@ -216,7 +216,7 @@ function App() {
 // DELETE EXISTING POST - Removes selected post Item from "posts" table
    function deletePost(item) {
    fetch(`/api/posts/${item}`, {
-      method: "DELETE",
+      method: 'DELETE',
    })
          .then(res => res.json())
          .then(data => {
@@ -237,7 +237,7 @@ function App() {
 // SQUADS CARD: Remove clicked Squad from "squads" table
    function deleteCard(item) {
       fetch(`/api/squads/${item}`, {
-         method: "DELETE",
+         method: 'DELETE',
       })
          .then(res => res.json())
          .then(data => {
@@ -260,12 +260,12 @@ function App() {
    return (
       <>
          <Routes>
-            <Route path="/" element={<Home user={user} logOut={logOut} updateUser={updateUser} />} />
+            <Route path='/' element={<Home user={user} logOut={logOut} updateUser={updateUser} />} />
 
 
-            <Route path="squads" element={<Squads user={user} makePosting={makePosting} logOut={logOut} toggleView={toggleView}  member={member} squadList={squadList} displayedSquads={displayedSquads} displayedPosts={displayedPosts} deleteCard={deleteCard} active={active} deletePost={deletePost} editPost={editPost} joinSquad={joinSquad} leaveSquad={leaveSquad} />} />
+            <Route path='squads' element={<Squads user={user} makePosting={makePosting} logOut={logOut} toggleView={toggleView}  member={member} squadList={squadList} displayedSquads={displayedSquads} displayedPosts={displayedPosts} deleteCard={deleteCard} active={active} deletePost={deletePost} editPost={editPost} joinSquad={joinSquad} leaveSquad={leaveSquad} />} />
 
-            <Route path="create" element={<Create addSquad={addSquad} />} />
+            <Route path='create' element={<Create addSquad={addSquad} />} />
          </Routes>
       </>
    )
