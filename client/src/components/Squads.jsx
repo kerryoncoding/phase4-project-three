@@ -1,9 +1,8 @@
 
-import React, { useState} from "react"
+import React from "react"
 import SquadItem from "./SquadItem"
 import PostFeedItem from "./PostFeedItem"
 import FeedNewMessage from "./FeedNewMessage"
-// import JoinSquad from "./JoinSquad"
 
 
 function Squads({ user, makePosting, active, logOut, displayedSquads, toggleView, member, displayedPosts, deleteCard, deletePost, editPost, joinSquad, leaveSquad }) {

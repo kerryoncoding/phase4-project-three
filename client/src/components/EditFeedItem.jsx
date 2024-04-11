@@ -1,19 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-function EditFeedItem({ item, body, editPost, handleEditPost }) {
-  // const [messageBody, setMessageBody] = useState(body);
-
-  // function handleFormSubmit(e) {
-  //    e.preventDefault();
-  //    editPost(item.id, messageBody)
-  //    setMessageBody("")
-  //    handleEditPost()
-  // }
-
-
-
+function EditFeedItem({ item, editPost, handleEditPost }) {
+ 
     // Formik
   const formSchema = yup.object().shape({
     body: yup.string().required("Field can not be left blank").max(125, "Exceeds max length"),
@@ -53,39 +43,3 @@ function EditFeedItem({ item, body, editPost, handleEditPost }) {
 export default EditFeedItem;
 
 
-
-
-
-//  BACKUP  ###########################################
-
-// import React, { useState } from "react";
-
-// function EditFeedItem({ item, body, editPost, handleEditPost }) {
-//   const [messageBody, setMessageBody] = useState(body);
-
-//   function handleFormSubmit(e) {
-//      e.preventDefault();
-//      editPost(item.id, messageBody)
-//      setMessageBody("")
-//      handleEditPost()
-//   }
-
-//    return (
-//       <>
-//          <p><strong>{item.user.username}: </strong>{item.body} </p>
-//     <form className="new-message" onSubmit={handleFormSubmit}>
-//       <input
-//          type="text"
-//          name="body"
-//          autoComplete="off"
-//          value={messageBody}
-//          placeholder="   update message..."
-//          onChange={(e) => setMessageBody(e.target.value)}
-//       />
-//       <input type="submit" className="messageToggleButton" value="Update" />
-//     </form>
-//       </>
-//   );
-// }
-
-// export default EditFeedItem;

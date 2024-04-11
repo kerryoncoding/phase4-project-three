@@ -1,8 +1,7 @@
 
 import React from "react";
 import * as AiIcons from "react-icons/ai";
-// import * as FaIcons from "react-icons/fa";
-// import * as IoIcons from "react-icons/io";
+
 
 export const SidebarData = [
   {
@@ -14,7 +13,6 @@ export const SidebarData = [
    {
     title: "PodSquads",
     path: "/squads",
-    // icon: <IoIcons.IoIosPaper />,
     cName: "nav-text",
    },
    {
@@ -22,11 +20,4 @@ export const SidebarData = [
     path: "/create",
     cName: "nav-text",
     },
-    // {
-    // title: "Login",
-    // path: "/login",
-    // //  icon: <FaIcons.FaCartPlus />,
-    // cName: "nav-text",
-    // },
-
 ];

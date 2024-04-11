@@ -14,7 +14,6 @@ function PostFeedItem({ item, user, deletePost, editPost, member }) {
    
    function handleEditPost() {
       setIsEditing(!isEditing)
-      // editPost(item.id)
 	}
 
    
@@ -31,7 +30,6 @@ function PostFeedItem({ item, user, deletePost, editPost, member }) {
                <p><strong>{item.user.username}: </strong>{item.body} <button className="messageToggleButton" onClick={handleEditPost}>✏️</button> <button className="messageToggleButton" onClick={handleDeletePost}>❌</button></p>
             )}
             <div>
-               {/* <p><strong>{item.user.username}: </strong>{item.body} <button className="messageToggleButton" onClick={handleEditPost}>✏️</button> <button className="messageToggleButton" onClick={handleDeletePost}>❌</button></p> */}
                <hr className="breakline" />
             </div>
          </div>
