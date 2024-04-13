@@ -5,6 +5,8 @@ From the PodSquad page, the user can see all the existing PodSquads. The user ca
 
 From within a selected podsquad, if the current user is not a member of that podsquad, they can select to join the squad. If they are a member of that podsquad, they will be able to create a new post, edit any of their existing posts or delete their existing posts. They can also choose to leave the squad.  When they hit "hide posts" they will return to a view of all the squads.
 
+A video to demo the page is located here:
+https://youtu.be/lTO3XAnjDVk
 
 # Description
 This project uses React and Vite on the front end and Flask, Python, SQLAlchemy on the backend.  The databases are:
