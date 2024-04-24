@@ -44,6 +44,27 @@ def squads():
 
     return response
 
+# For Phase 4 test
+# Button that allows me to view all my posts and their associated podsquad
+@app.route('/posts/<int:user_id>', methods=['GET'])
+def get_all_my_posts(user_id):
+
+    posts= Post.query.filter_by(user_id=user_id).all()
+
+    for post in posts:
+        print(f'Posting: {post.body}, Squad: {post.squad.name}')
+
+    response = make_response(
+        jsonify([post.to_dict() for post in posts]),
+        201
+    )
+
+
+    return response
+
+
+# END  - for test
+
 
 @app.route('/squads/<int:id>', methods=['PATCH', 'DELETE'])
 def squads_by_id(id):

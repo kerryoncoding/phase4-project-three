@@ -6,6 +6,8 @@ import Home from "./components/Home"
 import Squads from "./components/Squads"
 import Create from "./components/Create"
 import Login from "./components/Login"
+// new for phase 4 test
+import Button from "./components/Button"
 
 import "./App.css"
 
@@ -20,7 +22,8 @@ function App() {
    const [member, setMember] = useState([])
    const [squadNumber, setSquadNumber] = useState(0)
    const [user, setUser] = useState(null)
- 
+   // New for phase 4 test
+   const [myPostList, setMyPostList] = useState([])
 
 
    useEffect(() => {
@@ -248,6 +251,15 @@ function App() {
    }
 
 
+   // Phase 4 test
+
+   function getPostsByUser() {
+      alert(user.id)
+      fetch(`api/posts/${user.id}`)
+         .then(res => res.json())
+         .then(data => setMyPostList(data))
+   }
+
 
 
 
@@ -261,7 +273,7 @@ function App() {
       <>
          <Routes>
             <Route path='/' element={<Home user={user} logOut={logOut} updateUser={updateUser} />} />
-
+            <Route path='button' element={<Button getPostsByUser={getPostsByUser}  />} />
 
             <Route path='squads' element={<Squads user={user} makePosting={makePosting} logOut={logOut} toggleView={toggleView}  member={member} squadList={squadList} displayedSquads={displayedSquads} displayedPosts={displayedPosts} deleteCard={deleteCard} active={active} deletePost={deletePost} editPost={editPost} joinSquad={joinSquad} leaveSquad={leaveSquad} />} />
 

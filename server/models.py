@@ -76,8 +76,12 @@ class Post(db.Model, SerializerMixin):
    squad = db.relationship('Squad', back_populates='posts')
 
    # add ser
+   # serialize_rules = (
+   #    '-user.email','-user.posts', '-squad', '-squadusers',)
+   
+   # updated for phase 4 test
    serialize_rules = (
-      '-user.email','-user.posts', '-squad', '-squadusers',)
+      '-user.email','-user.posts', '-squad.posts', '-squad.image', '-squad.description', '-squadusers',)
 
 
    def __repr__(self):

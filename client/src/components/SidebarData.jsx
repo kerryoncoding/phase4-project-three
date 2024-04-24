@@ -19,5 +19,10 @@ export const SidebarData = [
     title: "New Squad",
     path: "/create",
     cName: "nav-text",
+  },
+  {
+    title: "view all my posts",
+    path: "/button",
+    cName: "nav-text",
     },
 ];
