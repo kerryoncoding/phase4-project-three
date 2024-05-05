@@ -21,8 +21,13 @@ export const SidebarData = [
     cName: "nav-text",
   },
   {
-    title: "view all my posts",
+    title: "All My Posts",
     path: "/button",
+    cName: "nav-text",
+  },
+  {
+    title: "Statistics",
+    path: "/statistics",
     cName: "nav-text",
     },
 ];

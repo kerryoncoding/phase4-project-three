@@ -8,6 +8,7 @@ import Create from "./components/Create"
 import Login from "./components/Login"
 // new for phase 4 test
 import Button from "./components/Button"
+import Statistics from "./components/Statistics"
 
 import "./App.css"
 
@@ -234,6 +235,7 @@ function App() {
       let updatedList = ([...squadList, res])
       setDisplayedSquads(updatedList)
       setSquadList(updatedList)
+      alert("Podsquad '" + res.name + "' has successfully been created!")
    }
 
 
@@ -251,7 +253,7 @@ function App() {
    }
 
 
-   // Phase 4 test
+   // SEE ALL POSTS
 
    function getPostsByUser() {
       alert(user.id)
@@ -278,6 +280,7 @@ function App() {
             <Route path='squads' element={<Squads user={user} makePosting={makePosting} logOut={logOut} toggleView={toggleView}  member={member} squadList={squadList} displayedSquads={displayedSquads} displayedPosts={displayedPosts} deleteCard={deleteCard} active={active} deletePost={deletePost} editPost={editPost} joinSquad={joinSquad} leaveSquad={leaveSquad} />} />
 
             <Route path='create' element={<Create addSquad={addSquad} />} />
+            <Route path='statistics' element={<Statistics/>} />
          </Routes>
       </>
    )
