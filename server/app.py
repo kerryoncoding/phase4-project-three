@@ -31,7 +31,8 @@ def squads():
         squad = Squad(
             name=data['name'],
             image=data['image'],
-            description=data['description']
+            description=data['description'],
+            owner = data['owner']
         )
 
         db.session.add(squad)

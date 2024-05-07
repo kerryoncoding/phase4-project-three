@@ -51,6 +51,7 @@ class Squad(db.Model, SerializerMixin):
    name = db.Column(db.String(25), nullable=False)
    image = db.Column(db.String)
    description = db.Column(db.String(200))
+   owner = db.Column(db.Integer, db.ForeignKey('users.id'))
    # relationships:
    posts = db.relationship('Post', back_populates='squad')
    squadusers = db.relationship('SquadUsers', back_populates='squad', cascade='all, delete-orphan' )

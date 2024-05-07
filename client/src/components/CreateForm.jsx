@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as yup from "yup"
 
 
-function SquadForm({ addSquad }) {
+function SquadForm({ addSquad, user }) {
 
 // FORMIK 
    const formSchema = yup.object().shape({
@@ -14,19 +14,25 @@ function SquadForm({ addSquad }) {
 
    const formik = useFormik({
       initialValues: {
-        name: "",
-        image: "",
-        description: "",
+         name: "",
+         image: "",
+         description: "",
       },
       validationSchema: formSchema,
-      onSubmit: (values, {resetForm}) => {
+      onSubmit: (values, { resetForm }) => {
+
+         const formData = {
+            ...values,
+            owner: user.id
+          };
+
          fetch(("/api/squads"), {
             method: "POST",
             headers: {
                "Content-Type": "application/json"
             },
 
-            body: JSON.stringify(values, null, 2),
+            body: JSON.stringify(formData, null, 2),
          })
             .then(res => res.json())
             .then(data => {
@@ -37,11 +43,9 @@ function SquadForm({ addSquad }) {
    });
    
 
-
-
    return (
       <div className="formContainer">
-         <h2>Create your own PodSquad</h2>
+         <h2>Create your own PodSquad, {user.id}</h2>
          <form className="squadForm" onSubmit={formik.handleSubmit}>
             <div>
                <label>Name: </label>

@@ -279,7 +279,7 @@ function App() {
 
             <Route path='squads' element={<Squads user={user} makePosting={makePosting} logOut={logOut} toggleView={toggleView}  member={member} squadList={squadList} displayedSquads={displayedSquads} displayedPosts={displayedPosts} deleteCard={deleteCard} active={active} deletePost={deletePost} editPost={editPost} joinSquad={joinSquad} leaveSquad={leaveSquad} />} />
 
-            <Route path='create' element={<Create addSquad={addSquad} />} />
+            <Route path='create' element={<Create addSquad={addSquad} user={user} />} />
             <Route path='statistics' element={<Statistics/>} />
          </Routes>
       </>
