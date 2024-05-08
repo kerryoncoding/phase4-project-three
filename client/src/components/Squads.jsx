@@ -20,6 +20,7 @@ function Squads({ user, makePosting, active, logOut, displayedSquads, toggleView
             toggleView={toggleView}
             active={active}
             deleteCard={deleteCard}
+            user={user}
          />
       )
    })
@@ -37,6 +38,8 @@ function Squads({ user, makePosting, active, logOut, displayedSquads, toggleView
          />
       )
    })
+
+   
 
 
    return (
