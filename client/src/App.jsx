@@ -82,6 +82,7 @@ function App() {
       fetch('/api/logout', { method: 'DELETE' })
          .then(res => {
             if (res.ok) {
+               setMyPostList([])
                updateUser(null)
             }
          })
@@ -254,7 +255,7 @@ function App() {
    }
 
 
-   // SEE ALL POSTS
+   // SEE ALL OF USERS POSTS
 
    function getPostsByUser() {
       alert(user.id)
@@ -276,7 +277,7 @@ function App() {
       <>
          <Routes>
             <Route path='/' element={<Home user={user} logOut={logOut} updateUser={updateUser} />} />
-            <Route path='button' element={<Button getPostsByUser={getPostsByUser}  />} />
+            <Route path='button' element={<Button getPostsByUser={getPostsByUser} myPostList={myPostList}  />} />
 
             <Route path='squads' element={<Squads user={user} makePosting={makePosting} logOut={logOut} toggleView={toggleView}  member={member} squadList={squadList} displayedSquads={displayedSquads} displayedPosts={displayedPosts} deleteCard={deleteCard} active={active} deletePost={deletePost} editPost={editPost} joinSquad={joinSquad} leaveSquad={leaveSquad} />} />
 

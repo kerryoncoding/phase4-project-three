@@ -60,7 +60,6 @@ def get_all_my_posts(user_id):
         201
     )
 
-
     return response
 
 
