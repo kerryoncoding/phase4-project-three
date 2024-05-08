@@ -39,29 +39,47 @@ function Squads({ user, makePosting, active, logOut, displayedSquads, toggleView
       )
    })
 
-   
-
-
-   return (
-      <>
-         <div className="logout">
-            <button className="messageToggleButton" onClick={handleLogout}>Logout</button>
-         </div>
-         <div className="squad-container">
-            <br />
-            <div className="card-container">
-               <h2>PodSquads:</h2>
-               <br />
-               {squads}
-               <hr className="breakline" />
-               {myPost}
-               {(active) ? "" : <hr className="breakline" /> }
-               {(active) ? "" : <h2>{user.username}, join the conversation...</h2>}
-               {(active) ? "" : <FeedNewMessage makePosting={makePosting} member={member} joinSquad={joinSquad} leaveSquad={leaveSquad} />}
+   if (active == true) {
+      return (
+         <>
+            <div className="logout">
+               <button className="messageToggleButton" onClick={handleLogout}>Logout</button>
             </div>
-         </div>  
-      </>   
-   )
+            <div className="squad-container">
+               <br />
+               <div className="card-container">
+                  <h2>PodSquads:</h2>
+                  <br />
+                  {squads}
+               </div>
+            </div>  
+         </>   
+      )
+
+   } else {
+      return (
+         <>
+            <div className="logout">
+               <button className="messageToggleButton" onClick={handleLogout}>Logout</button>
+            </div>
+            <div className="squad-container">
+               <br />
+               <div className="card-container">
+                  <h2>PodSquads:</h2>
+                  <br />
+                  {squads}
+                  <hr className="breakline" />
+                  {myPost}
+                  <hr className="breakline" />
+                  <h2>{user.username}, join the conversation...</h2>
+                  <FeedNewMessage makePosting={makePosting} member={member} joinSquad={joinSquad} leaveSquad={leaveSquad} />
+               </div>
+            </div>  
+         </>   
+      )
+
+   }
+
 }
 
 

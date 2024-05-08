@@ -249,6 +249,7 @@ function App() {
             let updatedList = squadList.filter((data) => data.id != item)
             setDisplayedSquads(updatedList)
             setSquadList(updatedList)
+            setActive(true)
          })
    }
 
