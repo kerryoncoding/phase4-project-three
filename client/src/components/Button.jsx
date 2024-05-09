@@ -22,12 +22,14 @@ function Button({ getPostsByUser, myPostList }) {
 
    return (
       <div className={`your-component ${theme}`}>
-         <h1>See all of my posts</h1>
-         <div>
-            <button className="messageToggleButton" onClick={handleGetPosts}>all post</button>
-            <ul>
-               {postings}
-            </ul>
+         <div className="card-container">
+            <h1>See all of my posts</h1>
+            <div>
+               <button className="messageToggleButton" onClick={handleGetPosts}>all post</button>
+               <ul>
+                  {postings}
+               </ul>
+            </div>
          </div>
       </div>
    )

@@ -23,6 +23,12 @@
 }
 
 
+/* remove bullets from list in See all of my Posts */
+li {
+  list-style-type: none;
+}
+
+
 
 
 /* .home,

@@ -7,7 +7,10 @@ function Statistics() {
 
    return (
       <div className={`your-component ${theme}`}>
-         <h1>Yeah stats!!!</h1>
+         <div className="card-container">
+
+            <h1>Yeah stats!!!</h1>
+         </div>
 
       </div>
    )
