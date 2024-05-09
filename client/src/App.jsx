@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from "react"
-import {Routes, Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom"
+
 
 import Home from "./components/Home"
 import Squads from "./components/Squads"
@@ -9,6 +10,7 @@ import Login from "./components/Login"
 // new for phase 4 test
 import Button from "./components/Button"
 import Statistics from "./components/Statistics"
+import ThemeProvider from './components/ThemeProvider'
 
 import "./App.css"
 
@@ -274,7 +276,7 @@ function App() {
       </>
    )
    return (
-      <>
+      <ThemeProvider>
          <Routes>
             <Route path='/' element={<Home user={user} logOut={logOut} updateUser={updateUser} />} />
             <Route path='button' element={<Button getPostsByUser={getPostsByUser} myPostList={myPostList}  />} />
@@ -284,7 +286,7 @@ function App() {
             <Route path='create' element={<Create addSquad={addSquad} user={user} />} />
             <Route path='statistics' element={<Statistics/>} />
          </Routes>
-      </>
+      </ThemeProvider>
    )
 }
 

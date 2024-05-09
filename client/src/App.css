@@ -7,6 +7,20 @@
   font-family: "Lato", sans-serif;
 }
 
+/* TOGGLING THEME */
+.your-component.light {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.your-component.dark {
+  background-color: #333;
+  color: #f4f4f4;
+}
+
+
+
+
 /* .home,
 .reports,
 .products {

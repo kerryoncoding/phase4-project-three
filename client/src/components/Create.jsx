@@ -1,18 +1,24 @@
 
 
 
-import React from "react"
+import React, {useContext} from "react"
 import CreateForm from "./CreateForm"
+import ThemeContext from './ThemeContext'
 
 
-function Create({addSquad, user}){
+function Create({ addSquad, user }) {
+
+   const { theme } = useContext(ThemeContext);   
+
    return (
-      <div className="about-container">
-         <div className="card-container">
-            <CreateForm addSquad={addSquad} user={user} />
+      <div className={`your-component ${theme}`}>
+         <div className="about-container">
+            <div className="card-container">
+               <CreateForm addSquad={addSquad} user={user} />
+            </div>
          </div>
       </div>
-      
+            
    )
 }
 
