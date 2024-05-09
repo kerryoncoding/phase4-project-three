@@ -1,7 +1,10 @@
-import React from "react"
+import React, {useContext} from "react"
+import ThemeContext from './ThemeContext'
 import PostingItem from "./PostingItem"
 
 function Button({ getPostsByUser, myPostList }) {
+
+   const { theme } = useContext(ThemeContext);  
 
    function handleGetPosts() {
       getPostsByUser()
@@ -18,7 +21,7 @@ function Button({ getPostsByUser, myPostList }) {
    })
 
    return (
-      <>
+      <div className={`your-component ${theme}`}>
          <h1>See all of my posts</h1>
          <div>
             <button className="messageToggleButton" onClick={handleGetPosts}>all post</button>
@@ -26,7 +29,7 @@ function Button({ getPostsByUser, myPostList }) {
                {postings}
             </ul>
          </div>
-      </>
+      </div>
    )
 }
 

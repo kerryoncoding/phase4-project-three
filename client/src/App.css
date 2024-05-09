@@ -9,13 +9,17 @@
 
 /* TOGGLING THEME */
 .your-component.light {
-  background-color: #f4f4f4;
-  color: #333;
+  /* --primary-color: green;
+  --secondary-color: red; */
+  background-color: rgb(250, 250, 220);
+  color: #565c7c;
 }
 
 .your-component.dark {
-  background-color: #333;
-  color: #f4f4f4;
+  /* --primary-color: red;
+  --secondary-color: green; */
+  background-color: #565c7c;
+  color:rgb(250, 250, 220);
 }
 
 
@@ -35,7 +39,8 @@
 
 /* Navbar CSS */
 .navbar {
-  background-color: #E4F1FE;
+  /* background-color: #E4F1FE; */
+  background-color: var(--primary-color);
   height: 80px;
   display: flex;
   justify-content: flex-start;
@@ -158,14 +163,15 @@ span {
 
 /* HOME */
 
-.home-container {
+/* don't think I'm using this...  */
+/* .home-container { */
   /* display: block; */
-  padding-top:50px;
+  /* padding-top:50px;
   margin: 0 auto;
   max-width: 600px;
   text-align: center;
-  color: #153A4D;
-}
+  color: #153A4D; */
+/* } */
 
 .homeImage {
   border-radius: 10px;

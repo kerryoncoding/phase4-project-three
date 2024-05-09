@@ -17,11 +17,11 @@ function Home({ user, logOut }) {
    return (
       <>
          <div className={`your-component ${theme}`}>
-         <button onClick={toggleTheme}>Toggle Theme</button>
             <div className="logout">
+               <button className="messageToggleButton" onClick={toggleTheme}>Toggle Theme</button>
                <button className="messageToggleButton" onClick={handleLogout}>Logout</button>
             </div>
-            <div className="home-container">
+            <div className="card-container">
                <h1>Welcome to PodSquad, {user.username}!</h1>
                <img src="http://www.kerryoncoding.com/images/podsquad_notext.jpg" alt="microphone image" className="homeImage" />
                <h2>Come chat about your favorite podcast!</h2>

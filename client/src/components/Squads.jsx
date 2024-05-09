@@ -1,11 +1,13 @@
-
-import React from "react"
+import React, {useContext} from "react"
+import ThemeContext from './ThemeContext'
 import SquadItem from "./SquadItem"
 import PostFeedItem from "./PostFeedItem"
 import FeedNewMessage from "./FeedNewMessage"
 
 
 function Squads({ user, makePosting, active, logOut, displayedSquads, toggleView, member, displayedPosts, deleteCard, deletePost, editPost, joinSquad, leaveSquad }) {
+
+   const { theme } = useContext(ThemeContext);   
      
    function handleLogout() {
       logOut()
@@ -41,7 +43,7 @@ function Squads({ user, makePosting, active, logOut, displayedSquads, toggleView
 
    if (active == true) {
       return (
-         <>
+         <div className={`your-component ${theme}`}>
             <div className="logout">
                <button className="messageToggleButton" onClick={handleLogout}>Logout</button>
             </div>
@@ -53,12 +55,12 @@ function Squads({ user, makePosting, active, logOut, displayedSquads, toggleView
                   {squads}
                </div>
             </div>  
-         </>   
+         </div>   
       )
 
    } else {
       return (
-         <>
+         <div className={`your-component ${theme}`}>
             <div className="logout">
                {/* <button className="messageToggleButton" onClick={handleLogout}>Logout</button> */}
             </div>
@@ -75,7 +77,7 @@ function Squads({ user, makePosting, active, logOut, displayedSquads, toggleView
                   <FeedNewMessage makePosting={makePosting} member={member} joinSquad={joinSquad} leaveSquad={leaveSquad} />
                </div>
             </div>  
-         </>   
+         </div>   
       )
 
    }
