@@ -60,7 +60,7 @@ function Squads({ user, makePosting, active, logOut, displayedSquads, toggleView
       return (
          <>
             <div className="logout">
-               <button className="messageToggleButton" onClick={handleLogout}>Logout</button>
+               {/* <button className="messageToggleButton" onClick={handleLogout}>Logout</button> */}
             </div>
             <div className="squad-container">
                <br />

@@ -52,8 +52,8 @@ def get_all_my_posts(user_id):
 
     posts= Post.query.filter_by(user_id=user_id).all()
 
-    for post in posts:
-        print(f'Posting: {post.body}, Squad: {post.squad.name}')
+    # for post in posts:
+    #     print(f'Posting: {post.body}, Squad: {post.squad.name}')
 
     response = make_response(
         jsonify([post.to_dict() for post in posts]),
