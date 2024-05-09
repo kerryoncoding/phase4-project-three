@@ -29,5 +29,10 @@ export const SidebarData = [
     title: "Statistics",
     path: "/statistics",
     cName: "nav-text",
+  },
+  {
+    title: "Chat",
+    path: "/chat",
+    cName: "nav-text",
     },
 ];

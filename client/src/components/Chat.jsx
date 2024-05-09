@@ -1,7 +1,9 @@
+
+
 import React, { useContext } from "react"
 import ThemeContext from './ThemeContext'
 
-function Statistics() {
+function Chat() {
 
    const { theme } = useContext(ThemeContext);
 
@@ -9,14 +11,13 @@ function Statistics() {
       <div className={`your-component ${theme}`}>
          <div className="card-container">
 
-            <h1>Yeah stats!!!</h1>
-            <h3>Squad Owner</h3>
-            <h3>Number of Members</h3>
-            <h3>Number of Posts</h3>
+            <h1>Welcome to the Chatroom!</h1>
+            <hr className="breakline" />
+            <h3>TBD</h3>
          </div>
 
       </div>
    )
 }
 
-export default Statistics
+export default Chat
