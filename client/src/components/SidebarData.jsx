@@ -1,5 +1,5 @@
 
-import React from "react";
+import React from "react"
 import * as AiIcons from "react-icons/ai";
 
 
@@ -31,7 +31,7 @@ export const SidebarData = [
     cName: "nav-text",
   },
   {
-    title: "Chat",
+    title: "Chatroom",
     path: "/chat",
     cName: "nav-text",
     },
