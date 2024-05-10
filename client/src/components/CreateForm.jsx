@@ -45,7 +45,7 @@ function SquadForm({ addSquad, user }) {
 
    return (
       <div className="formContainer">
-         <h2>Create your own PodSquad, {user.id}</h2>
+         <h2>Create your own PodSquad</h2>
          <form className="squadForm" onSubmit={formik.handleSubmit}>
             <div>
                <label>Name: </label>

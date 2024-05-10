@@ -9,13 +9,15 @@ function Chat() {
 
    return (
       <div className={`your-component ${theme}`}>
-         <div className="card-container">
+         <div className="squad-container">
+            <br/>
+            <div className="card-container">
 
-            <h1>Welcome to the Chatroom!</h1>
-            <hr className="breakline" />
-            <h3>TBD</h3>
+               <h1>Welcome to the Chatroom!</h1>
+               <hr className="breakline" />
+               <h3>TBD</h3>
+            </div>
          </div>
-
       </div>
    )
 }
