@@ -11,15 +11,20 @@
 .your-component.light {
   /* --primary-color: green;
   --secondary-color: red; */
-  background-color: rgb(250, 250, 220);
-  color: #565c7c;
+  background-color: #FFF;
+  height: 100vh;
+  /* color: #C6CACE; */
 }
 
 .your-component.dark {
   /* --primary-color: red;
   --secondary-color: green; */
-  background-color: #565c7c;
-  color:rgb(250, 250, 220);
+
+  background-color: #C6CACE;
+  /* background-color: #E8F0F5; */
+  height: 100vh;
+  
+  /* color:rgb(250, 250, 220); */
 }
 
 
@@ -44,8 +49,7 @@ li {
 
 /* Navbar CSS */
 .navbar {
-  /* background-color: #E4F1FE; */
-  background-color: var(--primary-color);
+  background-color: #E4F1FE;
   height: 80px;
   display: flex;
   justify-content: flex-start;
@@ -220,6 +224,7 @@ span {
 }
 
 .card {
+  background-color: #FFF;
   text-align: center;
   border: rgb(60, 60, 60) solid 1px;
   box-shadow: 6px 6px 8px rgba(138, 138, 138, 0.3);
@@ -269,6 +274,7 @@ span {
 
 
 .formContainer {
+  background-color: #FFF;
   display: block;
   margin: 0 auto;
   margin-bottom: 50px;

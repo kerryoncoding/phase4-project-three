@@ -1,5 +1,4 @@
-import React, { useState, useContext, useEffect } from "react"
-import ThemeContext from './ThemeContext'
+import React, { useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { Link } from "react-router-dom";
@@ -9,28 +8,17 @@ import { IconContext } from "react-icons";
 
 function NavBar() {
   const [sidebar, setSidebar] = useState(false);
-  const { theme } = useContext(ThemeContext);  
-  
-  useEffect(() => {
-    // This effect will run whenever the theme changes
-    // and update the color of the icons
-    const iconColor = theme === "light" ? "black" : "white";
-    document.documentElement.style.setProperty("--icon-color", iconColor);
-  }, [theme]);
 
   const showSidebar = () => setSidebar(!sidebar);
 
   return (
     <>
-      <IconContext.Provider value={{ color: "var(--icon-color)" }}>
-      <div className={`your-component ${theme}`}>
+      <IconContext.Provider value={{ color: "undefined" }}>
         <div className="navbar">
           <Link to="#" className="menu-bars">
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
         </div>
-        
-  
         <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
           <ul className="nav-menu-items" onClick={showSidebar}>
             <li className="navbar-toggle">
@@ -49,8 +37,7 @@ function NavBar() {
               );
             })}
           </ul>
-          </nav>
-        </div>
+        </nav>
       </IconContext.Provider>
     </>
   );

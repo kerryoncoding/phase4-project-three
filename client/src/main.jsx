@@ -1,8 +1,6 @@
 import * as React from "react";
 import { createRoot } from "react-dom/client";
 
-import ThemeProvider from "./components/ThemeProvider"
-
 import {
   BrowserRouter,
   Routes,
@@ -24,10 +22,8 @@ const AppLayout = () => (
 
 const Router = () => (
   <BrowserRouter>
-    <ThemeProvider>
-      <AppLayout />
-      <App />
-    </ThemeProvider>
+    <AppLayout />
+    <App />
   </BrowserRouter>
 );
 

@@ -27,7 +27,7 @@ function SquadItem({ user, active, item, deleteCard, toggleView }) {
 		return (
 			<div className="card" >
 				<br/>
-				{/* <button className="cardDeleteButton" onClick={handleDeleteClick}>✖</button> */}
+				{/* <button className="cardDeleteButton" >O</button> */}
 				{/* <button className="cardDeleteButton" >✅</button> */}
 				<h3>{item.name}</h3>
 				<img src={item.image} className="card-image" alt={item.name}></img>
