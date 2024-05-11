@@ -374,3 +374,16 @@ form.new-message input[type="submit"]:focus {
 
 
 
+/* ***************** CHAT ROOM ***************** */
+
+.chatbox {
+  background-color: #FFF;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  max-width: 800px;
+  height: 800px;
+  border: rgb(60, 60, 60) solid 1px;
+  border-radius: 15px;
+}
