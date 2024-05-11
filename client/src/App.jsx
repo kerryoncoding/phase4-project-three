@@ -286,7 +286,7 @@ function App() {
 
             <Route path='create' element={<Create addSquad={addSquad} user={user} />} />
             <Route path='statistics' element={<Statistics />} />
-            <Route path='chat' element={<Chat/>} />
+            <Route path='chat' element={<Chat user={user} />} />
          </Routes>
       </ThemeProvider>
    )

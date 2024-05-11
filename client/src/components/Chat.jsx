@@ -3,7 +3,7 @@
 import React, { useContext } from "react"
 import ThemeContext from './ThemeContext'
 
-function Chat() {
+function Chat( {user} ) {
 
    const { theme } = useContext(ThemeContext);
 
@@ -13,10 +13,12 @@ function Chat() {
             <br/>
             <div className="card-container">
 
-               <h1>Welcome to Live Chat!</h1>
+               <h1>Welcome to Live Chat, {user.username}!</h1>
                {/* <hr className="breakline" /> */}
                {/* <h3>TBD</h3> */}
-               <div className="chatbox"></div>
+               <div className="chatbox">
+                  chat Line item here....
+               </div>
                <form>
                  <h3>Message:<input></input><button className="messageToggleButton">send</button></h3>
                </form>
