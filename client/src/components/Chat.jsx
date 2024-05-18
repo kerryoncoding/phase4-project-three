@@ -1,11 +1,31 @@
 
 
-import React, { useContext } from "react"
+import React, { useState, useContext, useEffect } from "react"
+import { socket } from '../socket';
 import ThemeContext from './ThemeContext'
+import { Events } from "./Events";
+import { MyForm } from './MyForm';
+
 
 function Chat( {user} ) {
 
    const { theme } = useContext(ThemeContext);
+
+   const [fooEvents, setFooEvents] = useState([]);
+
+   useEffect(() => {
+  
+      function onFooEvent(value) {
+        setFooEvents(previous => [...previous, value]);
+      }
+  
+      socket.on('foo', onFooEvent);
+  
+      return () => {
+        socket.off('foo', onFooEvent);
+      };
+    }, []);
+
 
    return (
       <div className={`your-component ${theme}`}>
@@ -18,11 +38,9 @@ function Chat( {user} ) {
                {/* <h3>TBD</h3> */}
                <div className="chatbox">
                   chat Line item here....
+                  <Events events={fooEvents} />
                </div>
-               <form>
-                 <h3>Message:<input></input><button className="messageToggleButton">send</button></h3>
-               </form>
-               
+               <MyForm />               
             </div>
          </div>
       </div>
