@@ -2,12 +2,13 @@
 from config import app
 
 from flask import Flask, request, make_response, jsonify, session, abort
-# from flask_cors import CORS
+from flask_cors import CORS
 # from flask_migrate import Migrate
 from models import Squad, User, Post, SquadUsers, db
 from flask_restful import Resource
 
 
+cors = CORS(app, origins="http://localhost:4000")
 
 # Home - for server testing only  ################
 @app.route('/')
