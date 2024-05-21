@@ -24,6 +24,15 @@ def home():
 
 # CHAT  #############################################
 
+@app.route('/chat')
+def chat():
+    return '<h1> This is CHAT - server is running </h1>'
+
+
+@socketio.on('json')
+def handle_json(json):
+    print('received json: ' + str(json))
+
 
 
 

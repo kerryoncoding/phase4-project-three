@@ -12,8 +12,8 @@ import { io } from 'socket.io-client';
 
 
 
-const URL = process.env.NODE_ENV === 'production' ? False : 'http://127.0.0.1:4000';
 
+const URL = process.env.NODE_ENV === 'production' ? False : 'http://127.0.0.1:5173';
 
 export const socket = io(URL);
 
