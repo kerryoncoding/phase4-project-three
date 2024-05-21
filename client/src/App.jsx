@@ -1,8 +1,6 @@
 
 import React, { useState, useEffect } from "react"
 import { Routes, Route } from "react-router-dom"
-
-
 import Home from "./components/Home"
 import Squads from "./components/Squads"
 import Create from "./components/Create"
@@ -12,8 +10,11 @@ import Button from "./components/Button"
 import Statistics from "./components/Statistics"
 import Chat from "./components/Chat"
 import ThemeProvider from './components/ThemeProvider'
-
 import "./App.css"
+// new for websocket
+// import { socket } from './socket';
+// import { Events } from "./components/Events";
+// import { MyForm } from './components/MyForm';
 
 
 function App() {
@@ -28,14 +29,45 @@ function App() {
    const [user, setUser] = useState(null)
    // New for phase 4 test
    const [myPostList, setMyPostList] = useState([])
+   // New for websocket
+   // const [isConnected, setIsConnected] = useState(socket.connected);
+   // const [fooEvents, setFooEvents] = useState([]);
 
 
-   useEffect(() => {
-      fetchUser()
-      fetchPosts()
-      fetchSquads()
-      fetchSquadUsers()
-   }, [])
+   // @@@ BEFORE WEBSOCKET
+ useEffect(() => {
+   fetchUser()
+   fetchPosts()
+   fetchSquads()
+   fetchSquadUsers()
+}, [])
+
+   // @@@ AFTER WEBSOCKET
+   // useEffect(() => {
+   //    fetchUser()
+   //    fetchPosts()
+   //    fetchSquads()
+   //    fetchSquadUsers()
+   //    function onConnect() {
+   //       setIsConnected(true);
+   //     }
+   //     function onDisconnect() {
+   //       setIsConnected(false);
+   //     }
+   //     function onFooEvent(value) {
+   //       setFooEvents(previous => [...previous, value]);
+   //     }
+   //     socket.on('connect', onConnect);
+   //     socket.on('disconnect', onDisconnect);
+   //     socket.on('foo', onFooEvent);
+   //     return () => {
+   //       socket.off('connect', onConnect);
+   //       socket.off('disconnect', onDisconnect);
+   //       socket.off('foo', onFooEvent);
+   //     };
+   // }, [])
+
+
 
    // SQUADS: Gets all of the squads info -> squadList
    const fetchSquads = () => (
@@ -287,6 +319,7 @@ function App() {
             <Route path='create' element={<Create addSquad={addSquad} user={user} />} />
             <Route path='statistics' element={<Statistics />} />
             <Route path='chat' element={<Chat user={user} />} />
+            {/* <Route path='chat' element={<Chat user={user} isConnected={isConnected} fooEvents={fooEvents} />} /> */}
          </Routes>
       </ThemeProvider>
    )

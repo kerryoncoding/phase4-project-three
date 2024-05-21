@@ -1,19 +1,30 @@
 
 from config import app
 
-from flask import Flask, request, make_response, jsonify, session, abort
+from flask import Flask, render_template, request, make_response, jsonify, session, abort
+from flask_socketio import SocketIO
 from flask_cors import CORS
 # from flask_migrate import Migrate
 from models import Squad, User, Post, SquadUsers, db
 from flask_restful import Resource
 
+# app = Flask(__name__)
+# app.config['SECRET_KEY'] = 'secret!'
+socketio = SocketIO(app)
 
-cors = CORS(app, origins="http://localhost:4000")
+
+cors = CORS(app)
 
 # Home - for server testing only  ################
 @app.route('/')
 def home():
     return '<h1> This is home - server is running </h1>'
+
+
+
+# CHAT  #############################################
+
+
 
 
 # SQUADS  ###################################################
@@ -257,8 +268,13 @@ def delete():
 
 
 
+
+   
+
+
 if __name__ == "__main__":
   app.run(port=5555, debug=True)
+  socketio.run(app)
 
 
 
