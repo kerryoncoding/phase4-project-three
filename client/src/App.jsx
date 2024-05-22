@@ -12,9 +12,9 @@ import Chat from "./components/Chat"
 import ThemeProvider from './components/ThemeProvider'
 import "./App.css"
 // new for websocket
-// import { socket } from './socket';
-// import { Events } from "./components/Events";
-// import { MyForm } from './components/MyForm';
+
+
+
 
 
 function App() {

@@ -1,7 +1,7 @@
 
 
-import React from 'react';
+// import React from 'react';
 
-export function ConnectionState({ isConnected }) {
-  return <p>State: { '' + isConnected }</p>;
-}
+// export function ConnectionState({ isConnected }) {
+//   return <p>State: { '' + isConnected }</p>;
+// }
