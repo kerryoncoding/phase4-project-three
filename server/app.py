@@ -1,7 +1,7 @@
 
 from config import app
 
-from flask import Flask, render_template, request, make_response, jsonify, session, abort
+from flask import Flask, request, make_response, jsonify, session, abort
 from flask_socketio import SocketIO, emit
 # from flask_cors import CORS
 # from flask_migrate import Migrate
@@ -305,6 +305,6 @@ def disconnected():
 
 
 if __name__ == '__main__':
-    app.run(port=5555, debug=True)
+    # app.run(port=5555, debug=True)
     socketio.run(app, debug=True,port=5555)
 

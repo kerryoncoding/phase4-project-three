@@ -31,15 +31,14 @@ function Chat({ user }) {
             transports: ["websocket"],
             cors: {
                // origin: "http://localhost:5173/",
-               origin: "http://localhost:3000/",
+               origin: "http://localhost5000/",
             },
          });
          
          setSocketInstance(socket);
          
          socket.on("connect", (data) => {
-            // console.log(data);
-            console.log("here I am ")
+            console.log(data);
          });
          
          setLoading(false);

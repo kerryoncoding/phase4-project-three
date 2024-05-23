@@ -1,9 +1,7 @@
 
 # Used to create the Flask application.
-from flask import Flask
-
-# from flask_socketio import SocketIO, emit
-from flask_cors import CORS
+from flask import Flask, render_template
+# from flask_socketio import SocketIO
 
 # An Object-Relational Mapping (ORM) library for interacting with databases.
 from flask_sqlalchemy import SQLAlchemy
