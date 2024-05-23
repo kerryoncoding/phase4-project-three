@@ -1,5 +1,5 @@
 
-import { io } from 'socket.io-client';
+// import { io } from 'socket.io-client';
 
 
 // const socket = io('http://127.0.0.1:5173');
@@ -13,11 +13,11 @@ import { io } from 'socket.io-client';
 
 
 
-const URL = process.env.NODE_ENV === 'production' ? False : 'http://127.0.0.1:5173';
+// const URL = process.env.NODE_ENV === 'production' ? False : 'http://127.0.0.1:5173';
 
-export const socket = io(URL);
+// export const socket = io(URL);
 
-console.log('Server is listening:', socket.connected);
+// console.log('Server is listening:', socket.connected);
 
 
 

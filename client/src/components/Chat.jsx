@@ -10,6 +10,7 @@ import { io } from "socket.io-client";
 
 function Chat({ user }) {
    const { theme } = useContext(ThemeContext);
+   
    const [socketInstance, setSocketInstance] = useState("");
    const [loading, setLoading] = useState(true);
    const [buttonStatus, setButtonStatus] = useState(false);
@@ -29,6 +30,7 @@ function Chat({ user }) {
          const socket = io("localhost:5555/", {
             transports: ["websocket"],
             cors: {
+               // origin: "http://localhost:5173/",
                origin: "http://localhost:3000/",
             },
          });
@@ -36,7 +38,8 @@ function Chat({ user }) {
          setSocketInstance(socket);
          
          socket.on("connect", (data) => {
-            console.log(data);
+            // console.log(data);
+            console.log("here I am ")
          });
          
          setLoading(false);

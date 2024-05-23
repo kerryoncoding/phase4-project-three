@@ -1,6 +1,10 @@
 
 # Used to create the Flask application.
 from flask import Flask
+
+# from flask_socketio import SocketIO, emit
+from flask_cors import CORS
+
 # An Object-Relational Mapping (ORM) library for interacting with databases.
 from flask_sqlalchemy import SQLAlchemy
 # Represents a collection of Table objects that hold the database schema information.
@@ -48,6 +52,10 @@ bcrypt = Bcrypt(app=app)
 #  Initializes Flask-RESTful with the Flask application for building RESTful APIs.
 api = Api(app=app)
 # Enables Cross-Origin Resource Sharing (CORS) for the Flask application.
-CORS(app)
+# CORS(app)
+
+CORS(app,resources={r"/*":{"origins":"*"}})
+
+
 
 

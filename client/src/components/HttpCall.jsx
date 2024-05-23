@@ -4,7 +4,7 @@ export default function HttpCall() {
   const [data, setData] = useState("");
 
   useEffect(() => {
-    fetch("/http-call", {
+    fetch("/api/http-call", {
       headers: {
         "Content-Type": "application/json",
       },
