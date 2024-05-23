@@ -10,12 +10,12 @@ import { io } from "socket.io-client";
 
 function Chat({ user }) {
    const { theme } = useContext(ThemeContext);
-   
+
    const [socketInstance, setSocketInstance] = useState("");
    const [loading, setLoading] = useState(true);
    const [buttonStatus, setButtonStatus] = useState(false);
-   
-   
+
+
    const handleClick = () => {
       if (buttonStatus === false) {
          setButtonStatus(true);
@@ -23,8 +23,8 @@ function Chat({ user }) {
          setButtonStatus(false);
       }
    };
-   
-   
+
+
    useEffect(() => {
       if (buttonStatus === true) {
          const socket = io("localhost:5555/", {
@@ -34,26 +34,26 @@ function Chat({ user }) {
                origin: "http://localhost5000/",
             },
          });
-         
+
          setSocketInstance(socket);
-         
+
          socket.on("connect", (data) => {
             console.log(data);
          });
-         
+
          setLoading(false);
-         
+
          socket.on("disconnect", (data) => {
             console.log(data);
          });
-         
+
          return function cleanup() {
             socket.disconnect();
          };
       }
    }, [buttonStatus]);
-   
-   
+
+
    return (
       <div className="App">
          <h1>React/Flask App + socket.io</h1>
@@ -77,7 +77,7 @@ function Chat({ user }) {
 
 export default Chat
 
-   
+
 //    return (
 //       <div className={`your-component ${theme}`}>
 //          <div className="squad-container">
