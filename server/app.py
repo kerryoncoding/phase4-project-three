@@ -283,7 +283,7 @@ def connected():
     """event listener when client connects to the server"""
     print(request.sid)
     print("client has connected")
-    emit("connected",{"data":f"id: {request.sid} is connected"})
+    # emit("connect",{"data":f"id: {request.sid} is connected"})
 
 @socketio.on('data')
 def handle_message(data):

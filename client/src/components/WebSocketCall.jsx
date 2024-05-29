@@ -9,9 +9,14 @@ export default function WebSocketCall({ socket, user }) {
     const inputMessage = e.target.value;
     // const inputMessage = user.username + ": " + tempMessage
     setMessage(inputMessage);
-    const tempMessage = user.username + ": " + message
-    setTagMessage(tempMessage)
+    addTag(inputMessage)
+    
   };
+
+  function addTag(inputMessage) {
+    const tempMessage = user.username + ": " + inputMessage
+    setTagMessage(tempMessage)
+  }
 
   const handleSubmit = () => {
     if (!message) {
