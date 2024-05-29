@@ -6,7 +6,7 @@ function PostingItem ({ body, squad }) {
 	
    return (
       <li>
-         <h3>Post: {body} -- Squad: {squad} </h3>
+         <h3>Post: <em>{body} </em> 🎙 PodSquad: <em> {squad} </em> </h3>
          <br/>
       </li>
    )

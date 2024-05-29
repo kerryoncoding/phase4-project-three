@@ -28,11 +28,6 @@ export const SidebarData = [
     cName: "nav-text",
   },
   {
-    title: "Statistics",
-    path: "/statistics",
-    cName: "nav-text",
-  },
-  {
     title: "Chatroom",
     path: "/chat",
     cName: "nav-text",

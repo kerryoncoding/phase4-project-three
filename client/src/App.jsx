@@ -7,7 +7,7 @@ import Create from "./components/Create"
 import Login from "./components/Login"
 // new for phase 4 test
 import Button from "./components/Button"
-import Statistics from "./components/Statistics"
+// import Statistics from "./components/Statistics"
 import Chat from "./components/Chat"
 import ThemeProvider from './components/ThemeProvider'
 import "./App.css"
@@ -317,9 +317,7 @@ function App() {
             <Route path='squads' element={<Squads user={user} makePosting={makePosting} logOut={logOut} toggleView={toggleView}  member={member} squadList={squadList} displayedSquads={displayedSquads} displayedPosts={displayedPosts} deleteCard={deleteCard} active={active} deletePost={deletePost} editPost={editPost} joinSquad={joinSquad} leaveSquad={leaveSquad} />} />
 
             <Route path='create' element={<Create addSquad={addSquad} user={user} />} />
-            <Route path='statistics' element={<Statistics />} />
             <Route path='chat' element={<Chat user={user} />} />
-            {/* <Route path='chat' element={<Chat user={user} isConnected={isConnected} fooEvents={fooEvents} />} /> */}
          </Routes>
       </ThemeProvider>
    )
