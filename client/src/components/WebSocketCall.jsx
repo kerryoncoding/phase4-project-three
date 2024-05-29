@@ -4,6 +4,7 @@ export default function WebSocketCall({ socket, user }) {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [tagMessage, setTagMessage] = useState("");
+  
 
   const handleText = (e) => {
     const inputMessage = e.target.value;
@@ -41,12 +42,14 @@ export default function WebSocketCall({ socket, user }) {
   return (
     <div>
       <br></br>
-      <h3>Enter messages here:</h3>
-      <br></br>
-      <input type="text" value={message} onChange={handleText} />
-      <button className="messageToggleButton" onClick={handleSubmit}>submit</button>
+      <input
+        className="chat-message"
+        type="text"
+        value={message}
+        placeholder="Enter message..."
+        onChange={handleText} />
+        <button className="messageToggleButton" type="submit" onClick={handleSubmit}>submit</button>      
       <hr className="breakline" />
-      
       <ul>
         {messages.map((message, ind) => {
           return <li key={ind}> {message}</li>;
@@ -55,3 +58,6 @@ export default function WebSocketCall({ socket, user }) {
     </div>
   );
 }
+
+
+

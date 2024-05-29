@@ -68,10 +68,7 @@ function Chat( {user} ) {
                      <button className="messageToggleButton" onClick={handleClick}>turn chat on</button>
                   ) : (
                      <>
-                     <button className="messageToggleButton" onClick={handleClick}>turn chat off</button>
-                     {/* <div className="line">
-                        {!loading && <WebSocketCall socket={socketInstance} user={user} />}
-                     </div> */}
+                        <button className="messageToggleButton" onClick={handleClick}>turn chat off</button>
                      </>
                   )}
                <div className="chatbox">
@@ -92,57 +89,4 @@ function Chat( {user} ) {
    )
    }
    
-
-
-
-//    return (
-//       <div className={`your-component ${theme}`}>
-//          {/* <h1>React/Flask App + socket.io</h1> */}
-//          <div className="line">
-//             <HttpCall />
-//          </div>
-//          {!buttonStatus ? (
-//             <button onClick={handleClick}>turn chat on</button>
-//          ) : (
-//             <>
-//                <button onClick={handleClick}>turn chat off</button>
-//                <div className="line">
-//                   {!loading && <WebSocketCall socket={socketInstance} user={user} />}
-//                </div>
-//             </>
-//          )}
-//       </div>
-//    );
-// }
-
-
 export default Chat
-
-
-//    return (
-//       <div className={`your-component ${theme}`}>
-//          <div className="squad-container">
-//             <br/>
-//             <div className="card-container">
-//                <HttpCall />
-//                <h1>Welcome to Live Chat, {user.username}!</h1>
-//                <div className="chatbox">
-//                   {!buttonStatus ? (
-         //    <button onClick={handleClick}>turn chat on</button>
-         // ) : (
-         //    <>
-         //       <button onClick={handleClick}>turn chat off</button>
-         //       <div className="line">
-         //          {!loading && <WebSocketCall socket={socketInstance} user={user} />}
-         //       </div>
-         //    </>
-         // )}
-//                </div>
-//                <MyForm />               
-//             </div>
-//          </div>
-//       </div>
-//    )
-// }
-
-// export default Chat

@@ -405,7 +405,20 @@ form.new-message input[type="submit"]:focus {
   margin-bottom: 20px;
   margin-top: 20px;
   max-width: 800px;
-  height: 800px;
+  height: 70vh;
   border: rgb(60, 60, 60) solid 1px;
   border-radius: 15px;
+}
+
+.chat-message {
+  flex: 1 1 auto;
+  padding: 5px 75px;
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: #FFF;
+  /* display: block; */
+  /* margin: 0 auto; */
+  margin-bottom: 10px;
+  max-width: 400px;
+  border: rgb(60, 60, 60) solid 1px;
 }
