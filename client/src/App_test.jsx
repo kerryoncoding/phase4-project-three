@@ -5,13 +5,19 @@ import Home from "./components/Home"
 import Squads from "./components/Squads"
 import Create from "./components/Create"
 import Login from "./components/Login"
+
+ // New for websocket
+import HttpCall from "./components/HttpCall";
+import WebSocketCall from "./components/WebSocketCall";
+import { io } from "socket.io-client";
+
 // new for phase 4 test
 import Button from "./components/Button"
 import Statistics from "./components/Statistics"
-import Chat from "./components/Chat"
+// import Chat from "./components/Chat"
 import ThemeProvider from './components/ThemeProvider'
 import "./App.css"
-// new for websocket
+
 
 
 
@@ -29,9 +35,46 @@ function App() {
    const [user, setUser] = useState(null)
    // New for phase 4 test
    const [myPostList, setMyPostList] = useState([])
+   
    // New for websocket
-   // const [isConnected, setIsConnected] = useState(socket.connected);
-   // const [fooEvents, setFooEvents] = useState([]);
+   const [socketInstance, setSocketInstance] = useState("");
+   const [loading, setLoading] = useState(true);
+   const [buttonStatus, setButtonStatus] = useState(false);
+   const handleClick = () => {
+      if (buttonStatus === false) {
+        setButtonStatus(true);
+      } else {
+        setButtonStatus(false);
+      }
+   };
+   
+
+   useEffect(() => {
+      if (buttonStatus === true) {
+        const socket = io("localhost:5555/", {
+          transports: ["websocket"],
+          cors: {
+            origin: "http://localhost:3000/",
+          },
+        });
+  
+        setSocketInstance(socket);
+  
+        socket.on("connect", (data) => {
+          console.log(data);
+        });
+  
+        setLoading(false);
+  
+        socket.on("disconnect", (data) => {
+          console.log(data);
+        });
+  
+        return function cleanup() {
+          socket.disconnect();
+        };
+      }
+    }, [buttonStatus]);
 
 
    // @@@ BEFORE WEBSOCKET
@@ -310,6 +353,22 @@ function App() {
    )
    return (
       <ThemeProvider>
+         <div>
+               <HttpCall />
+            </div>
+            {!buttonStatus ? (
+               <button onClick={handleClick}>turn chat on</button>
+            ) : (
+               <>
+                  <button onClick={handleClick}>turn chat off</button>
+                  <div className="line">
+                     {!loading && <WebSocketCall socket={socketInstance} />}
+                  </div>
+               </>
+            )}
+
+            {/* <Route path='chat' element={<Chat  />} /> */}
+            {/* <Route path='chat' element={<Chat user={user} isConnected={isConnected} fooEvents={fooEvents} />} /> */}
          <Routes>
             <Route path='/' element={<Home user={user} logOut={logOut} updateUser={updateUser} />} />
             <Route path='button' element={<Button getPostsByUser={getPostsByUser} myPostList={myPostList}  />} />
@@ -318,7 +377,8 @@ function App() {
 
             <Route path='create' element={<Create addSquad={addSquad} user={user} />} />
             <Route path='statistics' element={<Statistics />} />
-            <Route path='chat' element={<Chat  />} />
+      
+            {/* <Route path='chat' element={<Chat  />} /> */}
             {/* <Route path='chat' element={<Chat user={user} isConnected={isConnected} fooEvents={fooEvents} />} /> */}
          </Routes>
       </ThemeProvider>

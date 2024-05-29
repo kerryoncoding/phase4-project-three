@@ -8,7 +8,7 @@ import WebSocketCall from "./WebSocketCall";
 import { io } from "socket.io-client";
 
 
-function Chat({ user }) {
+function Chat() {
    const { theme } = useContext(ThemeContext);
 
    const [socketInstance, setSocketInstance] = useState("");
@@ -17,7 +17,7 @@ function Chat({ user }) {
 
 
    const handleClick = () => {
-      if (buttonStatus === false) {
+      if (buttonStatus == false) {
          setButtonStatus(true);
       } else {
          setButtonStatus(false);
@@ -26,7 +26,7 @@ function Chat({ user }) {
 
 
    useEffect(() => {
-      if (buttonStatus === true) {
+      if (buttonStatus == true) {
          const socket = io("localhost:5555/", {
             transports: ["websocket"],
             cors: {
@@ -55,7 +55,7 @@ function Chat({ user }) {
 
 
    return (
-      <div className="App">
+      <div className={`your-component ${theme}`}>
          <h1>React/Flask App + socket.io</h1>
          <div className="line">
             <HttpCall />

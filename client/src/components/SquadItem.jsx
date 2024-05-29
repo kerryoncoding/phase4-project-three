@@ -26,7 +26,7 @@ function SquadItem({ user, active, item, deleteCard, toggleView }) {
 	} else {
 		return (
 			<div className="card" >
-				<br/>
+				<button className="cardDeleteButtonGone">✖</button>
 				{/* <button className="cardDeleteButton" >O</button> */}
 				{/* <button className="cardDeleteButton" >✅</button> */}
 				<h3>{item.name}</h3>

@@ -1,7 +1,10 @@
 
 from config import app
 
-from flask import Flask, request, make_response, jsonify, session, abort
+from flask_cors import CORS
+
+
+from flask import Flask, request, make_response, jsonify, session, abort, render_template
 from flask_socketio import SocketIO, emit
 # from flask_cors import CORS
 # from flask_migrate import Migrate
@@ -13,19 +16,16 @@ from flask_restful import Resource
 # socketio = SocketIO(app)
 
 
-# CORS(app,resources={r"/*":{"origins":"*"}})
+CORS(app,resources={r"/*":{"origins":"*"}})
 socketio = SocketIO(app,cors_allowed_origins="*")
+
+# CORS(app,resources={r"/*":{"origins":"*"}})
+# socketio = SocketIO(app,cors_allowed_origins="*")
 
 # Home - for server testing only  ################
 @app.route('/')
 def home():
     return '<h1> This is home - server is running </h1>'
-
-
-
-
-
-
 
 
 # SQUADS  ###################################################
@@ -274,26 +274,26 @@ def delete():
 
 @app.route('/http-call')
 def http_call():
-    # """return JSON with string data as the value"""
+    """return JSON with string data as the value"""
     data = {'data':'This text was fetched using an HTTP call to server on render'}
     return jsonify(data)
 
 @socketio.on("connect")
 def connected():
-    # """event listener when client connects to the server"""
+    """event listener when client connects to the server"""
     print(request.sid)
     print("client has connected")
     emit("connect",{"data":f"id: {request.sid} is connected"})
 
 @socketio.on('data')
 def handle_message(data):
-    # """event listener when client types a message"""
+    """event listener when client types a message"""
     print("data from the front end: ",str(data))
     emit("data",{'data':data,'id':request.sid},broadcast=True)
 
 @socketio.on("disconnect")
 def disconnected():
-    # """event listener when client disconnects to the server"""
+    """event listener when client disconnects to the server"""
     print("user disconnected")
     emit("disconnect",f"user {request.sid} disconnected",broadcast=True)
 

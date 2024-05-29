@@ -18,7 +18,7 @@ function Home({ user, logOut }) {
       <>
          <div className={`your-component ${theme}`}>
             <div className="logout">
-               <button className="messageToggleButton" onClick={toggleTheme}>Toggle Theme</button>
+               <button className="themeToggleButton" onClick={toggleTheme}>Toggle Theme</button>
                <button className="messageToggleButton" onClick={handleLogout}>Logout</button>
             </div>
             <div className="card-container">
