@@ -30,7 +30,6 @@ function Chat( {user} ) {
          const socket = io("localhost:5555/", {
             transports: ["websocket"],
             cors: {
-               // origin: "http://localhost:5173/",
                origin: "http://localhost5000/",
             },
          });
