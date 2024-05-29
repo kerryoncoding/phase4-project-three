@@ -5,15 +5,10 @@ import Home from "./components/Home"
 import Squads from "./components/Squads"
 import Create from "./components/Create"
 import Login from "./components/Login"
-// new for phase 4 test
 import Button from "./components/Button"
-// import Statistics from "./components/Statistics"
 import Chat from "./components/Chat"
 import ThemeProvider from './components/ThemeProvider'
 import "./App.css"
-// new for websocket
-
-
 
 
 
@@ -27,11 +22,8 @@ function App() {
    const [member, setMember] = useState([])
    const [squadNumber, setSquadNumber] = useState(0)
    const [user, setUser] = useState(null)
-   // New for phase 4 test
    const [myPostList, setMyPostList] = useState([])
-   // New for websocket
-   // const [isConnected, setIsConnected] = useState(socket.connected);
-   // const [fooEvents, setFooEvents] = useState([]);
+
 
 
    // @@@ BEFORE WEBSOCKET
@@ -41,32 +33,6 @@ function App() {
    fetchSquads()
    fetchSquadUsers()
 }, [])
-
-   // @@@ AFTER WEBSOCKET
-   // useEffect(() => {
-   //    fetchUser()
-   //    fetchPosts()
-   //    fetchSquads()
-   //    fetchSquadUsers()
-   //    function onConnect() {
-   //       setIsConnected(true);
-   //     }
-   //     function onDisconnect() {
-   //       setIsConnected(false);
-   //     }
-   //     function onFooEvent(value) {
-   //       setFooEvents(previous => [...previous, value]);
-   //     }
-   //     socket.on('connect', onConnect);
-   //     socket.on('disconnect', onDisconnect);
-   //     socket.on('foo', onFooEvent);
-   //     return () => {
-   //       socket.off('connect', onConnect);
-   //       socket.off('disconnect', onDisconnect);
-   //       socket.off('foo', onFooEvent);
-   //     };
-   // }, [])
-
 
 
    // SQUADS: Gets all of the squads info -> squadList
@@ -293,7 +259,6 @@ function App() {
    // SEE ALL OF USERS POSTS
 
    function getPostsByUser() {
-      // alert(user.id)
       fetch(`api/posts/${user.id}`)
          .then(res => res.json())
          .then(data => setMyPostList(data))
