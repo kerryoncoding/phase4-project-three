@@ -7,8 +7,6 @@ import * as yup from "yup"
 function Login({ updateUser }) {
 
    const [signUp, setSignUp] = useState(false)
-   // const history = useNavigate()
-
 
    const handleClick = () => setSignUp((signUp) => !signUp)
    const formSchema = yup.object().shape({
@@ -32,11 +30,8 @@ function Login({ updateUser }) {
          })
             .then(res => res.json())
             .then(user => {
-               // update user function needs to be made
                updateUser(user)
                resetForm()
-               // history.push('/')
-               // need to clear form after
             })
       },
    });
