@@ -293,7 +293,7 @@ function App() {
    // SEE ALL OF USERS POSTS
 
    function getPostsByUser() {
-      alert(user.id)
+      // alert(user.id)
       fetch(`api/posts/${user.id}`)
          .then(res => res.json())
          .then(data => setMyPostList(data))

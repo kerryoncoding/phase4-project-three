@@ -1,13 +1,15 @@
-import React, {useContext} from "react"
+import React, {useContext, useState} from "react"
 import ThemeContext from './ThemeContext'
 import PostingItem from "./PostingItem"
 
 function Button({ getPostsByUser, myPostList }) {
 
    const { theme } = useContext(ThemeContext);  
+   const [showPosts, setShowPosts] = useState(false);
 
    function handleGetPosts() {
       getPostsByUser()
+      setShowPosts(!showPosts)
    }
    
    const postings = myPostList.map((item) => {
@@ -20,22 +22,46 @@ function Button({ getPostsByUser, myPostList }) {
       )
    })
 
-   return (
-      <div className={`your-component ${theme}`}>
-         <div className="squad-container">
+   if (showPosts == true) {
+      return (
+         <div className={`your-component ${theme}`}>
+            <div className="squad-container">
                <br />
-            <div className="card-container">
-               <h1>See all of my posts</h1>
-               <div>
-                  <button className="messageToggleButton" onClick={handleGetPosts}>all post</button>
-                  <ul>
-                     {postings}
-                  </ul>
+               <div className="card-container">
+                  <h1>My posts</h1>
+                  <br></br>
+                  <div>
+                     <button className="messageToggleButton" onClick={handleGetPosts}>Hide my posts</button>
+                     <div className="chatbox">
+                        <br></br>
+                        <ul>
+                           {postings}
+                        </ul>
+                     </div>
+                  </div>
                </div>
             </div>
          </div>
-      </div>
-   )
+      )
+   } else {
+      return (
+         <div className={`your-component ${theme}`}>
+            <div className="squad-container">
+               <br />
+               <div className="card-container">
+                  <h1>My posts</h1>
+                  <br></br>
+                  <div>
+                     <button className="messageToggleButton" onClick={handleGetPosts}>Show my posts</button>
+                     <div className="chatbox">
+                        <br></br>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      )
+   }
 }
 
 export default Button

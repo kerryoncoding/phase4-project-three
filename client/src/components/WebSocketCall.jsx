@@ -8,7 +8,6 @@ export default function WebSocketCall({ socket, user }) {
 
   const handleText = (e) => {
     const inputMessage = e.target.value;
-    // const inputMessage = user.username + ": " + tempMessage
     setMessage(inputMessage);
     addTag(inputMessage)
     
