@@ -52,27 +52,67 @@ function Chat( {user} ) {
          };
       }
    }, [buttonStatus]);
-
-
+   
+   
+   
+   
    return (
       <div className={`your-component ${theme}`}>
-         <h1>React/Flask App + socket.io</h1>
-         <div className="line">
-            <HttpCall />
+         <div className="squad-container">
+            <br/>
+            <div className="card-container">
+               <HttpCall />
+               <h1>Welcome to Live Chat, {user.username}!</h1>
+               {!buttonStatus ? (
+                     <button onClick={handleClick}>turn chat on</button>
+                  ) : (
+                     <>
+                     <button onClick={handleClick}>turn chat off</button>
+                     {/* <div className="line">
+                        {!loading && <WebSocketCall socket={socketInstance} user={user} />}
+                     </div> */}
+                     </>
+                  )}
+               <div className="chatbox">
+               {!buttonStatus ? (
+                     <>
+                     </>
+                  ) : (
+                     <div className="line">
+                        {!loading && <WebSocketCall socket={socketInstance} user={user} />}
+                     </div>
+                     
+                  )}
+                  
+               </div>            
+            </div>
          </div>
-         {!buttonStatus ? (
-            <button onClick={handleClick}>turn chat on</button>
-         ) : (
-            <>
-               <button onClick={handleClick}>turn chat off</button>
-               <div className="line">
-                  {!loading && <WebSocketCall socket={socketInstance} user={user} />}
-               </div>
-            </>
-         )}
       </div>
-   );
-}
+   )
+   }
+   
+
+
+
+//    return (
+//       <div className={`your-component ${theme}`}>
+//          {/* <h1>React/Flask App + socket.io</h1> */}
+//          <div className="line">
+//             <HttpCall />
+//          </div>
+//          {!buttonStatus ? (
+//             <button onClick={handleClick}>turn chat on</button>
+//          ) : (
+//             <>
+//                <button onClick={handleClick}>turn chat off</button>
+//                <div className="line">
+//                   {!loading && <WebSocketCall socket={socketInstance} user={user} />}
+//                </div>
+//             </>
+//          )}
+//       </div>
+//    );
+// }
 
 
 export default Chat
@@ -83,12 +123,19 @@ export default Chat
 //          <div className="squad-container">
 //             <br/>
 //             <div className="card-container">
-//                <ConnectionState isConnected={isConnected} />
-//                <ConnectionManager />
+//                <HttpCall />
 //                <h1>Welcome to Live Chat, {user.username}!</h1>
 //                <div className="chatbox">
-//                   chat Line item here....
-//                   <Events events={fooEvents} />
+//                   {!buttonStatus ? (
+         //    <button onClick={handleClick}>turn chat on</button>
+         // ) : (
+         //    <>
+         //       <button onClick={handleClick}>turn chat off</button>
+         //       <div className="line">
+         //          {!loading && <WebSocketCall socket={socketInstance} user={user} />}
+         //       </div>
+         //    </>
+         // )}
 //                </div>
 //                <MyForm />               
 //             </div>

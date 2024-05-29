@@ -16,7 +16,7 @@ export default function HttpCall() {
   });
   return (
     <>
-      <h2>HTTP Communication</h2>
+      {/* <h2>HTTP Communication</h2> */}
       <h3 className="http">{data}</h3>
     </>
   );

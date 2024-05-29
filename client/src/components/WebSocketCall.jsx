@@ -40,9 +40,11 @@ export default function WebSocketCall({ socket, user }) {
 
   return (
     <div>
-      <h2>WebSocket Communication</h2>
+      <h2>Enter your messages here:</h2>
       <input type="text" value={message} onChange={handleText} />
       <button onClick={handleSubmit}>submit</button>
+      <hr className="breakline" />
+      
       <ul>
         {messages.map((message, ind) => {
           return <li key={ind}> {message}</li>;
