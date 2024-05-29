@@ -40,9 +40,11 @@ export default function WebSocketCall({ socket, user }) {
 
   return (
     <div>
-      <h2>Enter your messages here:</h2>
+      <br></br>
+      <h3>Enter messages here:</h3>
+      <br></br>
       <input type="text" value={message} onChange={handleText} />
-      <button onClick={handleSubmit}>submit</button>
+      <button className="messageToggleButton" onClick={handleSubmit}>submit</button>
       <hr className="breakline" />
       
       <ul>

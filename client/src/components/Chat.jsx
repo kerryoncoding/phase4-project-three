@@ -63,11 +63,12 @@ function Chat( {user} ) {
             <div className="card-container">
                <HttpCall />
                <h1>Welcome to Live Chat, {user.username}!</h1>
+               <br></br>
                {!buttonStatus ? (
-                     <button onClick={handleClick}>turn chat on</button>
+                     <button className="messageToggleButton" onClick={handleClick}>turn chat on</button>
                   ) : (
                      <>
-                     <button onClick={handleClick}>turn chat off</button>
+                     <button className="messageToggleButton" onClick={handleClick}>turn chat off</button>
                      {/* <div className="line">
                         {!loading && <WebSocketCall socket={socketInstance} user={user} />}
                      </div> */}
