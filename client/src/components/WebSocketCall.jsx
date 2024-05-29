@@ -1,20 +1,25 @@
 import { useEffect, useState } from "react";
 
-export default function WebSocketCall({ socket }) {
+export default function WebSocketCall({ socket, user }) {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const [tagMessage, setTagMessage] = useState("");
 
   const handleText = (e) => {
     const inputMessage = e.target.value;
+    // const inputMessage = user.username + ": " + tempMessage
     setMessage(inputMessage);
+    const tempMessage = user.username + ": " + message
+    setTagMessage(tempMessage)
   };
 
   const handleSubmit = () => {
     if (!message) {
       return;
     }
-    socket.emit("data", message);
+    socket.emit("data", tagMessage);
     setMessage("");
+    setTagMessage("");
   };
 
   useEffect(() => {
@@ -35,7 +40,7 @@ export default function WebSocketCall({ socket }) {
       <button onClick={handleSubmit}>submit</button>
       <ul>
         {messages.map((message, ind) => {
-          return <li key={ind}>{message}</li>;
+          return <li key={ind}> {message}</li>;
         })}
       </ul>
     </div>

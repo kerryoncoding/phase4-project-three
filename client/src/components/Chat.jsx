@@ -8,7 +8,7 @@ import WebSocketCall from "./WebSocketCall";
 import { io } from "socket.io-client";
 
 
-function Chat() {
+function Chat( {user} ) {
    const { theme } = useContext(ThemeContext);
 
    const [socketInstance, setSocketInstance] = useState("");
@@ -66,7 +66,7 @@ function Chat() {
             <>
                <button onClick={handleClick}>turn chat off</button>
                <div className="line">
-                  {!loading && <WebSocketCall socket={socketInstance} />}
+                  {!loading && <WebSocketCall socket={socketInstance} user={user} />}
                </div>
             </>
          )}
