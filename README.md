@@ -1,15 +1,20 @@
 # About Podsquad
-PodSquad is all about chatting with others about your favorite podcast.  A new user can Register to join Podsquad or login if the have already joined. Users can logout from the home page or the podsquad page. Any user can create a new "podquad" by navigating to New Squad and filling in the form.  Any user can delete a "podsquad" by clicking on the "x" in the upper left corner of the podsquad card.
+PodSquad is all about chatting with others about your favorite podcast.  A new user can Register to join Podsquad or login if the have already joined. Users can logout from the home page or toggle the theme from light to dark. Any user can create a new "podquad" by navigating to New Squad and filling in the form.  Only the creator of a "podsquad" can delete a "podsquad" by clicking on the "x" in the upper left corner of the podsquad card.
 
-From the PodSquad page, the user can see all the existing PodSquads. The user can also click the "show posts" on any podSquad and it will display all posts that have been made about that specific podcast (and hide other podcasts from view).  
+From the PodSquad page, the user can see all the existing PodSquads. The user can also click the "show posts" on any podSquad and it will display all user posts about that specific podcast (and all other podcasts will be hidden from view).  
 
 From within a selected podsquad, if the current user is not a member of that podsquad, they can select to join the squad. If they are a member of that podsquad, they will be able to create a new post, edit any of their existing posts or delete their existing posts. They can also choose to leave the squad.  When they hit "hide posts" they will return to a view of all the squads.
 
+From the "All my Posts" page, the user can show/hide all the posts they have made across all of the squads in one list.
+
+If the user goes to the "Chatroom" they can turn on live chat and converse in real time with other users who are logged in to the chat.
+
 A video to demo the page is located here:
+****need new video
 https://youtu.be/lTO3XAnjDVk
 
 # Description
-This project uses React and Vite on the front end and Flask, Python, SQLAlchemy on the backend.  The databases are:
+This project uses React and Vite on the front end and Flask, Python, SQLAlchemy, Flask-socketio on the backend.  The databases are:
 
    - Squads: A specific podcast
    - Users: People who login to interact with PodSquad
@@ -50,6 +55,12 @@ which I used to support my messaging feed
 Flatiron Video on Authentication:
 https://base.flatironschool.com/resource-library/auth-part-1-fd86ead34f
 Which I used to support Login/Logout
+
+Flask documentation and Related Github:
+https://medium.com/@adrianhuber17/how-to-build-a-simple-real-time-application-using-flask-react-and-socket-io-7ec2ce2da977
+
+https://github.com/adrianhuber17/webSocket-App
+
 
 
 # Author
