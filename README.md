@@ -18,7 +18,7 @@ This project uses React and Vite on the front end and Flask, Python, SQLAlchemy,
 
    - Squads: A specific podcast
    - Users: People who login to interact with PodSquad
-   - Posts: Comments made by users about a Squad
+   - Posts: Comments made by users about a Squad (there is full CRUD for posts)
    - SquadUsers: Members of a specific Squad
 
 One-to-many relationships:
@@ -27,6 +27,8 @@ One-to-many relationships:
 
 Many-to-many relationships:
    - Users can belong to many squads, and Squads can have many Users
+
+This project implements useContext to allow users to toggle a light/dark theme throughout. It also implement Formik for validation on all forms.
 
 # Installation
 - Run "pipenv install && pipenv shell" 
@@ -47,6 +49,10 @@ for assiting with sidebar code
 My Phase 2 final project for Flatiron:
 https://github.com/kerryoncoding/engineering-portfolio
 which I used to leverage frontend react design and css styling
+
+My Phase 4 project, which was the first itteration:
+https://youtu.be/lTO3XAnjDVk
+
 
 Flatiron Chatterbox Lab:
 https://github.dev/learn-co-curriculum/python-p4-adding-react-to-flask/tree/solution
