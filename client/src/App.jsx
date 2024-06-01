@@ -26,7 +26,6 @@ function App() {
 
 
 
-   // @@@ BEFORE WEBSOCKET
  useEffect(() => {
    fetchUser()
    fetchPosts()
@@ -263,8 +262,6 @@ function App() {
          .then(res => res.json())
          .then(data => setMyPostList(data))
    }
-
-
 
 
 

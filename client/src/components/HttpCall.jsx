@@ -14,6 +14,7 @@ export default function HttpCall() {
         setData(responseData.data);
       });
   });
+  
   return (
     <>
       <h3 className="http">{data}</h3>

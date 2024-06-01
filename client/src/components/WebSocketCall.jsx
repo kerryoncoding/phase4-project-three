@@ -4,9 +4,7 @@ import * as yup from "yup"
 
 
 export default function WebSocketCall({ socket, user }) {
-  // const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  const [tagMessage, setTagMessage] = useState("");
 
   // FORMIK 
   const formSchema = yup.object().shape({

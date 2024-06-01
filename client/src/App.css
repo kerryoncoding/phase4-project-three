@@ -9,24 +9,13 @@
 
 /* TOGGLING THEME */
 .your-component.light {
-  /* --primary-color: green;
-  --secondary-color: red; */
   background-color: #FFF;
-  /* color: #153A4D; */
   height: 100vh;
-  /* color: #C6CACE; */
 }
 
 .your-component.dark {
-  /* --primary-color: red;
-  --secondary-color: green; */
-
   background-color: #C6CACE;
-  /* color: #153A4D; */
-  /* background-color: #E8F0F5; */
   height: 100vh;
-  
-  /* color:rgb(250, 250, 220); */
 }
 
 
@@ -35,19 +24,6 @@ li {
   list-style-type: none;
 }
 
-
-
-/* .home,
-.reports,
-.products {
-  display: flex;
-  height: 90vh;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-  background-color: #153A4D;
-  color: #fff;
-} */
 
 /* Navbar CSS */
 .navbar {
@@ -174,16 +150,6 @@ span {
 
 /* HOME */
 
-/* don't think I'm using this...  */
-/* .home-container { */
-  /* display: block; */
-  /* padding-top:50px;
-  margin: 0 auto;
-  max-width: 600px;
-  text-align: center;
-  color: #153A4D; */
-/* } */
-
 .homeImage {
   border-radius: 10px;
   max-width: 400px;
@@ -200,15 +166,6 @@ span {
   max-width: 600px;
 }
 
-
-/* .squad-container {
-  padding-top:50px;
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-  max-width: 900px;
-} */
-
 .skill-list {
   display: block;
   margin: 0 auto;
@@ -219,7 +176,6 @@ span {
 /* SQUADS */
 
 .card-container {
-  /* display: block; */
   text-align: center;
   margin: 0 auto;
   max-width: 90%;
@@ -272,8 +228,8 @@ span {
 }
 
 
-/* SQUAD FORM SECTION */
 
+/* SQUAD FORM SECTION */
 
 .formContainer {
   background-color: #FFF;
@@ -308,6 +264,7 @@ span {
   padding: 10px;
   background-color:#E4F1FE ;
 }
+
 
 
 /* ALL BUTTONS */
