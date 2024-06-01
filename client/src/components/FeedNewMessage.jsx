@@ -16,7 +16,7 @@ function FeedNewMessage({ makePosting, member, leaveSquad, joinSquad }) {
 
    // Formik
    const formSchema = yup.object().shape({
-      body: yup.string().required("Field can not be left blank").max(125, "Exceeds max length"),
+      body: yup.string().required("Field can not be blank").max(125, "Exceeds max length"),
    });
 
    const formik = useFormik({
