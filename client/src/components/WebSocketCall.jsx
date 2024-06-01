@@ -10,38 +10,24 @@ export default function WebSocketCall({ socket, user }) {
 
   // FORMIK 
   const formSchema = yup.object().shape({
-    message: yup.string().required("Field can not be left blank").max(50, "Exceeds max length"),
- });
+    message: yup.string().required("Field can not be left blank").max(100, "Exceeds max length"),
+  });
 
+ 
  
   const formik = useFormik({
     initialValues: {
       message: "",
     },
     validationSchema: formSchema,
-    onSubmit: (values, { resetForm }) => {
-      addTag(values.message)
-      socket.emit("data", tagMessage);
-      // setMessage("");
-      setTagMessage("");
-      resetForm()
+    onSubmit: (values) => {
+      if (!values.message) {
+        return;
+      }
+      socket.emit("data", user.username + ": " + values.message)
+      formik.resetForm()
     },
   });
-   
-  
-  function addTag(inputMessage) {
-    const tempMessage = user.username + ": " + inputMessage
-    setTagMessage(tempMessage)
-  }
-
-  // const handleSubmit = () => {
-  //   if (!message) {
-  //     return;
-  //   }
-  //   socket.emit("data", tagMessage);
-  //   setMessage("");
-  //   setTagMessage("");
-  // };
 
   useEffect(() => {
     socket.on("data", (data) => {
@@ -54,21 +40,21 @@ export default function WebSocketCall({ socket, user }) {
     };
   }, [socket, messages]);
 
+
+
   return (
     <div>
       <br></br>
       <form onSubmit={formik.handleSubmit}>
-      <input
-        className="chat-message"
-        type="text"
-        id="message"
-        value={formik.values.message}
-        placeholder="Enter message..."
-        onChange={formik.handleChange} />
-        <p style={{ color: "red" }}> {formik.errors.name}</p>
-        <button className="messageToggleButton" type="submit" onClick={formik.handleSubmit}>
-          submit
-        </button>
+        <input
+          className="chat-message"
+          type="text"
+          id="message"
+          value={formik.values.message}
+          placeholder="Enter message..."
+          onChange={formik.handleChange} />
+        <button className="messageToggleButton" type="submit" onClick={formik.handleSubmit}>submit</button>
+        <p style={{ color: "red" }}> {formik.errors.message}</p>
       </form>
       <hr className="breakline" />
       <ul>

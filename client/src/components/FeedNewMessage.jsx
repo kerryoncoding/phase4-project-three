@@ -31,7 +31,6 @@ function FeedNewMessage({ makePosting, member, leaveSquad, joinSquad }) {
    });
    
 
-   
    if (member) {
       return (
          <>
@@ -43,8 +42,9 @@ function FeedNewMessage({ makePosting, member, leaveSquad, joinSquad }) {
                value={formik.values.body}
                placeholder="   new message..."
                />
+               
+               <button className="messageToggleButton" type="submit">Send</button>
                <p style={{ color: "red" }}> {formik.errors.body}</p>
-            <button className="messageToggleButton" type="submit">Send</button>
          </form>
          <button onClick={handleLeaveClick} className="messageToggleButton" type="submit">Leave this Squad</button>
       </>
