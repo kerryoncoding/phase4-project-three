@@ -5,17 +5,10 @@ import PostFeedItem from "./PostFeedItem"
 import FeedNewMessage from "./FeedNewMessage"
 
 
-// function Squads({ user, makePosting, active, logOut, displayedSquads, toggleView, member, displayedPosts, deleteCard, deletePost, editPost, joinSquad, leaveSquad }) {
-
 function Squads({ user, makePosting, active, displayedSquads, toggleView, member, displayedPosts, deleteCard, deletePost, editPost, joinSquad, leaveSquad }) {
 
    const { theme } = useContext(ThemeContext);   
      
-   // function handleLogout() {
-   //    logOut()
-   // }
-
-
    const squads = displayedSquads.map((item) => {
       return (
          <SquadItem 
@@ -46,9 +39,6 @@ function Squads({ user, makePosting, active, displayedSquads, toggleView, member
    if (active == true) {
       return (
          <div className={`your-component ${theme}`}>
-            {/* <div className="logout">
-               <button className="messageToggleButton" onClick={handleLogout}>Logout</button>
-            </div> */}
             <div className="squad-container">
                <br />
                <div className="card-container">
@@ -64,7 +54,6 @@ function Squads({ user, makePosting, active, displayedSquads, toggleView, member
       return (
          <div className={`your-component ${theme}`}>
             <div className="logout">
-               {/* <button className="messageToggleButton" onClick={handleLogout}>Logout</button> */}
             </div>
             <div className="squad-container">
                <br />

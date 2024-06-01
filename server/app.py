@@ -1,26 +1,15 @@
 
 from config import app
-
 from flask_cors import CORS
-
-
 from flask import Flask, request, make_response, jsonify, session, abort, render_template
 from flask_socketio import SocketIO, emit
-# from flask_cors import CORS
-# from flask_migrate import Migrate
 from models import Squad, User, Post, SquadUsers, db
 from flask_restful import Resource
-
-# app = Flask(__name__)
-# app.config['SECRET_KEY'] = 'secret!'
-# socketio = SocketIO(app)
 
 
 CORS(app,resources={r"/*":{"origins":"*"}})
 socketio = SocketIO(app,cors_allowed_origins="*")
 
-# CORS(app,resources={r"/*":{"origins":"*"}})
-# socketio = SocketIO(app,cors_allowed_origins="*")
 
 # Home - for server testing only  ################
 @app.route('/')
@@ -238,7 +227,6 @@ def deletemembership(id):
 def post():
     user=User.query.filter_by(username=request.get_json()['name']).first()
     session['user_id'] = user.id
-    # import ipdb; ipdb.set_trace()
     response = make_response(
         user.to_dict(),
         200
@@ -284,6 +272,7 @@ def connected():
     print(request.sid)
     print("client has connected")
     # emit("connect",{"data":f"id: {request.sid} is connected"})
+    # Needed to comment out ^^^ because it was causing my connection to loop
 
 @socketio.on('data')
 def handle_message(data):
@@ -299,12 +288,6 @@ def disconnected():
 
 
 
-# if __name__ == "__main__":
-#   app.run(port=5555, debug=True)
-#   socketio.run(app)
-
-
 if __name__ == '__main__':
-    # app.run(port=5555, debug=True)
     socketio.run(app, debug=True,port=5555)
 

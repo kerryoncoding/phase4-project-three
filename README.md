@@ -10,8 +10,8 @@ From the "All my Posts" page, the user can show/hide all the posts they have mad
 If the user goes to the "Chatroom" they can turn on live chat and converse in real time with other users who are logged in to the chat.
 
 A video to demo the page is located here:
-****need new video
-https://youtu.be/lTO3XAnjDVk
+https://www.youtube.com/watch?v=_cZFeGNvFdI
+
 
 # Description
 This project uses React and Vite on the front end and Flask, Python, SQLAlchemy, Flask-socketio on the backend.  The databases are:
@@ -57,6 +57,10 @@ https://youtu.be/lTO3XAnjDVk
 Flatiron Chatterbox Lab:
 https://github.dev/learn-co-curriculum/python-p4-adding-react-to-flask/tree/solution
 which I used to support my messaging feed
+
+useContext:
+https://www.youtube.com/watch?v=5LrDIWkK_Bc&t=79s
+
 
 Flatiron Video on Authentication:
 https://base.flatironschool.com/resource-library/auth-part-1-fd86ead34f
