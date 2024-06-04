@@ -13,7 +13,7 @@ export default function HttpCall() {
       .then((responseData) => {
         setData(responseData.data);
       });
-  });
+  }, []);
   
   return (
     <>
